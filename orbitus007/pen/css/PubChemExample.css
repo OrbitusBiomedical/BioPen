@@ -199,6 +199,7 @@ input {
 }
 
 #molecule_details {
+	display: none;
 	position:absolute;
 	width:170px;
 	right:0%;
