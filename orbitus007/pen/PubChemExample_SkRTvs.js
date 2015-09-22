@@ -812,6 +812,7 @@ function init() {
 
 	var alphaMolecule = getUrlVars()["alpha"];
 	rotateMolecules = getUrlVars()["rotate"];
+	rotateMolecules = true;
 
 	var drawAlpha = false;
 
