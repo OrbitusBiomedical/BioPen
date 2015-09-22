@@ -140,22 +140,22 @@ function setAtomSize( atom, element)
 	//console.log('element -', element);
 	switch(element)
 	{
-		case 'c':
+		case 6:
 		//console.log('carbon');
 		atom.width = 73;//picometers
 		atom.height = 73;//picometers
 		break;
-		case 'o':
+		case 8:
 		//console.log('oxygen');
 		atom.width = 66;//picometers
 		atom.height = 66;//picometers
 		break;
-		case 'n':
+		case 7:
 		//console.log('nitrogen');
 		atom.width = 71;//picometers
 		atom.height = 71;//picometers
 		break;
-		case 'h':
+		case 1:
 		//console.log('hydrogen');
 		atom.width = 31;//picometers
 		atom.height = 31;//picometers
@@ -168,19 +168,19 @@ function getAtomSize(element)
 	//console.log('element -', element);
 	switch(element)
 	{
-		case 'c':
+		case 6:
 		//console.log('carbon');
 		return 73/2.0;//picometers
 		break;
-		case 'o':
+		case 8:
 		//console.log('oxygen');
 		return 66/2.0;//picometers
 		break;
-		case 'n':
+		case 7:
 		//console.log('nitrogen');
 		return 71/2.0;//picometers
 		break;
-		case 'h':
+		case 1:
 		//console.log('hydrogen');
 		return 31/2.0;//picometers
 		break;
