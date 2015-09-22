@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>OrbitusBiomedical - ∂ipole</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta http-equiv="X-Frame-Options" content="ALLOWALL">
+		<link href="css/bootstrap.css" rel="stylesheet">
+    	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+    	<link href="css/PubChemExample.css" rel="stylesheet">
+		<style>
+			
+
+
+		</style>
+	</head>
+	<body>
+
+		<div id="webgl_div">
+		</div>
+
+		<div id="searchContainer">
+			<form id="pubChemSearchForm" onSubmit="return checkField()">
+				<input id="field" name="field" type="text" />
+				<div id="delete"><span id="x">x</span></div>
+				<input id="submitButton" name="submit" type="button" value="Search" />
+				<div id="outputbox">
+			    	<p id="outputcontent"></p>
+				</div>
+			</form>
+		</div>
+
+        <div id="molecule_details">
+					
+
+				<label id="MoleculeName">Water</label>
+				<h4>Molecular Formula: <label id="MoleculeFormula">H2O</label></h4>
+				<div>
+					<label>
+						<span>CID: <label id="MoleculeCID">0000</label></span>
+						
+					</label>
+				</div>
+				<div>
+					<label>
+						<span>IUPAC Preferred Name: <label id="IUPAC_PreferredName">oxidane</label></span>
+						
+					</label>
+				</div>
+				<div>
+					<label>
+						<span>Molecular Weight: <label id="MolecularWeight">18.010565</label> g/mol</span>
+						
+					</label>
+				</div>
+				<div>
+					<label>
+						<span>RotatableBond: <label id="RotatableBond">1</label></span>
+						
+					</label>
+				</div>
+				<div>
+					<label>
+						<span>Hydrogen Bond Acceptor: <label id="HydrogenBondAcceptor">0</label></span>
+					</label>
+				</div>
+				<div>
+					<label>
+						<span>Hydrogen Bond Donor: <label id="HydrogenBondDonor">0</label></span>
+						
+					</label>
+				</div>
+				<div>
+					
+				</div>
+		</div>
+
+		<label id="MoleculeName_MainLabel">Water</label>
+
+
+		<script src="libraries/three.min.js"></script>
+
+		<script src="js/controls/TrackballControls.js"></script>
+		<script src="js/controls/TransformControls.js"></script>
+
+		<script src="js/loaders/PubChem_3DJSONLoader.js"></script>
+		<script src="js/loaders/PDBLoader.js"></script>
+		
+		<script src="js/libs/stats.min.js"></script>
+		
+		<script src="js/THREEx.KeyboardState.js"></script>
+		<script src="js/THREEx.FullScreen.js"></script>
+		<script src="js/THREEx.WindowResize.js"></script>
+
+		<script src='js/threex.dilategeometry.js'></script>
+		<script src='js/threex.atmospherematerial.js'></script>
+		<script src="js/threex.geometricglowmesh.js"></script>
+
+		<script src="js/jquery-2.1.0.js" ></script>
+		<script src="js/jquery.blockUI.js" ></script>
+		<script src="js/Detector.js"></script>
+		
+		<!--<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
+		<script type="text/javascript" src="js/bootstrap-confirmation.js"></script>		
+		-->
+
+		<link href="css/jquery-ui.css" rel="stylesheet">
+		<script src="js/jquery-ui.js"></script>
+
+
+		<script src="PubChemExample.js"></script>
+		
+	</body>
+</html>

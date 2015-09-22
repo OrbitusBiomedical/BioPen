@@ -835,7 +835,7 @@ function init() {
 	selectedObjectsArray = alphaObjects;
 
 
-	pubChem_compoundSearchByName("benzene", alphaDimension);
+	pubChem_compoundSearchByName("water", alphaDimension);
 
 
 	// lights
