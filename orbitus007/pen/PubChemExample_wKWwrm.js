@@ -835,7 +835,7 @@ function init() {
 	selectedObjectsArray = alphaObjects;
 
 
-	pubChem_compoundSearchByName("lidocaine", alphaDimension);
+	pubChem_compoundSearchByName("methanol", alphaDimension);
 
 
 	// lights

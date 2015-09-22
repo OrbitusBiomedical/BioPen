@@ -835,7 +835,7 @@ function init() {
 	selectedObjectsArray = alphaObjects;
 
 
-	pubChem_compoundSearchByName("aspirin", alphaDimension);
+	pubChem_compoundSearchByName("ether", alphaDimension);
 
 
 	// lights
