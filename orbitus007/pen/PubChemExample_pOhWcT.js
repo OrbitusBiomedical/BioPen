@@ -1002,7 +1002,7 @@ function render() {
 
 	if (rotateMolecules)
 	{
-		alphaDimension.rotation.x = time * -2.7;
+		alphaDimension.rotation.y = time * -3.7;
 	}
 
 	alphaTransformControl.update();
