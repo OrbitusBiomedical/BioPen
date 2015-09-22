@@ -373,7 +373,7 @@ function loadPubChemMolecule( pubChem_3djson , destinationDimension)
 
 			switch (order[i/2])
 			{
-				case 'single':
+				case 1:
 				{
 					// One Bond
 					//console.log('single bond rudy');
@@ -454,7 +454,7 @@ function loadPubChemMolecule( pubChem_3djson , destinationDimension)
 					
 				}
 				break;
-				case 'double':
+				case 2:
 				{
 					// One Bond
 
@@ -562,7 +562,7 @@ function loadPubChemMolecule( pubChem_3djson , destinationDimension)
 					
 				}
 				break;
-				case 'triple':
+				case 3:
 				{
 					// One Bond
 					//console.log('triple bond rudy');

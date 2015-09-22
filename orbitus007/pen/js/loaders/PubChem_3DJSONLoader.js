@@ -72,7 +72,7 @@ THREE.PubChem_3DJSONLoader.prototype = {
 				g = 0.0;
 				b = 0.0;
 			}
-			if (atoms.element[i] == '7') //N
+			if (atoms.element[i] == 7) //N
 			{
 				r = 0.0;
 				g = 0.0;
@@ -90,56 +90,56 @@ THREE.PubChem_3DJSONLoader.prototype = {
 				g = 1.0;
 				b = 1.0;
 			}
-			if (atoms.element[i] == '15') //P
+			if (atoms.element[i] == 15) //P
 			{
 				r = 0.8;
 				g = 0.8;
 				b = 0.0;
 			}
-			if (atoms.element[i] == '11') //na
+			if (atoms.element[i] == 11) //na
 			{
 				r = 0.8;
 				g = 0.8;
 				b = 0.0;
 			}
-			if (atoms.element[i] == '12') //mg
+			if (atoms.element[i] == 12) //mg
 			{
 				r = 0.2;
 				g = 1.0;
 				b = 0.0;
 			}
-			if (atoms.element[i] == '19') //k
+			if (atoms.element[i] == 19) //k
 			{
 				r = 0.23;
 				g = 0.8;
 				b = 0.51;
 			}
-			if (atoms.element[i] == '20') //ca
+			if (atoms.element[i] == 20) //ca
 			{
 				r = 0.2;
 				g = 0.87;
 				b = 0.0;
 			}
-			if (atoms.element[i] == '16') //S
+			if (atoms.element[i] == 16) //S
 			{
 				r = 0.83;
 				g = 0.87;
 				b = 0.0;
 			}
-			if (atoms.element[i] == '17') //cl
+			if (atoms.element[i] == 17) //cl
 			{
 				r = 0.0;
 				g = 1.0;
 				b = 1.0;
 			}
 			//Metals
-			if (atoms.element[i] == '26') //fe
+			if (atoms.element[i] == 26) //fe
 			{
 				r = 0.64;
 				g = 0.32;
 				b = 0.0;
 			}
-			if (atoms.element[i] == '9') //f
+			if (atoms.element[i] == 9) //f
 			{
 				r = 0.2;
 				g = 0.8;
