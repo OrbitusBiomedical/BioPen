@@ -32,7 +32,7 @@ var pdbLoader = new THREE.PDBLoader();
 var colorSpriteMap = {};
 var baseSprite = document.createElement( 'img' );
 
-var rotateMolecules = false;
+var rotateMolecules = true;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
@@ -811,9 +811,8 @@ function init() {
 
 
 	var alphaMolecule = getUrlVars()["alpha"];
-	rotateMolecules = getUrlVars()["rotate"];
-	rotateMolecules = true;
-	
+	//rotateMolecules = getUrlVars()["rotate"];
+
 	var drawAlpha = false;
 
 	if ( typeof alphaMolecule !== 'undefined' && alphaMolecule != 'undefined' )
