@@ -1,4 +1,4 @@
-
+ 
 var alphaObjects = [];
 var alphaOpacity = 1.0;
 var alphaDataResponse;
