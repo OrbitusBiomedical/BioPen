@@ -1,0 +1,225 @@
+body {
+	background-color: #000000;
+	margin: 0px;
+	overflow: hidden;
+	font-family:Monospace;
+	font-size:13px;
+	text-align:center;
+	font-weight: bold;
+	text-align:center;
+}
+
+a {
+	color:#0078ff;
+}
+
+
+
+/*--------------------------------------- SearchField CSS ----------------------------------------------*/
+
+
+#searchContainer {
+	position: absolute;
+	top: 10px;
+	left :50%;
+	margin-left: -110px;
+	width:420px;
+	z-index: 2000;
+
+
+}
+
+/* Style the search input field. */
+#field {
+	float:left; 
+	width:280px; 
+	height:27px; 
+	line-height:27px;
+	text-indent:10px; 
+	font-family:arial, sans-serif; 
+	font-size:1em; 
+	color:#333; 
+	background: #fff; 
+	border:solid 1px #d9d9d9; 
+	border-top:solid 1px #c0c0c0; 
+	border-right:none;
+	border-radius: 0px;
+}
+
+/* Style the "X" text button next to the search input field */
+#delete {
+	float:left; 
+	width:16px;
+	height:27px; 
+	line-height:27px; 
+	margin-right:15px; 
+	padding:10 10px 0 10px;
+	font-family: "Lucida Sans", "Lucida Sans Unicode",sans-serif;
+	font-size:22px; 
+	background: #fff;  
+	border:solid 1px #d9d9d9; 
+	border-top:solid 1px #c0c0c0; 
+	border-left:none;
+}
+/* Set default state of "X" and hide it */
+#delete #x {
+	color:#A1B9ED; 
+	cursor:pointer;
+	display:none;
+}
+/* Set the hover state of "X" */
+#delete #x:hover {
+	color:#36c;
+}
+
+#submitButton {
+	cursor:pointer; 
+	width:70px; 
+	height: 31px; 
+	line-height:0; 
+	margin-left:-26px;
+	font-size:0; 
+	text-indent:-999px;
+	color: transparent;  
+	background: url(ico-search.png) no-repeat #4d90fe center; 
+	border: 1px solid #3079ED; 
+	-moz-border-radius: 2px; 
+	-webkit-border-radius: 2px; 
+}
+/* Style the search button hover state */
+#submit:hover {
+	background: url(ico-search.png) no-repeat center #357AE8; 
+	border: 1px solid #2F5BB7;
+}
+
+
+
+
+
+#outputcontent {
+	color: #ffffff;
+}
+
+#message {
+	color: #ffffff;
+}
+
+* {
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-font-smoothing:antialiased;
+	-moz-font-smoothing:antialiased;
+	-o-font-smoothing:antialiased;
+	font-smoothing:antialiased;
+	text-rendering:optimizeLegibility;
+}
+body {
+	font:400 12px/1.625 "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color:#444;
+	background:#ffffff;
+	background-image:linear-gradient(left , #000000 0%, #000000 52%, #000000 100%);
+	background-image:-moz-linear-gradient(left , #000000 0%, #000000 52%, #000000 100%);
+	background-image:-webkit-linear-gradient(left , #000000 0%, #000000 52%, #000000 100%);
+}
+#float_background
+{
+	background-color:#000000;
+	opacity:0.5;
+
+	position:fixed;
+    top:-30px;
+    right:400px;
+    float:right;
+}
+#float{
+    position:fixed;
+    top:-30px;
+    right:400px;
+    float:right;
+}
+
+.wrapper {
+	max-width:400px;
+	min-width:400px;
+	position:absolute;
+	width:95%;
+	
+}
+
+
+.hidden-display
+{
+	visibility: hidden;
+	opacity:0;
+}
+.visible-display
+{
+	visibility: visible;
+	opacity: 1;
+}
+
+/*--------------------------------------- END SearchField CSS ----------------------------------------------*/
+
+
+input {
+    border: 0;
+    outline: 0;
+    background: yellow
+        ;
+    border-bottom: 2px solid black;
+    width: 80px;
+    height:80px;
+    font-size:180%;
+}
+
+.block {
+	position: absolute;
+	display: block;
+	text-align: left;
+	left:40px;
+}
+
+#MoleculeName {
+	margin-top:10px;
+	font-size: 30px;
+	color:red;
+}
+
+#MoleculeName_MainLabel {
+	position:absolute;
+	bottom:0%;
+	left:50%;
+	width:180px;
+	margin-left:-90px;
+	font-size: 30px;
+	color:red;
+}
+
+#molecule_details {
+	position:absolute;
+	width:170px;
+	right:0%;
+	bottom:0%;
+	background-color: white;
+}
+
+#webgl_div {
+	position:absolute;
+	top:0%;
+	left:0%;
+	width:70%;
+	height:100%;
+}
+
+
+
+#blackOpaqueBackground {
+	position:absolute;
+	width:100%;
+	height:100%;
+	opacity:0.6;
+	background: url() no-repeat #000000 center; 
+}
