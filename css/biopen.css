@@ -2,11 +2,22 @@
 /* Header css goes here */
 
 
-
 .main-header {
 	height: 40px;
 }
 
+.logo {
+	margin: 0;
+	float: left;
+}
+
+.header-search-button {
+	float: left;
+}
+
+.search-form {
+	float: left;
+}
 
 .header-right {
 	float: right;
