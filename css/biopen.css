@@ -8,15 +8,21 @@
 
 .header-search-button {
   float: left; }
+  @media screen and (max-width: 500px) {
+    .header-search-button {
+      display: none; } }
+  @media screen and (min-width: 500px) {
+    .header-search-button {
+      display: block; } }
 
 .search-form {
   float: left; }
   @media screen and (max-width: 500px) {
     .search-form {
-      display: block; } }
+      display: none; } }
   @media screen and (min-width: 500px) {
     .search-form {
-      display: none; } }
+      display: block; } }
 
 .header-right {
   float: right; }
