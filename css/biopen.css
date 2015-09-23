@@ -8,9 +8,16 @@
 
 .header-search-button {
   float: left; }
+  @media screen and (min-width: 500px) {
+    .header-search-button {
+      display: block; } }
 
 .search-form {
-  float: left; }
+  float: left;
+  display: none; }
+  @media screen and (min-width: 500px) {
+    .search-form {
+      display: block; } }
 
 .header-right {
   float: right; }
