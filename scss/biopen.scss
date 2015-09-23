@@ -20,6 +20,12 @@ $break-large: 700px;
 
 .search-form {
 	float: left;
+	@media screen and (max-width: $break-small) {
+    display:block;
+  }
+  @media screen and (min-width: $break-small) {
+    display:none;
+  }
 }
 
 .header-right {

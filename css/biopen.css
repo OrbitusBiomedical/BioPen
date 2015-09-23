@@ -11,6 +11,12 @@
 
 .search-form {
   float: left; }
+  @media screen and (max-width: 500px) {
+    .search-form {
+      display: block; } }
+  @media screen and (min-width: 500px) {
+    .search-form {
+      display: none; } }
 
 .header-right {
   float: right; }
