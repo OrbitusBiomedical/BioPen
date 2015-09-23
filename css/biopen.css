@@ -20,9 +20,6 @@
   @media screen and (max-width: 500px) {
     .mobile-search {
       display: block; } }
-  @media screen and (min-width: 700px) {
-    .mobile-search {
-      display: none; } }
 
 .header-left {
   float: left; }
