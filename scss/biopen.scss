@@ -16,17 +16,10 @@ $break-large: 700px;
 
 .header-search-button {
 	float: left;
-	@media screen and (min-width: $break-small) {
-    	display:block;
-  	}
 }
 
 .search-form {
 	float: left;
-	display: none;
-	@media screen and (min-width: $break-small) {
-    	display:block;
-  	}
 }
 
 .header-right {
@@ -35,10 +28,12 @@ $break-large: 700px;
 
 
 .mobile-search {
-  	display: none;
-  	@media screen and (max-width: $break-small) {
-  		display:block;
-  	}
+  @media screen and (max-width: $break-small) {
+    display:block;
+  }
+  @media screen and (min-width: $break-small) {
+    display:none;
+  }
 }
 
 

@@ -8,25 +8,19 @@
 
 .header-search-button {
   float: left; }
-  @media screen and (min-width: 500px) {
-    .header-search-button {
-      display: block; } }
 
 .search-form {
-  float: left;
-  display: none; }
-  @media screen and (min-width: 500px) {
-    .search-form {
-      display: block; } }
+  float: left; }
 
 .header-right {
   float: right; }
 
-.mobile-search {
-  display: none; }
-  @media screen and (max-width: 500px) {
-    .mobile-search {
-      display: block; } }
+@media screen and (max-width: 500px) {
+  .mobile-search {
+    display: block; } }
+@media screen and (min-width: 500px) {
+  .mobile-search {
+    display: none; } }
 
 .header-left {
   float: left; }
