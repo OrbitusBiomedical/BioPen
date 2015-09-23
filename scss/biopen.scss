@@ -1,0 +1,55 @@
+
+/* Header scss goes here */
+
+$break-small: 500px;
+
+$break-large: 700px;
+
+.main-header {
+	height: 40px;
+}
+
+.logo {
+	margin: 0;
+	float: left;
+}
+
+.header-search-button {
+	float: left;
+}
+
+.search-form {
+	float: left;
+}
+
+.header-right {
+	float: right;
+}
+
+
+.mobile-search {
+  display: none;
+  @media screen and (max-width: $break-small) {
+    display:block;
+  }
+  @media screen and (min-width: $break-large) {
+    display:none;
+  }
+}
+
+
+.header-left {	
+	float: left;
+}
+
+/* Body scss goes here */
+
+.single-pen {
+	float: left;
+	margin: 0 2% 25px 0;
+}
+
+.group {
+	display: table;
+}
+

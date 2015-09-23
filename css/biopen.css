@@ -1,40 +1,38 @@
-
-/* Header css goes here */
-
-
+/* Header scss goes here */
 .main-header {
-	height: 40px;
-}
+  height: 40px; }
 
 .logo {
-	margin: 0;
-	float: left;
-}
+  margin: 0;
+  float: left; }
 
 .header-search-button {
-	float: left;
-}
+  float: left; }
 
 .search-form {
-	float: left;
-}
+  float: left; }
 
 .header-right {
-	float: right;
-}
+  float: right; }
+
+.mobile-search {
+  display: none; }
+  @media screen and (max-width: 500px) {
+    .mobile-search {
+      display: block; } }
+  @media screen and (min-width: 700px) {
+    .mobile-search {
+      display: none; } }
 
 .header-left {
-	float: left;
-}
+  float: left; }
 
-/* Body css goes here */
-
+/* Body scss goes here */
 .single-pen {
-	float: left;
-	margin: 0 2% 25px 0;
-}
+  float: left;
+  margin: 0 2% 25px 0; }
 
 .group {
-	display: table;
-}
+  display: table; }
 
+/*# sourceMappingURL=biopen.css.map */
