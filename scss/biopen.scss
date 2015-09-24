@@ -23,17 +23,28 @@ a {
 	float: left;
 }
 
+
+.search-input {
+	width: 80%;
+}
+
+
 .header-search-button {
 	float: left;
+	width: 20%;
 }
+
 
 .search-form {
 	float: left;
 }
 
+
 .header-right {
 	float: right;
+	width: 40%;
 }
+
 
 .header-search{
 	@media screen and (max-width: $break-small) {
@@ -65,6 +76,12 @@ a {
 .single-pen {
 	float: left;
 	margin: 0 2% 25px 0;
+	@media screen and (max-width: $break-small) {
+    	width:100%;
+  	}
+  	@media screen and (min-width: $break-small) {
+    	width:32%;
+  	}
 }
 
 .group {
