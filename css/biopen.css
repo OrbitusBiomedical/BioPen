@@ -2,6 +2,10 @@
 body {
   background: #252527; }
 
+a {
+  text-decoration: none;
+  color: white; }
+
 .main-header {
   height: 40px; }
 
