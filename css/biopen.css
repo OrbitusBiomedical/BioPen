@@ -13,6 +13,9 @@ a {
   margin: 0;
   float: left; }
 
+.mobile-search-input {
+  width: 90%; }
+
 .search-input {
   width: 80%; }
 
