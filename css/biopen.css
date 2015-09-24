@@ -45,6 +45,13 @@ a {
   float: left; }
 
 /* Body scss goes here */
+@media screen and (max-width: 500px) {
+  .single-pen-iframe {
+    width: 100%; } }
+@media screen and (min-width: 500px) {
+  .single-pen-iframe {
+    width: 32%; } }
+
 .single-pen {
   float: left;
   margin: 0 2% 25px 0; }
