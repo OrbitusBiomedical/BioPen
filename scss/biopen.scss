@@ -24,7 +24,7 @@ a {
 }
 
 .mobile-search-input {
-	width:90%;
+	width: 90%;
 }
 
 
@@ -36,6 +36,11 @@ a {
 .header-search-button {
 	float: left;
 	width: 20%;
+}
+
+.mobile-search-form {
+	float: left;
+	width: 100%;
 }
 
 
@@ -52,21 +57,21 @@ a {
 
 .header-search{
 	@media screen and (max-width: $break-small) {
-    	display:none;
+    	display: none;
   	}
   	@media screen and (min-width: $break-small) {
-    	display:block;
+    	display: block;
   	}
 }
 
 .mobile-search {
   @media screen and (max-width: $break-small) {
-    display:block;
-    width:100%;
-    height:40px;
+    display: block;
+    width: 100%;
+    height: 40px;
   }
   @media screen and (min-width: $break-small) {
-    display:none;
+    display: none;
   }
 }
 
@@ -79,10 +84,10 @@ a {
 
 .single-pen-iframe {
 	@media screen and (max-width: $break-small) {
-    	width:100%;
+    	width: 100%;
   	}
   	@media screen and (min-width: $break-small) {
-    	width:240px;
+    	width: 240px;
   	}
 }
 
@@ -90,10 +95,10 @@ a {
 	float: left;
 	margin: 0 2% 25px 0;
 	@media screen and (max-width: $break-small) {
-    	width:100%;
+    	width: 100%;
   	}
   	@media screen and (min-width: $break-small) {
-    	width:240px;
+    	width: 240px;
   	}
 }
 
