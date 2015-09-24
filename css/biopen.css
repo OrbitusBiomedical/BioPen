@@ -1,4 +1,7 @@
 /* Header scss goes here */
+body {
+  background: #252527; }
+
 .main-header {
   height: 40px; }
 

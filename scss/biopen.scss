@@ -5,6 +5,10 @@ $break-small: 500px;
 
 $break-large: 700px;
 
+body {
+	background: #252527;
+}
+
 .main-header {
 	height: 40px;
 }
@@ -50,6 +54,8 @@ $break-large: 700px;
 }
 
 /* Body scss goes here */
+
+
 
 .single-pen {
 	float: left;
