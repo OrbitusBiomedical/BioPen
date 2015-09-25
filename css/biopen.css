@@ -101,6 +101,14 @@ em {
   box-shadow: inset 0 1px 0 #6e6e6e, 0 2px 2px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
   display: block; }
+  @media screen and (max-width: 800px) {
+    .site-footer {
+      padding: 5px 10px 10px;
+      height: auto; } }
+  @media screen and (min-width: 800px) {
+    .site-footer {
+      padding: 0 10px;
+      height: 30px; } }
   .site-footer .footer-left {
     margin: 0;
     padding: 0;
@@ -110,6 +118,12 @@ em {
     top: 0;
     right: 10px;
     z-index: 1; }
+    @media screen and (max-width: 800px) {
+      .site-footer .footer-right {
+        position: relative; } }
+    @media screen and (min-width: 800px) {
+      .site-footer .footer-right {
+        position: absolute; } }
   .site-footer h4 {
     margin: 0;
     padding: 0; }

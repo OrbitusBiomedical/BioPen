@@ -5,6 +5,9 @@ $break-small: 500px;
 
 $break-large: 700px;
 
+$break-800px: 800px;
+
+
 body {
 	background: #252527;
 }
@@ -146,6 +149,15 @@ em {
 	box-sizing: border-box;
 	display: block;
 
+	@media screen and (max-width: $break-800px) {
+	 	padding: 5px 10px 10px;
+	 	height: auto;
+	}
+	@media screen and (min-width: $break-800px) {
+	    padding: 0 10px;
+	    height: 30px;
+	}
+
 	.footer-left {
 		margin: 0;
 		padding: 0;
@@ -157,6 +169,12 @@ em {
 		top: 0;
 		right: 10px;
 		z-index: 1;
+		@media screen and (max-width: $break-800px) {
+		 	position: relative;
+		}
+		@media screen and (min-width: $break-800px) {
+		    position: absolute;
+		}
 	}
 
 	h4 {
