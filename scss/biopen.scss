@@ -149,11 +149,11 @@ em {
 	box-sizing: border-box;
 	display: block;
 
-	@media screen and (max-width: $break-800px) {
+	@media screen and (max-width: $break-large) {
 	 	padding: 5px 10px 10px;
 	 	height: auto;
 	}
-	@media screen and (min-width: $break-800px) {
+	@media screen and (min-width: $break-large) {
 	    padding: 0 10px;
 	    height: 30px;
 	}
@@ -169,10 +169,10 @@ em {
 		top: 0;
 		right: 10px;
 		z-index: 1;
-		@media screen and (max-width: $break-800px) {
+		@media screen and (max-width: $break-large) {
 		 	position: relative;
 		}
-		@media screen and (min-width: $break-800px) {
+		@media screen and (min-width: $break-large) {
 		    position: absolute;
 		}
 	}
