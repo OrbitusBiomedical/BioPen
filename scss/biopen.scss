@@ -10,6 +10,8 @@ $break-800px: 800px;
 
 body {
 	background: #252527;
+	margin: 0;
+	padding: 0;
 }
 
 a {
@@ -105,6 +107,13 @@ em {
 }
 
 /* Body scss goes here */
+
+.home-section {
+	margin: 0;
+	padding: 15px;
+	box-sizing: border-box;
+	position: relative;
+}
 
 .single-pen-iframe {
 	@media screen and (max-width: $break-small) {
