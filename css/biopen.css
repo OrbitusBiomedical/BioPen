@@ -87,6 +87,10 @@ em {
   display: table; }
 
 /* Footer */
+.link-footer {
+  margin: 0 0 26px 0;
+  padding: 40px 20px; }
+
 .site-footer {
   position: fixed;
   width: 100%;
