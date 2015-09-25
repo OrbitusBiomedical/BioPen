@@ -86,4 +86,32 @@ em {
 .group {
   display: table; }
 
+/* Footer */
+.site-footer {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: 30px;
+  z-index: 50001;
+  color: #999;
+  background: linear-gradient(#505050, #383838);
+  padding: 0 10px;
+  border-top: 1px solid black;
+  box-shadow: inset 0 1px 0 #6e6e6e, 0 2px 2px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  display: block; }
+  .site-footer .footer-left {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; }
+  .site-footer .footer-right {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    z-index: 1; }
+  .site-footer h4 {
+    margin: 0;
+    padding: 0; }
+
 /*# sourceMappingURL=biopen.css.map */
