@@ -167,7 +167,7 @@ em {
     	width: 100%;
   	}
   	@media screen and (min-width: $break-small) {
-    	width: 240px;
+    	width: 32%;
   	}
 }
 
@@ -175,7 +175,7 @@ em {
 	float: left;
 	margin: 0 2% 25px 0;
 	box-sizing: border-box;
-	
+
 	@media screen and (max-width: $break-small) {
     	width: 100%;
   	}
