@@ -80,20 +80,20 @@ em {
   margin: 0;
   box-sizing: border-box;
   display: block; }
-  .home-footer .home-section-inside {
+  .home-footer .home-footer-section-inside {
     padding: 0;
     box-sizing: border-box;
     display: block;
     max-width: 1200px;
     margin: 0 auto;
     position: relative; }
-    .home-footer .home-section-inside .flex-grid-thirds {
+    .home-footer .home-footer-section-inside .flex-grid-thirds {
       position: relative;
       display: flex;
       box-sizing: border-box;
       width: 32%;
       margin-right: 2%; }
-      .home-footer .home-section-inside .flex-grid-thirds .module {
+      .home-footer .home-footer-section-inside .flex-grid-thirds .module {
         display: block;
         padding: 20px;
         margin: 0 0 20px 0;
