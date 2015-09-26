@@ -42,6 +42,9 @@ em {
 
 .main-header {
 	height: 40px;
+	a {
+		color: white;
+	}
 }
 
 .logo {
@@ -346,6 +349,7 @@ em {
 	padding: 0;
 	box-sizing: border-box;
 	width: 100%;
+	
 	a {
 		color: white;
 	}

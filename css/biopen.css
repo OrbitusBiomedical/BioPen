@@ -22,6 +22,8 @@ em {
 
 .main-header {
   height: 40px; }
+  .main-header a {
+    color: white; }
 
 .logo {
   margin: 0;
