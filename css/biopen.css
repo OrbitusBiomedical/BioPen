@@ -135,6 +135,8 @@ em {
   @media screen and (min-width: 500px) {
     .single-pen {
       width: 32%; } }
+  .single-pen .iframe-wrap {
+    height: 220px; }
   .single-pen .cover-link {
     position: absolute;
     top: 0;

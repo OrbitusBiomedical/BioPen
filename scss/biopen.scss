@@ -189,6 +189,9 @@ em {
   	@media screen and (min-width: $break-small) {
     	width: 32%;
   	}
+  	.iframe-wrap {
+  		height: 220px;
+  	}
   	.cover-link {
   		position: absolute;
   		top: 0;
