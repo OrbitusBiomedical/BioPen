@@ -83,7 +83,7 @@ em {
 
 .header-search{
 	float: right;
-	
+
 	@media screen and (max-width: $break-small) {
     	display: none;
   	}
@@ -162,6 +162,10 @@ em {
 
 		}
 	}
+}
+
+.mini-ad {
+	background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url(http://assets.codepen.io/assets/modules/mini-ad-merch.jpg);
 }
 
 .subtle-sep {
