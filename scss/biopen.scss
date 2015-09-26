@@ -161,6 +161,14 @@ em {
 	}
 }
 
+.subtle-sep {
+	height: 1px;
+	position: relative;
+	background: -webkit-linear-gradient(left, transparent, rgba(0,0,0,0.75), transparent);
+	margin: 15px 0 40px 0;
+	color: white;
+
+}
 
 .single-pen-iframe {
 	width: 100%;
