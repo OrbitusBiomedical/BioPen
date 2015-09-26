@@ -90,6 +90,13 @@ em {
   @media screen and (min-width: 500px) {
     .single-pen {
       width: 240px; } }
+  .single-pen a {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 4000; }
 
 .group {
   display: table; }
