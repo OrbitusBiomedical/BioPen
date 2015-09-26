@@ -246,4 +246,19 @@ em {
     margin: 0;
     padding: 0; }
 
+.grid {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+  .grid .grid-1-2 {
+    padding-right: 50px;
+    width: 50%;
+    float: left;
+    min-height: 2px; }
+  .grid .grid-1-4 {
+    padding-right: 20px;
+    width: 25%;
+    float: left;
+    min-height: 2px; }
+
 /*# sourceMappingURL=biopen.css.map */
