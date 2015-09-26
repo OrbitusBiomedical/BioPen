@@ -115,6 +115,41 @@ em {
 	position: relative;
 }
 
+.home-footer {
+	padding: 15px;
+	position: relative;
+	margin: 0;
+	box-sizing: border-box;
+	display: block;
+
+	.home-section-inside {
+		padding: 0;
+		box-sizing: border-box;
+		display: block;
+		max-width: 1200px;
+		margin: 0 auto;
+		position: relative;
+
+		.flex-grid-thirds {
+			position: relative;
+			display: flex;
+			box-sizing: border-box;
+			width: 32%;
+			margin-right: 2%;
+
+			.module {
+				display: block;
+				padding: 20px;
+				margin: 0 0 20px 0;
+				overflow: hidden;
+				background: rgba(0,0,0,0.3);
+			}
+
+		}
+	}
+}
+
+
 .single-pen-iframe {
 	@media screen and (max-width: $break-small) {
     	width: 100%;
