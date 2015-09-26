@@ -204,6 +204,11 @@ em {
   margin: 0 0 26px 0;
   padding: 40px 20px;
   background: linear-gradient(to top left, rgba(128, 0, 128, 0.1), #000); }
+  .link-footer h4 {
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 0 10px 0;
+    box-sizing: border-box; }
 
 .site-footer {
   position: fixed;
