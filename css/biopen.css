@@ -267,7 +267,9 @@ em {
     width: 20%;
     float: left;
     min-height: 2px; }
-    .grid .grid-1-4 li {
-      list-style: none; }
+    .grid .grid-1-4 ul {
+      padding: 0; }
+      .grid .grid-1-4 ul li {
+        list-style: none; }
 
 /*# sourceMappingURL=biopen.css.map */
