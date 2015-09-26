@@ -90,7 +90,7 @@ em {
   @media screen and (min-width: 500px) {
     .single-pen {
       width: 240px; } }
-  .single-pen a {
+  .single-pen .cover-link {
     position: absolute;
     top: 0;
     bottom: 0;
