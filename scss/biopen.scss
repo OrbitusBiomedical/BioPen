@@ -193,25 +193,26 @@ em {
   		width: 60%;
   		float: left;
   		background: rgba(0,0,0,0.3);
-  		.single-stat {
-  			position: absolute;
-  			right: -1px;
-  			top: 0;
-  			height: 100%;
-  			margin: 0;
-  			padding: 0;
-
-  		}
-  		.comments {
-
-  		}
-  		.loves {
-
-  		}
-  		.views {
-
-  		}
+  		
   	}
+  	.stats {
+		position: absolute;
+		right: -1px;
+		top: 0;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+
+	}
+	.comments {
+
+	}
+	.loves {
+
+	}
+	.views {
+
+	}
 }
 
 .group {
