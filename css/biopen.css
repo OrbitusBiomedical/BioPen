@@ -110,6 +110,10 @@ em {
         overflow: hidden;
         background: rgba(0, 0, 0, 0.3); }
 
+.single-pen-iframe {
+  width: 100%;
+  height: 100%; }
+
 .single-pen {
   float: left;
   margin: 0 2% 25px 0;
