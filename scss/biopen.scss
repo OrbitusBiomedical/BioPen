@@ -345,6 +345,7 @@ em {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	width: 100%;
 
 	.grid-1-2 {
 		padding-right: 50px;
@@ -359,6 +360,9 @@ em {
 		width: 20%;
 		float: left;
 		min-height: 2px;
+		li {
+			list-style: none;
+		}
 	}
 }
 
