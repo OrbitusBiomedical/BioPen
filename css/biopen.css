@@ -84,7 +84,8 @@ em {
   position: relative;
   margin: 0;
   box-sizing: border-box;
-  display: block; }
+  display: block;
+  color: white; }
   .home-footer .home-footer-section-inside {
     padding: 0;
     box-sizing: border-box;
@@ -109,7 +110,7 @@ em {
         width: 32%;
         margin-right: 2%;
         padding: 20px;
-        margin: 0 0 20px 0;
+        margin: 10 0 20px 0;
         overflow: hidden;
         background: rgba(0, 0, 0, 0.3); }
 
@@ -185,9 +186,6 @@ em {
   margin: 0 0 26px 0;
   padding: 40px 20px;
   background: linear-gradient(to top left, rgba(128, 0, 128, 0.1), #000); }
-
-.home-footer {
-  color: white; }
 
 .site-footer {
   position: fixed;
