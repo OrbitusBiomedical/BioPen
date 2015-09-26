@@ -256,6 +256,8 @@ em {
   padding: 0;
   box-sizing: border-box;
   width: 100%; }
+  .grid a {
+    color: white; }
   .grid .grid-1-2 {
     padding-right: 50px;
     width: 50%;
