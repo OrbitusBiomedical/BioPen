@@ -1,0 +1,71 @@
+/*STEP 3: Add custom style to this stylesheet */
+
+
+/*End custom style */
+
+body {
+    text-align: left;
+    text-indent: 1em;
+    background: linear-gradient(to right, rgba(80,80,80,1), rgba(140, 140, 140, 0));
+}
+
+#pageheader {
+    color: lightblue;
+}
+
+#check {
+    color: #FFFFFF;
+    font-size: large;
+    font-weight: bold;
+    border: thin solid white;
+    border-radius: 10px;
+}
+
+#checkok {
+    color: #FFFFFF;
+    font-size: large;
+    font-weight: bold;
+    border: thin solid white;
+    border-radius: 10px;
+}
+
+#fail {
+    color: #FFFFFF;
+    font-size: large;
+    font-weight: bold;
+    border: thin solid red;
+    border-radius: 10px;
+}
+
+#download {
+    color: #FFFFFF;
+    font-size: large;
+    font-weight: bold;
+    border: thin solid white;
+    border-radius: 10px;
+}
+
+#privacy {
+    color: #FFFFFF;
+    font-size: large;
+    font-weight: bold;
+    border: thin solid white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#privacyheader {
+    color: #FFFFFF;
+    font-size: large;
+    font-weight: bold;
+    border: thin solid white;
+    border-radius: 10px;
+}
+
+#appcontext {
+    color: #FFFFFF;
+    font-size: large;
+    font-weight: bold;
+    border: thin solid white;
+    border-radius: 10px;
+}
