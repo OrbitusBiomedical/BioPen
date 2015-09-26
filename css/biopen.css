@@ -113,6 +113,11 @@ em {
         margin: 10 0 20px 0;
         overflow: hidden;
         background: rgba(0, 0, 0, 0.3); }
+        .home-footer .home-footer-section-inside .flex-grid-thirds .module .image-container {
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0; }
 
 .mini-ad-store {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(http://assets.codepen.io/assets/modules/mini-ad-merch.jpg); }
