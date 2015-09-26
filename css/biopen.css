@@ -113,8 +113,13 @@ em {
         overflow: hidden;
         background: rgba(0, 0, 0, 0.3); }
 
+.mini-ad-store {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(http://assets.codepen.io/assets/modules/mini-ad-merch.jpg); }
+
+.mini-ad-radio {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(http://assets.codepen.io/assets/modules/mini-ad-radio.jpg); }
+
 .mini-ad {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(http://assets.codepen.io/assets/modules/mini-ad-merch.jpg);
   background-size: 100%;
   background-position: top center;
   background-repeat: no-repeat;
