@@ -1,0 +1,95 @@
+<html>
+<head>
+<script>
+// Encoding for web features
+var encodingTable = {
+    0x1 : "face3d",
+    0x2 : "hand",
+    0x4 : "securityBit",
+    0x8 : "blob",
+    0x10 : "securityBit",
+    0x20 : "nuance_de_de_cnc",
+    0x40 : "nuance_en_us_cnc",
+    0x80 : "securityBit",
+    0x100 : "nuance_es_la_cnc",
+    0x200 : "nuance_fr_fr_cnc",
+    0x400 : "securityBit",
+    0x800 : "nuance_it_it_cnc",
+    0x1000 : "nuance_ja_jp_cnc",
+    0x2000 : "securityBit",
+    0x4000 : "nuance_pt_br_cnc",
+    0x8000 : "securityBit",
+    0x10000 : "nuance_zh_cn_cnc",
+    0x20000 : "f200",
+    0x40000 : "securityBit",
+    0x80000 : "r200",
+    0x100000 : "sr300",
+    0x200000 : "securityBit",
+    0x400000 : "front",
+    0x800000 : "rear"
+};
+function generate() {
+    var form = document.getElementById("myForm");
+    var features = "";
+    var code = 0;
+
+    for(var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].type == 'checkbox' && form.elements[i].checked == true) {
+            features  = features + form.elements[i].name + ",";
+        }
+    }
+
+    if (features === "") {
+        alert("You must select at least 1 module");
+        return;
+    }
+
+    for (key in encodingTable) {
+        if (encodingTable.hasOwnProperty(key)) {
+            if (features.indexOf(encodingTable[key]) != -1 || encodingTable[key] === "securityBit") {
+                code = code | key;
+            }
+        }
+    }
+
+    var tb =document.getElementById("myTextBox");
+    tb.value = "rs_sdk_" + code + "_webapp_v6.exe";
+
+}
+
+
+</script>
+</head>
+<body>
+<h1>The SDK WebApp Runtime Customizer</h1>
+<p style="font-size:x-large">Select the modules you wish to use in your JavaScript* app and click the "Generate Installer Name" button.<br />
+   Copy the SDK webapp runtime installer located at $(RSSDK_DIR)/runtime to a writable location and rename it
+   to this name.<br />
+   The customized installer only installs the modules that you selected.
+</p>
+<form name="options" id="myForm">
+    <h2>Modules required for app:</h2>
+    <input type="checkbox" name="face3d">The Face Tracking Module<br>
+    <input type="checkbox" name="hand">The Hand Tracking Module<br>
+    <input type="checkbox" name="blob">The Blob Tracking Module<br>
+    <input type="checkbox" name="nuance_en_us_cnc">Speech Command &amp; Control - English<br>
+    <input type="checkbox" name="nuance_de_de_cnc">Speech Command &amp; Control - German<br>
+    <input type="checkbox" name="nuance_es_la_cnc">Speech Command &amp; Control - Spanish<br>
+    <input type="checkbox" name="nuance_fr_fr_cnc">Speech Command &amp; Control - French<br>
+    <input type="checkbox" name="nuance_it_it_cnc">Speech Command &amp; Control - Italian<br>
+    <input type="checkbox" name="nuance_ja_jp_cnc">Speech Command &amp; Control - Japanese<br>
+    <input type="checkbox" name="nuance_pt_br_cnc">Speech Command &amp; Control - Portuguese<br>
+    <input type="checkbox" name="nuance_zh_cn_cnc">Speech Command &amp; Control - Chinese (Mandarin)<br>
+    <h2>Cameras required:</h2>
+    <input type="checkbox" name="f200">Intel&reg; RealSense&trade; 3D Camera, model F200<br>
+    <input type="checkbox" name="r200">Intel&reg; RealSense&trade; 3D Camera, model R200<br>
+    <input type="checkbox" name="sr300">Intel&reg; RealSense&trade; 3D Camera, model SR300<br>
+    <input type="checkbox" name="front">Any front-facing camera<br>
+    <input type="checkbox" name="rear">Any rear-facing camera<br>
+</form>
+<button onclick="generate()">Generate Installer Name</button>
+<br>
+<input type="text" id="myTextBox" size=30>
+
+</body>
+</html>
