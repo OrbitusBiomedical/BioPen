@@ -82,6 +82,8 @@ em {
 
 
 .header-search{
+	float: right;
+	
 	@media screen and (max-width: $break-small) {
     	display: none;
   	}

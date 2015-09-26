@@ -48,12 +48,14 @@ em {
   float: right;
   width: 40%; }
 
-@media screen and (max-width: 500px) {
-  .header-search {
-    display: none; } }
-@media screen and (min-width: 500px) {
-  .header-search {
-    display: block; } }
+.header-search {
+  float: right; }
+  @media screen and (max-width: 500px) {
+    .header-search {
+      display: none; } }
+  @media screen and (min-width: 500px) {
+    .header-search {
+      display: block; } }
 
 @media screen and (max-width: 500px) {
   .mobile-search {
