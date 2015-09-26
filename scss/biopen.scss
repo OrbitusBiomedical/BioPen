@@ -166,6 +166,21 @@ em {
 					right: 0;
 				}
 			}
+			.footer-module {
+				display: block;
+				width: 32%;
+				margin-right: 2%;
+				padding: 20px;
+				margin: 0 0 20px 0;
+				overflow: hidden;
+				background: rgba(0,0,0,0.3);
+				.image-container {
+					top: 0;
+					bottom: 0;
+					left: 0;
+					right: 0;
+				}
+			}
 
 		}
 	}
