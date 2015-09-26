@@ -127,7 +127,8 @@ em {
 .single-pen {
   float: left;
   margin: 0 1% 25px 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  height: 244px; }
   @media screen and (max-width: 500px) {
     .single-pen {
       width: 100%; } }
