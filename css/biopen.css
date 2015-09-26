@@ -93,7 +93,7 @@ em {
       box-sizing: border-box; }
       .home-footer .home-footer-section-inside .flex-grid-thirds .long-module {
         display: block;
-        widows: 68%;
+        width: 68%;
         margin-right: 2%;
         padding: 20px;
         margin: 0 0 20px 0;
