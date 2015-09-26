@@ -113,6 +113,10 @@ em {
 	padding: 15px;
 	box-sizing: border-box;
 	position: relative;
+
+	.home-section-inside {
+		max-width: 1200px;
+	}
 }
 
 .home-footer {
@@ -202,7 +206,7 @@ em {
 
 .home-footer {
 	color: white;
-	
+
 }
 
 
