@@ -91,6 +91,14 @@ em {
       position: relative;
       display: flex;
       box-sizing: border-box; }
+      .home-footer .home-footer-section-inside .flex-grid-thirds .long-module {
+        display: block;
+        widows: 60%;
+        margin-right: 2%;
+        padding: 20px;
+        margin: 0 0 20px 0;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.3); }
       .home-footer .home-footer-section-inside .flex-grid-thirds .module {
         display: block;
         width: 32%;
