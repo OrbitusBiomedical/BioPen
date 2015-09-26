@@ -90,11 +90,11 @@ em {
     .home-footer .home-footer-section-inside .flex-grid-thirds {
       position: relative;
       display: flex;
-      box-sizing: border-box;
-      width: 32%;
-      margin-right: 2%; }
+      box-sizing: border-box; }
       .home-footer .home-footer-section-inside .flex-grid-thirds .module {
         display: block;
+        width: 32%;
+        margin-right: 2%;
         padding: 20px;
         margin: 0 0 20px 0;
         overflow: hidden;
