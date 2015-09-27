@@ -144,7 +144,10 @@ em {
       padding: 0;
       white-space: nowrap;
       position: relative;
-      color: white; }
+      color: white;
+      font-family: "Lucida Grande","Lucida Sans Unicode", Tahoma, Sans-Serif;
+      line-height: 1.5;
+      font-weight: 400; }
 
 .home-footer {
   padding: 15px;
