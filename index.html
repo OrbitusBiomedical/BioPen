@@ -525,6 +525,16 @@
     </script>
     <script>
         window.addEventListener('cloudkitloaded',CKCatalog.init);
+        console.log("ung");
+        window.addEventListener('cloudkitloaded',CKCatalog.init);
+        window.addEventListener('cloudkitloaded',myFunction);
+
+        console.log("ung");
+
+        function myFunction = function () {
+                
+            CKCatalog.tabs['authentication'].run();
+        }
     </script>
     <script async src="https://cdn.apple-cloudkit.com/ck/1/cloudkit.js"></script>
 	<!--   -->
