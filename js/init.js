@@ -49,6 +49,7 @@ CKCatalog.init = function() {
     };
 
     // Try to run the authentication code.
+    CKCatalog.tabs['authentication'].run();
     CKCatalog.tabs['authentication'][0].sampleCode().catch(failAuth);
 
   } catch (e) {
