@@ -496,6 +496,21 @@
 			</div>
 		</footer>
 
+	<script>
+        /*
+         * Initialize the global objects we will need.
+         */
+        if(typeof CKCatalog === 'undefined') {
+            CKCatalog = {};
+        }
+
+        if(typeof CKCatalog.tabs === 'undefined') {
+            CKCatalog.tabs = {
+                'readme': [{}],
+                'not-found': [{}]
+            };
+        }
+    </script>
 	<!-- JS Imports Go Here -->
 	<script src="js/ui-utils/dialog.js"></script>
     <script src="js/ui-utils/table.js"></script>
