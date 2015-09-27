@@ -98,7 +98,8 @@ em {
   width: 100%; }
 
 .search-form {
-  float: left; }
+  float: left;
+  width: 240px; }
 
 .header-right {
   float: right;
