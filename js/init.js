@@ -11,6 +11,8 @@ The first use of the CloudKit namespace should be to set the configuration param
  */
 CKCatalog.init = function() {
   try {
+    
+    debugger;
 
     // Configure CloudKit for your app.
     CloudKit.configure({
