@@ -101,6 +101,9 @@ em {
   float: left;
   width: 240px; }
 
+.header-center {
+  float: left; }
+
 .header-right {
   float: right;
   width: 550px; }
