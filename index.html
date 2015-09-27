@@ -588,102 +588,12 @@
             </div>
             <div class="vertical-scroll-container">
                 <div class="page" id="page">
-                    <div class="page-segments"><div class="page-segment selected"><div class="description">
-                <h4>Class: Container</h4>
-                <h1>.fetchUserInfo()</h1>
-                <p>This sample demonstrates how to fetch the currently signed-in user’s <code>userInfo</code> object.
-                If the current user has made himself discoverable to the app, this object will have the fields <code>firstName</code>
-                and <code>lastName</code> populated. You can check the property <code>userInfo.isDiscoverable</code> for
-                whether the user is discoverable.</p>
-            </div><pre class="javascript sample-code"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demoFetchUserInfo</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">var</span> container = CloudKit.getDefaultContainer();
-
-  <span class="hljs-comment">// Fetch user's info.</span>
-  <span class="hljs-keyword">return</span> container.fetchUserInfo()
-    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">userInfo</span>) </span>{
-      <span class="hljs-keyword">var</span> title = <span class="hljs-string">'UserInfo for current '</span>+
-        (userInfo.isDiscoverable ? <span class="hljs-string">'discoverable'</span> : <span class="hljs-string">'non-discoverable'</span>)+
-        <span class="hljs-string">' user:'</span>;
-
-      <span class="hljs-comment">// Render the user's info.</span>
-      <span class="hljs-keyword">return</span> renderUserInfo(
-        title,
-
-        userInfo.userRecordName, <span class="hljs-comment">// The user's opaque ID.</span>
-
-        userInfo.firstName, <span class="hljs-comment">// This will be undefined when the user is not</span>
-                            <span class="hljs-comment">// discoverable.</span>
-
-        userInfo.lastName, <span class="hljs-comment">// As will this.</span>
-
-        userInfo.emailAddress <span class="hljs-comment">// This is undefined unless discovering userInfo by</span>
-                              <span class="hljs-comment">// emailAddress (see the related sample).</span>
-      );
-    });
-}</code></pre><div class="content"><div class="results"></div></div></div><div class="page-segment"><div class="description">
-                <h4>Class: Container</h4>
-                <h1>.discoverAllContactUserInfos()</h1>
-                <p>This sample demonstrates how to obtain a list of <code>userInfo</code> objects corresponding to users of the app
-                in the signed-in user’s iCloud Contacts who have made themselves discoverable to the app.</p>
-            </div><pre class="javascript sample-code"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demoDiscoverAllContactUserInfos</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">var</span> container = CloudKit.getDefaultContainer();
-
-  <span class="hljs-keyword">return</span> container.discoverAllContactUserInfos().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
-    <span class="hljs-keyword">if</span>(response.hasErrors) {
-
-      <span class="hljs-comment">// Handle the errors in your app.</span>
-      <span class="hljs-keyword">throw</span> response.errors[<span class="hljs-number">0</span>];
-
-    } <span class="hljs-keyword">else</span> {
-      <span class="hljs-keyword">var</span> title = <span class="hljs-string">'Discovered users from your iCloud contacts:'</span>;
-
-      <span class="hljs-comment">// response.users is an array of userInfo objects.</span>
-      <span class="hljs-keyword">return</span> renderUserInfos(title, response.users);
-
-    }
-  });
-}</code></pre><div class="content"><div class="results"></div></div></div><div class="page-segment"><div class="description">
-                <h4>Class: Container</h4>
-                <h1>.discoverUserInfoWithEmailAddress()</h1>
-                <p>This sample demonstrates how to look up a discoverable user’s name by email address. This method will
-                always return a <code>userInfo</code> object with the <code>emailAddress</code> field populated. The other fields will be
-                populated only if a matching discoverable user is found.</p>
-            </div><div class="input-fields"><form action="#" method="post" id="discover-by-email-address-form"><table><tr class="field"><th><label for="discover-by-email-address-form-email">emailAddress:</label></th><td><div class="border"><input type="email" name="email" placeholder="Email address" id="discover-by-email-address-form-email"></div></td></tr></table><input type="submit" name="submit" style="display: none;"></form></div><pre class="javascript sample-code no-top-border"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demoDiscoverUserInfoWithEmailAddress</span>(<span class="hljs-params">emailAddress</span>) </span>{
-  <span class="hljs-keyword">var</span> container = CloudKit.getDefaultContainer();
-
-  <span class="hljs-keyword">return</span> container.discoverUserInfoWithEmailAddress(emailAddress)
-    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
-      <span class="hljs-keyword">if</span>(response.hasErrors) {
-
-        <span class="hljs-comment">// Handle the errors in your app.</span>
-        <span class="hljs-keyword">throw</span> response.errors[<span class="hljs-number">0</span>];
-
-      } <span class="hljs-keyword">else</span> {
-        <span class="hljs-keyword">var</span> title = <span class="hljs-string">'Discovered users by email address:'</span>;
-        <span class="hljs-keyword">return</span> renderUserInfos(title, response.users);
-      }
-    });
-}</code></pre><div class="content"><div class="results"></div></div></div><div class="page-segment"><div class="description">
-                <h4>Class: Container</h4>
-                <h1>.discoverUserInfoWithUserRecordName()</h1>
-                <p>This sample demonstrates how to look up a discoverable user’s info by userRecordName. The <code>.catch()</code> block is invoked
-                when no matching user is found.</p>
-            </div><div class="input-fields"><form action="#" method="post" id="discover-by-user-record-name"><table><tr class="field"><th><label for="discover-by-user-record-name-record-name">userRecordName:</label></th><td><div class="border"><input type="text" name="record-name" placeholder="User record name" id="discover-by-user-record-name-record-name"></div></td></tr></table><input type="submit" name="submit" style="display: none;"></form></div><pre class="javascript sample-code no-top-border"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demoDiscoverUserInfoWithUserRecordName</span>(<span class="hljs-params">userRecordName</span>) </span>{
-  <span class="hljs-keyword">var</span> container = CloudKit.getDefaultContainer();
-
-  <span class="hljs-keyword">return</span> container.discoverUserInfoWithUserRecordName(userRecordName)
-    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
-      <span class="hljs-keyword">if</span>(response.hasErrors) {
-
-        <span class="hljs-comment">// Handle the errors in your app.</span>
-        <span class="hljs-keyword">throw</span> response.errors[<span class="hljs-number">0</span>];
-
-      } <span class="hljs-keyword">else</span> {
-        <span class="hljs-keyword">var</span> title = <span class="hljs-string">'Discovered users by record name:'</span>;
-        <span class="hljs-keyword">return</span> renderUserInfos(title, response.users);
-      }
-    });
-}</code></pre><div class="content"><div class="results"></div></div></div></div>
+                    <div class="page-segments">
+                    	<div class="page-segment selected">
+                    		<div class="description">
+                    		</div>
+                    	</div>
+                    </div>
                 </div>
             </div>
         </div>
