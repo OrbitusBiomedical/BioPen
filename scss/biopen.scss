@@ -145,7 +145,7 @@ em {
 
 .header-search{
 	float: left;
-
+	width: 240px;
 	@media screen and (max-width: $break-small) {
     	display: none;
   	}
