@@ -181,6 +181,15 @@ em {
 	.home-section-inside {
 		max-width: 1200px;
 		margin: 0 auto;
+
+		.explore-tabs {
+			width: 100%;
+			margin: 0 0 12px 0;
+			padding: 0;
+			white-space: nowrap;
+			position: relative;
+			color: white;
+		}
 	}
 }
 
