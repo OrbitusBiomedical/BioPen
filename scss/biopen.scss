@@ -62,27 +62,41 @@ em {
 }
 
 .login-button {
-  font: bold 11px Arial;
-  text-decoration: none;
-  background-color: #EEEEEE;
-  color: #333333;
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
+ 	outline: 0;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: top;
+	line-height: 1.87;
+	margin: 5px 10px;
+	padding: 12px 18px;
+	position: relative;
+	background: linear-gradient(#4d4d4d, #2f2f2f);
+	border-radius: 5px;
+	color: white;
+	font-size: 1.2em;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-decoration: none;
+	text-align: center;
 }
 
 .signup-button {
-  font: bold 11px Arial;
-  text-decoration: none;
-  background-color: #EEEEEE;
-  color: #333333;
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
+  	outline: 0;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: top;
+	line-height: 1.87;
+	margin: 5px 10px;
+	padding: 12px 18px;
+	position: relative;
+	background: linear-gradient(#4d4d4d, #2f2f2f);
+	border-radius: 5px;
+	color: white;
+	font-size: 1.2em;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-decoration: none;
+	text-align: center;
 }
 
 .new-pen-button {
