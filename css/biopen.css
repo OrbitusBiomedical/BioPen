@@ -33,7 +33,7 @@ em {
   width: 90%; }
 
 .search-input {
-  width: 80%; }
+  width: 100%; }
 
 .login-button {
   outline: 0;
@@ -103,7 +103,7 @@ em {
 
 .header-right {
   float: right;
-  width: 450px; }
+  width: 550px; }
 
 .header-search {
   float: left; }
