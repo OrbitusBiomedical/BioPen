@@ -24,6 +24,9 @@ em {
   height: 40px; }
   .main-header a {
     color: white; }
+  .main-header .user-name {
+    margin: 0;
+    color: white; }
   .main-header .header-name {
     margin: 0;
     color: white; }
