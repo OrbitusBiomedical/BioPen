@@ -51,6 +51,12 @@ em {
 		margin: 0;
 		color: white;
 	}
+	#apple-sign-in-button {
+		z-index: 10001;
+	}
+	#apple-sign-out-button {
+		z-index: 10001;
+	}
 }
 
 .logo {
