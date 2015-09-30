@@ -37,6 +37,11 @@
 			</div>
 			<div class="header-right">
 				<div class="user-stuff">
+					
+					<h2 id="displayed-username">Rodolfo Aramayo</h2>
+					<div id="apple-sign-in-button"></div>
+					<div id="apple-sign-out-button"></div>
+
 					<a href="http://orbitusbiomedical.github.io/BioPen/login" class="login-button" id="login-button">
 						Log In
 					</a>
@@ -495,112 +500,7 @@
 				</div>	
 			</div>
 		</footer>
-		<div class="page" id="page">
-            <div class="page-segments"></div>
-        </div>
 
-        <div class="left-pane">
-            <div class="home"><div class="icon"></div></div>
-            <div class="vertical-scroll-container">
-                <div class="menu-items">
-                    <div class="menu-item-container readme">
-                        <div class="border"></div>
-                        <a class="menu-item" href="#readme">
-                            <div class="icon"></div>
-                            <div class="name">README</div>
-                        </a>
-                    </div>
-                    <div class="menu-item-container authentication">
-                        <div class="border"></div>
-                        <a class="menu-item" href="#authentication">
-                            <div class="icon"></div>
-                            <div class="name">Authentication</div>
-                        </a>
-                    </div>
-                    <div class="menu-item-container discoverability caret selected">
-                        <div class="border"></div>
-                        <a class="menu-item" href="#discoverability">
-                            <div class="icon"></div>
-                            <div class="name">Discoverability</div>
-                        </a>
-                    <div class="tab-menu"><div class="tab-menu-item selected">fetchUserInfo</div><div class="tab-menu-item">discoverAllContactUserInfos</div><div class="tab-menu-item">discoverUserInfoWithEmailAddress</div><div class="tab-menu-item">discoverUserInfoWithUserRecordName</div></div></div>
-                    <div class="menu-item-container public-query">
-                        <div class="border"></div>
-                        <a class="menu-item" href="#public-query">
-                            <div class="icon"></div>
-                            <div class="name">Query</div>
-                        </a>
-                    </div>
-                    <div class="menu-item-container private-zones caret">
-                        <div class="border"></div>
-                        <a class="menu-item" href="#private-zones">
-                            <div class="icon"></div>
-                            <div class="name">Zones</div>
-                        </a>
-                    <div class="tab-menu"><div class="tab-menu-item selected">saveRecordZone</div><div class="tab-menu-item">deleteRecordZone</div><div class="tab-menu-item">fetchRecordZone</div><div class="tab-menu-item">fetchAllRecordZones</div></div></div>
-                    <div class="menu-item-container private-records caret">
-                        <div class="border"></div>
-                        <a class="menu-item" href="#private-records">
-                            <div class="icon"></div>
-                            <div class="name">Records</div>
-                        </a>
-                    <div class="tab-menu"><div class="tab-menu-item selected">saveRecord</div><div class="tab-menu-item">deleteRecord</div><div class="tab-menu-item">fetchRecord</div></div></div>
-                    <div class="menu-item-container private-sync">
-                        <div class="border"></div>
-                        <a class="menu-item" href="#private-sync">
-                            <div class="icon"></div>
-                            <div class="name">Sync</div>
-                        </a>
-                    </div>
-                    <div class="menu-item-container private-subscriptions caret">
-                        <div class="border"></div>
-                        <a class="menu-item" href="#private-subscriptions">
-                            <div class="icon"></div>
-                            <div class="name">Subscriptions</div>
-                        </a>
-                    <div class="tab-menu"><div class="tab-menu-item selected">saveSubscription</div><div class="tab-menu-item">deleteSubscription</div><div class="tab-menu-item">fetchSubscription</div><div class="tab-menu-item">fetchAllSubscriptions</div></div></div>
-                    <div class="menu-item-container notifications">
-                        <div class="border"></div>
-                        <a class="menu-item" href="#notifications">
-                            <div class="icon"></div>
-                            <div class="name with-subtitle">Notifications</div>
-                            <div class="subtitle" id="connected-text">Disconnected</div>
-                            <div class="alert hide">
-                                <div id="number-of-alerts" class="alert-text">0</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <a class="menu-item documentation" href="https://developer.apple.com/library/prerelease/ios/documentation/CloudKitJS/Reference/CloudKitJavaScriptReference/index.html
-" target="_blank">
-                <div class="icon"></div>
-                <div class="name">Documentation</div>
-            </a>
-        </div>
-        <div class="right-pane">
-            <div class="header">
-                <div class="left-button active">
-                    <div class="play-icon"></div>
-                    <button id="run-button" class="link">Run Code</button>
-                </div>
-                <span id="username">Unauthenticated User</span>
-            </div>
-            <div class="vertical-scroll-container">
-                <div class="page" id="page">
-                    <div class="page-segments">
-                    	<div class="page-segment selected">
-                    		<div class="description">
-                    		</div>
-                    	</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="dialog" class="hide">
-        	<div id="dialog-veil"></div>
-        	<div id="dialog-text"></div>
-    	</div>
 	<script>
         /*
          * Initialize the global objects we will need.
