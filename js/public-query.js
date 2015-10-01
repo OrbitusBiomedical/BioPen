@@ -141,9 +141,9 @@ CKCatalog.tabs['public-query'] = (function() {
                 records.forEach(function (record) {
                   var fields = record.fields;
                   el.appendChild(renderItem(
-                    fields['name'].value,
-                    fields['location'].value,
-                    fields['asset'].value.downloadURL
+                    fields['title'].value,
+                    fields['url'].value,
+                    fields['uuid'].value
                   ));
                 });
                 return el;
