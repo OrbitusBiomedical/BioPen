@@ -119,9 +119,7 @@ CKCatalog.tabs['public-query'] = (function() {
           recordType: 'BioPen',
           sortBy: [{
             fieldName: 'title'
-          }],
-          // Limit to 3 results.
-          resultsLimit: 6
+          }]
         };
 
         // Execute the query.
