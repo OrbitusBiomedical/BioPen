@@ -154,7 +154,6 @@ CKCatalog.tabs['public-query'] = (function() {
                     fields['uuid'].value
                   ));*/
                 });
-                return document.createElement('div');
               }
             }
           })
