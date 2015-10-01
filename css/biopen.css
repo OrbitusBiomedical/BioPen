@@ -151,7 +151,7 @@ em {
     .home-section .home-section-inside .pen-pagination {
       width: 100%; }
     .home-section .home-section-inside .pagination-button {
-      position: relative;
+      position: absolute;
       display: block;
       width: 56px;
       background: gray;
@@ -159,9 +159,11 @@ em {
       height: 40px;
       margin-left: 28px; }
       .home-section .home-section-inside .pagination-button.left-button {
-        margin-left: -40px; }
+        margin-left: -40px;
+        padding: 0; }
       .home-section .home-section-inside .pagination-button.right-button {
-        margin-left: 40px; }
+        margin-left: 40px;
+        padding: 0; }
     .home-section .home-section-inside .explore-tabs {
       width: 100%;
       margin: 0 0 12px 0;

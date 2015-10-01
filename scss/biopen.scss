@@ -193,13 +193,13 @@ em {
 	.home-section-inside {
 		max-width: 1200px;
 		margin: 0 auto;
-		
+
 		.pen-pagination {
 			width: 100%;
 		}
 
 		.pagination-button {
-			position: relative;
+			position: absolute;
 			display: block;
 			width: 56px;
 			background: gray;
@@ -209,9 +209,11 @@ em {
 
 			&.left-button {
 				margin-left: -40px;
+				padding: 0;
 			}
 			&.right-button {
 				margin-left: 40px;
+				padding: 0;
 			}
 		}
 		.explore-tabs {
