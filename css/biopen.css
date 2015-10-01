@@ -339,7 +339,7 @@ em {
         clear: both;
         left: 50%;
         padding: 0px; } }
-    @media screen and (min-width: 400px) and (max-width: 600px) {
+    @media screen and (min-width: 450px) and (max-width: 800px) {
       .site-footer .footer-center {
         position: relative;
         float: right;
