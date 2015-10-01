@@ -138,7 +138,7 @@ CKCatalog.tabs['public-query'] = (function() {
               if (numberOfRecords === 0) {
                 return render('No matching items')
               } else {
-                var el = console.log('Found ' + numberOfRecords + ' matching item'
+                console.log('Found ' + numberOfRecords + ' matching item'
                   + (numberOfRecords > 1 ? 's' : ''));
                 records.forEach(function (record) {
                   var fields = record.fields;
@@ -154,7 +154,7 @@ CKCatalog.tabs['public-query'] = (function() {
                     fields['uuid'].value
                   ));*/
                 });
-                return el;
+                //return el;
               }
             }
           })
