@@ -324,7 +324,7 @@ em {
     left: 50%;
     width: 100px;
     height: 24px;
-    margin-left: -50px;
+    margin-left: -64px;
     border: 0px solid #dadada;
     border-radius: 7px; }
     .site-footer .footer-center.realsense-active {
@@ -336,11 +336,11 @@ em {
     @media screen and (max-width: 700px) {
       .site-footer .footer-center {
         position: relative;
-        padding: 10px;
-        margin: 0px; } }
+        padding: 10px; } }
     @media screen and (min-width: 700px) {
       .site-footer .footer-center {
-        position: absolute; } }
+        position: absolute;
+        padding: 0px; } }
   .site-footer .footer-right {
     position: absolute;
     top: 0;

@@ -417,7 +417,7 @@ em {
 		left: 50%;
 		width: 100px;
 		height: 24px;
-		margin-left: -50px;
+		margin-left: -64px;
 
 		border: 0px solid #dadada;
     	border-radius: 7px;
@@ -433,10 +433,10 @@ em {
     	@media screen and (max-width: $break-large) {
 		 	position: relative;
 			padding: 10px;		 	
-			margin: 0px;
 		}
 		@media screen and (min-width: $break-large) {
 		    position: absolute;
+		    padding: 0px;
 		    
 		}
 
