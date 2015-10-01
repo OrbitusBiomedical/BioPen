@@ -436,7 +436,7 @@ em {
 		 	left: 50%;
 			padding: 0px;		 	
 		}
-		@media screen and (min-width: $break-small) and (max-width: $break-large) {
+		@media screen and (min-width: $break-small - 100) and (max-width: $break-large - 100) {
 		 	position: relative;
 		 	float: right;
 		 	left: 0px;
