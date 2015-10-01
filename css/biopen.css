@@ -324,7 +324,13 @@ em {
     left: 50%;
     width: 100px;
     margin-left: -50px;
-    margin-top: -13px; }
+    margin-top: -13px;
+    border: 2px solid #dadada;
+    border-radius: 7px; }
+    .site-footer .footer-center :focus {
+      outline: none;
+      border-color: #9ecaed;
+      box-shadow: 0 0 10px #9ecaed; }
   .site-footer .footer-right {
     position: absolute;
     top: 0;
