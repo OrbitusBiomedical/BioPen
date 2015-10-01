@@ -144,8 +144,8 @@ CKCatalog.tabs['public-query'] = (function() {
                   var fields = record.fields;
 
                   console.log(fields['title'].value);
-                  console.log(fields['url'].value);
-                  console.log(fields['uuid'].value);
+                  //console.log(fields['url'].value);
+                  //console.log(fields['uuid'].value);
 
                   /*
                   el.appendChild(renderItem(
