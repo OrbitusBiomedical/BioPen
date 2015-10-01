@@ -155,7 +155,6 @@ CKCatalog.tabs['public-query'] = (function() {
                   ));*/
                 });
                 return document.createElement('div');
-;
               }
             }
           })
