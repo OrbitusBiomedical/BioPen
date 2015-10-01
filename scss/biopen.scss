@@ -430,7 +430,13 @@ em {
 		    box-shadow: 0 0 40px #0042FF;
     	}
 
-    	@media screen and (max-width: $break-large) {
+    	@media screen and (max-width: $break-small) {
+		 	position: relative;
+		 	float: right;
+		 	left: 0px;
+			padding: 10px;		 	
+		}
+		@media screen and (min-width: $break-small) and (max-width: $break-large) {
 		 	position: relative;
 		 	float: right;
 		 	left: 0px;
