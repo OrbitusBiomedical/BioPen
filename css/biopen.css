@@ -333,6 +333,13 @@ em {
       outline: none;
       border-color: #858992;
       box-shadow: 0 0 40px #0042FF; }
+    @media screen and (max-width: 700px) {
+      .site-footer .footer-center {
+        position: relative; } }
+    @media screen and (min-width: 700px) {
+      .site-footer .footer-center {
+        position: relative;
+        padding: 10px; } }
   .site-footer .footer-right {
     position: absolute;
     top: 0;
