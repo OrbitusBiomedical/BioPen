@@ -116,10 +116,9 @@ CKCatalog.tabs['public-query'] = (function() {
         // Set up a query that sorts results in ascending distance from the
         // user's location.
         var query = {
-          recordType: 'Items',
+          recordType: 'BioPen',
           sortBy: [{
-            fieldName: 'location',
-            relativeLocation: position
+            fieldName: 'title'
           }]
         };
 
