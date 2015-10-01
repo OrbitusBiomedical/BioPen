@@ -327,7 +327,7 @@ em {
     margin-top: -13px;
     border: 0px solid #dadada;
     border-radius: 7px; }
-    .site-footer .footer-center:hover {
+    .site-footer .footer-center:active {
       border: 2px solid #dadada;
       border-radius: 7px;
       outline: none;
