@@ -31,9 +31,41 @@ em {
     margin: 0;
     color: white; }
   .main-header #apple-sign-in-button {
-    z-index: 10001; }
+    z-index: 10001;
+    outline: 0;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 1.87;
+    margin: 5px 10px;
+    padding: 6px 18px;
+    position: relative;
+    background: linear-gradient(#4d4d4d, #2f2f2f);
+    border-radius: 5px;
+    color: white;
+    font-size: 1.2em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    text-align: center; }
   .main-header #apple-sign-out-button {
-    z-index: 10001; }
+    z-index: 10001;
+    outline: 0;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 1.87;
+    margin: 5px 10px;
+    padding: 6px 18px;
+    position: relative;
+    background: linear-gradient(#4d4d4d, #2f2f2f);
+    border-radius: 5px;
+    color: white;
+    font-size: 1.2em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    text-align: center; }
 
 .logo {
   margin: 0;
