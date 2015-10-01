@@ -327,7 +327,7 @@ em {
     margin-top: -13px;
     border: 2px solid #dadada;
     border-radius: 7px; }
-    .site-footer .footer-center :focus {
+    .site-footer .footer-center:focus {
       outline: none;
       border-color: #9ecaed;
       box-shadow: 0 0 10px #9ecaed; }
