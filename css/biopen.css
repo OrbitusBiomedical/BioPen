@@ -327,7 +327,7 @@ em {
     margin-top: -13px;
     border: 0px solid #dadada;
     border-radius: 7px; }
-    .site-footer .footer-center:active {
+    .site-footer .footer-center.realsense-active {
       border: 2px solid #dadada;
       border-radius: 7px;
       outline: none;
