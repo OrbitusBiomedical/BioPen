@@ -194,8 +194,20 @@ em {
 		max-width: 1200px;
 		margin: 0 auto;
 		.pagination-button {
+			position: relative;
+			display: block;
 			width: 56px;
-			height: 24px;
+			background: gray;
+			left: 50%;
+			height: 40px;
+			margin-left: 28px;
+
+			&.left-button {
+				margin-left: -40px;
+			}
+			&.right-button {
+				margin-left: 40px;
+			}
 		}
 		.explore-tabs {
 			width: 100%;
