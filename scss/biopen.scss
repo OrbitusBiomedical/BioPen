@@ -193,6 +193,11 @@ em {
 	.home-section-inside {
 		max-width: 1200px;
 		margin: 0 auto;
+		
+		.pen-pagination {
+			width: 100%;
+		}
+
 		.pagination-button {
 			position: relative;
 			display: block;
