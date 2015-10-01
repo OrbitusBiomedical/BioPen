@@ -140,6 +140,12 @@ CKCatalog.tabs['public-query'] = (function() {
                   + (numberOfRecords > 1 ? 's' : ''));
                 records.forEach(function (record) {
                   var fields = record.fields;
+
+                  console.log(fields['title'].value);
+                  console.log(fields['url'].value);
+                  console.log(fields['uuid'].value);
+
+
                   el.appendChild(renderItem(
                     fields['title'].value,
                     fields['url'].value,
