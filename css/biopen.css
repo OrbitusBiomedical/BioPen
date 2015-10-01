@@ -319,9 +319,12 @@ em {
     padding: 0;
     box-sizing: border-box; }
   .site-footer .footer-center {
+    position: absolute;
+    display: block;
     left: 50%;
     width: 100px;
-    margin-left: -50px; }
+    margin-left: -50px;
+    margin-top: -13px; }
   .site-footer .footer-right {
     position: absolute;
     top: 0;
