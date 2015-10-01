@@ -148,6 +148,9 @@ em {
   .home-section .home-section-inside {
     max-width: 1200px;
     margin: 0 auto; }
+    .home-section .home-section-inside .pagination-button {
+      width: 56px;
+      height: 24px; }
     .home-section .home-section-inside .explore-tabs {
       width: 100%;
       margin: 0 0 12px 0;
