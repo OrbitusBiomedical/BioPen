@@ -432,6 +432,8 @@ em {
 
     	@media screen and (max-width: $break-large) {
 		 	position: relative;
+		 	float: right;
+		 	left: 0px;
 			padding: 10px;		 	
 		}
 		@media screen and (min-width: $break-large) {
