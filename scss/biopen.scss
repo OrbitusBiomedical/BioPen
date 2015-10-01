@@ -411,6 +411,12 @@ em {
 		box-sizing: border-box;
 	}
 
+	.footer-center {
+		left: 50%;
+		width: 100px;
+		margin-left: -50px;
+	}
+
 	.footer-right {
 		position: absolute;
 		top: 0;
