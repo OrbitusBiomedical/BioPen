@@ -325,12 +325,14 @@ em {
     width: 100px;
     margin-left: -50px;
     margin-top: -13px;
-    border: 2px solid #dadada;
+    border: 0px solid #dadada;
     border-radius: 7px; }
-    .site-footer .footer-center:focus {
+    .site-footer .footer-center:hover {
+      border: 2px solid #dadada;
+      border-radius: 7px;
       outline: none;
-      border-color: #9ecaed;
-      box-shadow: 0 0 10px #9ecaed; }
+      border-color: #6e5aed;
+      box-shadow: 0 0 20px #9ecaed; }
   .site-footer .footer-right {
     position: absolute;
     top: 0;
