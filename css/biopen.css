@@ -335,11 +335,12 @@ em {
       box-shadow: 0 0 40px #0042FF; }
     @media screen and (max-width: 700px) {
       .site-footer .footer-center {
-        position: relative; } }
+        position: relative;
+        padding: 10px;
+        margin: 0px; } }
     @media screen and (min-width: 700px) {
       .site-footer .footer-center {
-        position: relative;
-        padding: 10px; } }
+        position: absolute; } }
   .site-footer .footer-right {
     position: absolute;
     top: 0;
