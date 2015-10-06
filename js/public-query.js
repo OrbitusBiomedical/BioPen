@@ -83,6 +83,8 @@ CKCatalog.tabs['public-query'] = (function() {
 
     user_link.innerHTML = username;
 
+    return;
+
   };
 
   var render = function(title) {
