@@ -41,6 +41,7 @@ CKCatalog.tabs['public-query'] = (function() {
 
     var group = document.createElement('div');
     group.className = 'group';
+    group.id = 'pen-group';
     pen.appendChild(group);
 
     var iframewrap = document.createElement('div');
