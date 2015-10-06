@@ -65,6 +65,7 @@ CKCatalog.tabs['public-query'] = (function() {
     iframe.setAttribute("frameborder", "0");    
     iframe.setAttribute("scrolling", "no");       
     iframe.setAttribute("sandbox", "allow-scripts allow-pointer-lock allow-same-origin allow-forms");
+    iframewrap.appendChild(iframe);
 
 
     var metagroup = document.createElement('div');
