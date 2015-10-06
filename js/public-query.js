@@ -36,15 +36,18 @@ CKCatalog.tabs['public-query'] = (function() {
     </div>
     */
 
-
     var pen = document.createElement('div');
     pen.className = 'single-pen';
+
+    var group = document.createElement('div');
+    group.className = 'group';
+    pen.appendChild(group);
 
     var iframewrap = document.createElement('div');
     iframewrap.className = 'iframe-wrap';
     iframewrap.classList.add('loaded');
     iframewrap.style.position = 'relative';
-    pen.appendChild(iframewrap);
+    group.appendChild(iframewrap);
 
     var coverlink = document.createElement('a');
     coverlink.className = 'cover-link';
@@ -64,7 +67,7 @@ CKCatalog.tabs['public-query'] = (function() {
 
     var metagroup = document.createElement('div');
     metagroup.className = 'meta-group';
-    pen.appendChild(metagroup);
+    group.appendChild(metagroup);
 
     var user = document.createElement('div');
     user.className = 'user';
