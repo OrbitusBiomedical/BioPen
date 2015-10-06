@@ -8,53 +8,81 @@ Sample code for performing a location query for Items objects in the public data
 
 CKCatalog.tabs['public-query'] = (function() {
 
-  var renderItem = function (name, location, assetUrl) {
-    var item = document.createElement('div');
-    item.className = 'item';
+  var renderItem = function (title, molecule, url, uuid, username, usericonlink, userprofilelink) {
 
-    // Div to clear floats.
-    var clear = document.createElement('div');
-    clear.className = 'clear';
+    /*
+    <div class="single-pen" data-slug-hash="wKWwrm">
+      <div class="iframe-wrap loaded" style="position: relative;">
+        <a href="http://orbitusbiomedical.github.io/BioPen/orbitus007/pen/wKWwrm" class="cover-link"></a>
+        <iframe class="single-pen-iframe" id="iframe_embed_4995757" src="http://orbitusbiomedical.github.io/BioPen/orbitus007/pen/wKWwrm" data-slug-hash="wKWwrm" data-username="/orbitus007" allowtransparency="true" frameborder="0" scrolling="no" data-src="http://orbitusbiomedical.github.io/BioPen/orbitus007/pen/wKWwrm" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-forms">
+        </iframe>
+      </div>
+      <div class="meta-group">
+        <div class="user">
+          <a href="/orbitus007">
+            <img src="http://orbitusbiomedical.github.io/BioPen/orbitus007/usericon.png" alt width="20" height="20">
+            Orbitus007
+          </a>
+        </div>
+        <div class="stats">
+          <a class="single-stat comments" href="http://orbitusbiomedical.github.io/BioPen/orbitus007/pen/details/wKWwrm">
+          </a>
+          <a class="single-stat views" href="http://orbitusbiomedical.github.io/BioPen/orbitus007/pen/details/wKWwrm">
+          </a>
+          <a class="single-stat loves" href="http://orbitusbiomedical.github.io/BioPen/orbitus007/pen/details/wKWwrm">
+          </a>
+        </div>
+      </div>
+    </div>
+    */
 
-    // Build the img element.
-    var imageEl = document.createElement('img');
-    imageEl.src = assetUrl;
-    imageEl.setAttribute('width', '300');
-    imageEl.className = 'item-asset';
 
-    // Build the name element.
-    var nameEl = document.createElement('h1');
-    nameEl.className = 'item-name';
-    nameEl.textContent = name;
+    var pen = document.createElement('div');
+    pen.className = 'single-pen';
 
-    // Build the location element.
-    var locationEl = document.createElement('div');
-    locationEl.className = 'item-location';
+    var iframe-wrap = document.createElement('div');
+    iframe-wrap.className = 'iframe-wrap';
+    iframe-wrap.classList.add('loaded');
+    pen.appendChild(iframe-wrap);
 
-    var latitude = document.createElement('div');
-    var latitudeTitle = document.createElement('span');
-    latitudeTitle.className = 'item-location-title';
-    latitudeTitle.textContent = 'Latitude: ';
-    latitude.appendChild(latitudeTitle);
-    latitude.appendChild(document.createTextNode(location.latitude));
+    var cover-link = document.createElement('a');
+    cover-link.className = 'cover-link';
+    cover-link.href = url;
+    iframe-wrap.appendChild(cover-link);
 
-    var longitude = document.createElement('div');
-    var longitudeTitle = document.createElement('span');
-    longitudeTitle.className = 'item-location-title';
-    longitudeTitle.textContent = 'Longitude: ';
-    longitude.appendChild(longitudeTitle);
-    longitude.appendChild(document.createTextNode(location.longitude));
+    var iframe = document.createElement('single-pen-iframe');
+    iframe.src = url;
+    iframe.dataset.slug-hash = uuid;
+    iframe.dataset.username = username;
+    iframe.dataset.src = url;
+    iframe.setAttribute("allowtransparency", "true");
+    iframe.setAttribute("frameborder", "0");    
+    iframe.setAttribute("scrolling", "no");       
+    iframe.setAttribute("sandbox", "allow-scripts allow-pointer-lock allow-same-origin allow-forms");
 
-    locationEl.appendChild(latitude);
-    locationEl.appendChild(longitude);
 
-    // Append all children.
-    item.appendChild(imageEl);
-    item.appendChild(nameEl);
-    item.appendChild(locationEl);
-    item.appendChild(clear);
+    var meta-group = document.createElement('div');
+    meta-group.className = 'meta-group';
+    pen.appendChild(meta-group);
 
-    return item;
+    var user = document.createElement('div');
+    user.className = 'user';
+    meta-group.appendChild(user);
+
+
+    var user_link = document.createElement('a');
+    user_link.href = userprofilelink;
+    user.appendChild(user_link);
+
+
+    var user_img = document.createElement('img');
+    user_img.href = usericonlink;
+    user_img.setAttribute("width", "20");
+    user_img.setAttribute("height", "20");
+    user_link.appendChild(user_img);
+
+    user_link.innerHTML = username;
+
   };
 
   var render = function(title) {
@@ -144,6 +172,9 @@ CKCatalog.tabs['public-query'] = (function() {
                   console.log(fields['title'].value);
                   console.log(fields['molecule'].value);
                   //console.log(fields['uuid'].value);
+
+                  var pens_element = document.getElementById("picks-pens-grid");
+                  pens_element.appendChild(renderItem(fields['title'].value, fields['molecule'].value, fields['url'].value, fields['uuid'].value, fields['username'].value, fields['usericonlink'].value, fields['userprofilelink'].value));
 
                   /*
                   el.appendChild(renderItem(
