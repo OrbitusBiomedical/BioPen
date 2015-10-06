@@ -177,7 +177,7 @@ CKCatalog.tabs['public-query'] = (function() {
                   //console.log(fields['uuid'].value);
 
                   var pens_element = document.getElementById("picks-pens-grid");
-                  pens_element.appendChild(renderItem(fields['title'].value, fields['molecule'].value, fields['url'].value, fields['uuid'].value, fields['username'].value, fields['usericonlink'].value, fields['userprofilelink'].value));
+                  pens_element.insertBefore(renderItem(fields['title'].value, fields['molecule'].value, fields['url'].value, fields['uuid'].value, fields['username'].value, fields['usericonlink'].value, fields['userprofilelink'].value));
 
                   /*
                   el.appendChild(renderItem(
