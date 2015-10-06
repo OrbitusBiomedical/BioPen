@@ -48,7 +48,7 @@ CKCatalog.tabs['public-query'] = (function() {
     var coverlink = document.createElement('a');
     coverlink.className = 'cover-link';
     coverlink.href = url;
-    iframe-wrap.appendChild(coverlink);
+    iframewrap.appendChild(coverlink);
 
     var iframe = document.createElement('single-pen-iframe');
     iframe.src = url;
