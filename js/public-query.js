@@ -55,7 +55,8 @@ CKCatalog.tabs['public-query'] = (function() {
     coverlink.href = url;
     iframewrap.appendChild(coverlink);
 
-    var iframe = document.createElement('single-pen-iframe');
+    var iframe = document.createElement('iframe');
+    iframe.className = 'single-pen-iframe';
     iframe.src = url;
     iframe.setAttribute("date-slug-hash", uuid);
     iframe.setAttribute("date-username", username);
