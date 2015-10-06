@@ -159,6 +159,11 @@ CKCatalog.tabs['public-query'] = (function() {
         // Execute the query.
         return publicDB.performQuery(query)
           .then(function (response) {
+
+            //Delete old PenGroup
+            var pengroup = document.getElementById("pen-group");
+            pengroup.parentNode.removeChild(pengroup);
+
             if(response.hasErrors) {
 
               // Handle them in your app.
@@ -179,15 +184,11 @@ CKCatalog.tabs['public-query'] = (function() {
                   console.log(fields['molecule'].value);
                   //console.log(fields['uuid'].value);
 
+
+                  //Make new PenGroup
                   var pens_element = document.getElementById("picks-pens-grid");
                   pens_element.insertBefore(renderItem(fields['title'].value, fields['molecule'].value, fields['url'].value, fields['uuid'].value, fields['username'].value, fields['usericonlink'].value, fields['userprofilelink'].value), pens_element.childNodes[0] );
 
-                  /*
-                  el.appendChild(renderItem(
-                    fields['title'].value,
-                    fields['url'].value,
-                    fields['uuid'].value
-                  ));*/
                 });
               }
             }
