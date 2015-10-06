@@ -52,9 +52,9 @@ CKCatalog.tabs['public-query'] = (function() {
 
     var iframe = document.createElement('single-pen-iframe');
     iframe.src = url;
-    iframe.dataset.slug-hash = uuid;
-    iframe.dataset.username = username;
-    iframe.dataset.src = url;
+    iframe.setAttribute("date-slug-hash", uuid);
+    iframe.setAttribute("date-username", username);
+    iframe.setAttribute("date-src", url);
     iframe.setAttribute("allowtransparency", "true");
     iframe.setAttribute("frameborder", "0");    
     iframe.setAttribute("scrolling", "no");       
