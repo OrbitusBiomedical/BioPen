@@ -40,15 +40,15 @@ CKCatalog.tabs['public-query'] = (function() {
     var pen = document.createElement('div');
     pen.className = 'single-pen';
 
-    var iframe-wrap = document.createElement('div');
-    iframe-wrap.className = 'iframe-wrap';
-    iframe-wrap.classList.add('loaded');
-    pen.appendChild(iframe-wrap);
+    var iframewrap = document.createElement('div');
+    iframewrap.className = 'iframe-wrap';
+    iframewrap.classList.add('loaded');
+    pen.appendChild(iframewrap);
 
-    var cover-link = document.createElement('a');
-    cover-link.className = 'cover-link';
-    cover-link.href = url;
-    iframe-wrap.appendChild(cover-link);
+    var coverlink = document.createElement('a');
+    coverlink.className = 'cover-link';
+    coverlink.href = url;
+    iframe-wrap.appendChild(coverlink);
 
     var iframe = document.createElement('single-pen-iframe');
     iframe.src = url;
@@ -61,13 +61,13 @@ CKCatalog.tabs['public-query'] = (function() {
     iframe.setAttribute("sandbox", "allow-scripts allow-pointer-lock allow-same-origin allow-forms");
 
 
-    var meta-group = document.createElement('div');
-    meta-group.className = 'meta-group';
-    pen.appendChild(meta-group);
+    var metagroup = document.createElement('div');
+    metagroup.className = 'meta-group';
+    pen.appendChild(metagroup);
 
     var user = document.createElement('div');
     user.className = 'user';
-    meta-group.appendChild(user);
+    metagroup.appendChild(user);
 
 
     var user_link = document.createElement('a');
