@@ -194,7 +194,8 @@ CKCatalog.tabs['public-query'] = (function() {
                   var pens_element = document.getElementById("picks-pens-grid");
                   pens_element.insertBefore(renderItem(fields['title'].value, fields['molecule'].value, fields['url'].value, fields['uuid'].value, fields['username'].value, fields['usericonlink'].value, fields['userprofilelink'].value), pens_element.childNodes[0] );
                   i++;
-                  if (i == 6)
+
+                  if (i == 6) //Until we learn how to limit our search results... limit the javascript rendering of these heavy pens!
                     break;
                 });
               }
