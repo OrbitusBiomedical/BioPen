@@ -1,3 +1,7 @@
+
+
+
+
 /*
 Copyright (C) 2015 Apple Inc. All Rights Reserved.
 See LICENSE.txt for this sample’s licensing information
@@ -5,6 +9,27 @@ See LICENSE.txt for this sample’s licensing information
 Abstract:
 The first use of the CloudKit namespace should be to set the configuration parameters.
 */
+
+
+
+// Visiblity API startup
+// This block is to handle different browser implementations of the VisibilityAPI
+var hiddenObj, visChangeEvent;
+if (typeof document.hidden !== "undefined") {
+    hiddenObj = "hidden";
+    visChangeEvent = "visibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+    hiddenObj = "msHidden";
+    visChangeEvent = "msvisibilitychange";
+} else if (typeof document.mozHidden !== "undefined") {
+    hiddenObj = "mozHidden";
+    visChangeEvent = "mozvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+    hiddenObj = "webkitHidden";
+    visChangeEvent = "webkitvisibilitychange";
+}
+
+
 
 /**
  * This function is run immediately after CloudKit has loaded.
@@ -82,6 +107,10 @@ CKCatalog.init = function() {
     CKCatalog.dialog.showError(e);
   }
 };
+
+
+
+
 
 
 
