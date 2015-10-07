@@ -834,9 +834,10 @@ function init() {
 	selectedDimension = alphaDimension;
 	selectedObjectsArray = alphaObjects;
 
-
-	pubChem_compoundSearchByName("ethanol", alphaDimension);
-
+	if (drawAlpha)
+		pubChem_compoundSearchByName(alphaMolecule, alphaDimension);
+	else
+		pubChem_compoundSearchByName("ethanol", alphaDimension);
 
 	// lights
 
