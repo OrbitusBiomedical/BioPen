@@ -105,7 +105,22 @@
 				    <div id="privacyheader">
 				        <p>The sample uses your camera for navigation controls. By design, the sample does not have access to any image data from your camera.</p>
 				    </div>
+					<div id="appcontext">
+					    <p>Sample Dialogs</p>
+					    <br />
+						
+						<button id="Start">Start</button>
+					    <button id="Stop" disabled="disabled">Stop</button>
 
+					    <div id="renderercontainer"></div>
+					    <script src="SampleRenderer.js"></script>
+
+					    <div id="gestures_status" class="clear"></div>
+					    <div id="alerts_status" class="clear"></div>
+					    Status:<div id="status"></div>
+							
+					</div>
+					
 					<div id="pen-group" class="group">
 
 						<div class="single-pen" data-slug-hash="">
@@ -750,56 +765,6 @@
 
         window.addEventListener('cloudkitloaded',CKCatalog.init);
 
-        
-		function PrivacyClose() {
-		    $("#privacy").hide(1500, function () {
-		        $("#privacyheader").show();
-		        $("#appcontext").show();
-		        $("#appcontext").find("div").show();
-		        main_logic();
-		    });
-		};
-
-		function PlatformReady() {
-		    $("#checkok").hide(2000, function () {
-		        $("#privacy").show(1000);
-		    });
-		};
-
-		function Start() {
-		    $("div").hide();
-		    $("#check").show(500, function () {
-		        // check platform compatibility
-		        intel.realsense.SenseManager.detectPlatform(['hand'], ['front']).then(function (info)
-		        {    
-		            console.log(info);
-
-		            document.getElementById("Start").disabled = true;
-		            if (info.nextStep == 'ready') {
-		                $("#check").hide(2000, function () {
-		                    $("#checkok").show(500, function () {
-		                        setTimeout(PlatformReady, 2000);
-		                    });
-		                });
-		                document.getElementById("Start").disabled = false;
-		            }
-		            else if (info.nextStep == 'unsupported') {
-		                $('#fail').append('<b> Platform is not supported for Intel(R) RealSense(TM) SDK: </b>');
-		                $('#fail').append('<b> either you are missing the required camera, or your OS and browser are not supported </b>');
-		                $('#fail').show();
-		            } else if (info.nextStep == 'driver') {
-		                $('#fail').append('Please update your camera driver from your computer manufacturer.');
-		                $('#fail').show();
-		            } else if (info.nextStep == 'runtime') {
-		                $('#download').show(1000);
-		            }
-
-		        }).catch(function (error) {
-		            $('#fail').append("CheckPlatform failed " + JSON.stringify(error));
-		            $('#fail').show();
-		        });
-		    });
-		}
 
     </script>
     <script async src="https://cdn.apple-cloudkit.com/ck/1/cloudkit.js"></script>
