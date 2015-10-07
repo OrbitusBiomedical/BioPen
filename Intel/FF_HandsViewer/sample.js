@@ -34,7 +34,10 @@ function Start() {
     $("div").hide();
     $("#check").show(500, function () {
         // check platform compatibility
-        intel.realsense.SenseManager.detectPlatform(['hand'], ['front']).then(function (info) {
+        intel.realsense.SenseManager.detectPlatform(['hand'], ['front']).then(function (info)
+        {    
+            console.log(info);
+
             document.getElementById("Start").disabled = true;
             if (info.nextStep == 'ready') {
                 $("#check").hide(2000, function () {
