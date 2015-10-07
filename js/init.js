@@ -73,33 +73,9 @@ CKCatalog.init = function() {
     // Try to run the authentication code.
     CKCatalog.tabs['authentication'][0].sampleCode().catch(failAuth);
     CKCatalog.tabs['public-query'][0].sampleCode();
-
-
-    intel.realsense.SenseManager.detectPlatform(['hand'], ['front']).then(function (info) {
-    document.getElementById("Start").disabled = true;
-    if (info.nextStep == 'ready') {
-        $("#check").hide(2000, function () {
-            $("#checkok").show(500, function () {
-                setTimeout(PlatformReady, 2000);
-            });
-        });
-        document.getElementById("Start").disabled = false;
-    }
-    else if (info.nextStep == 'unsupported') {
-        $('#fail').append('<b> Platform is not supported for Intel(R) RealSense(TM) SDK: </b>');
-        $('#fail').append('<b> either you are missing the required camera, or your OS and browser are not supported </b>');
-        $('#fail').show();
-    } else if (info.nextStep == 'driver') {
-        $('#fail').append('Please update your camera driver from your computer manufacturer.');
-        $('#fail').show();
-    } else if (info.nextStep == 'runtime') {
-        $('#download').show(1000);
-    }
-
-    }).catch(function (error) {
-    $('#fail').append("CheckPlatform failed " + JSON.stringify(error));
-    $('#fail').show();
-    });
+  
+    PrivacyClose();
+    PlatformReady();
 
 
 
