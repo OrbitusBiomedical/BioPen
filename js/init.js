@@ -204,9 +204,11 @@ function main_logic() {
 
             // Create a SenseManager instance
             rs.SenseManager.createInstance().then(function (result) {
+                console.log('myParty 1');
                 sense = result;
                 return rs.hand.HandModule.activate(sense);
             }).then(function (result) {
+                console.log('myParty 2');
                 handModule = result;
                 status('Init started');
 
@@ -222,10 +224,11 @@ function main_logic() {
                 // SenseManager Initialization
                 return sense.init();
             }).then(function (result) {
-
+                console.log('myParty 3');
                 // Configure Hand Tracking
                 return handModule.createActiveConfiguration();
             }).then(function (result) {
+                console.log('myParty 4');
                 handConfig = result;
 
                 // Enable all alerts
@@ -237,14 +240,17 @@ function main_logic() {
                 // Apply Hand Configuration changes
                 return handConfig.applyChanges();
             }).then(function (result) {
+                console.log('myParty 5');
                 return handConfig.release();
             }).then(function (result) {
+                console.log('myParty 6');
                 // Query image size 
                 imageSize = sense.captureManager.queryImageSize(rs.StreamType.STREAM_TYPE_DEPTH);
 
                 // Start Streaming
                 return sense.streamFrames();
             }).then(function (result) {
+                console.log('myParty 7');
                 status('Streaming ' + imageSize.width + 'x' + imageSize.height);
                 document.getElementById("Stop").disabled = false;
 
@@ -254,6 +260,7 @@ function main_logic() {
                 }
 
             }).catch(function (error) {
+                console.log('myParty 8');
                 // handle pipeline initialization errors
                 status('Init failed: ' + JSON.stringify(error));
                 document.getElementById("Start").disabled = false;
