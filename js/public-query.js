@@ -184,8 +184,7 @@ CKCatalog.tabs['public-query'] = (function() {
           recordType: 'BioPen',
           sortBy: [{
             fieldName: 'title'
-          }],
-          resultsLimit: 3
+          }]
         };
 
         // Execute the query.
@@ -219,10 +218,11 @@ CKCatalog.tabs['public-query'] = (function() {
                   console.log(fields['molecule'].value);
                   //console.log(fields['uuid'].value);
 
+                  var tempUpdatedURL = fields['url'].value + "?alphaMolecule=" + fields['molecule'].value;
 
                   //Make new PenGroup
                   var pens_element = document.getElementById("picks-pens-grid");
-                  pens_element.insertBefore(renderItem(fields['title'].value, fields['molecule'].value, fields['url'].value, fields['uuid'].value, fields['username'].value, fields['usericonlink'].value, fields['userprofilelink'].value), pens_element.childNodes[0] );
+                  pens_element.insertBefore(renderItem(fields['title'].value, fields['molecule'].value, tempUpdatedURL, fields['uuid'].value, fields['username'].value, fields['usericonlink'].value, fields['userprofilelink'].value), pens_element.childNodes[0] );
                     
                 });
               }
