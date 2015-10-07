@@ -180,6 +180,8 @@ CKCatalog.tabs['public-query'] = (function() {
               } else {
                 console.log('Found ' + numberOfRecords + ' matching item'
                   + (numberOfRecords > 1 ? 's' : ''));
+
+                var i=0;
                 records.forEach(function (record) {
                   var fields = record.fields;
 
@@ -191,7 +193,9 @@ CKCatalog.tabs['public-query'] = (function() {
                   //Make new PenGroup
                   var pens_element = document.getElementById("picks-pens-grid");
                   pens_element.insertBefore(renderItem(fields['title'].value, fields['molecule'].value, fields['url'].value, fields['uuid'].value, fields['username'].value, fields['usericonlink'].value, fields['userprofilelink'].value), pens_element.childNodes[0] );
-
+                  i++;
+                  if (i == 6)
+                    break;
                 });
               }
             }
