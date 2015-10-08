@@ -40,6 +40,19 @@ var windowHalfY = window.innerHeight / 2;
 if ( window.location !== window.parent.location ) {
   // The page is in an iframe
   console.log("The page is in an iframe");
+  //only draw if the parameter asks us to force search field
+  var searchFieldParam = getUrlVars()["searchField"];
+
+  var drawSearchField = false;
+
+  if ( typeof searchFieldParam !== 'undefined' && searchFieldParam != 'undefined' )
+  	drawSearchField = true;
+
+  if (drawSearchField)
+  {
+  	var searchContainer = document.getElementById("searchContainer");
+  	searchContainer.style.display = "block";	
+  }
 
 } else {
   // The page is not in an iframe
