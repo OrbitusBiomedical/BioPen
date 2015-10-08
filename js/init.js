@@ -77,7 +77,13 @@ CKCatalog.init = function() {
     PrivacyClose();
     PlatformReady();
 
-
+    if ( window.location !== window.parent.location ) {
+      // The page is in an iframe
+      console.log("The page is in an iframe");
+    } else {
+      // The page is not in an iframe
+      console.log("The page is not in an iframe");
+    }
 
   } catch (e) {
     CKCatalog.dialog.showError(e);
