@@ -218,7 +218,7 @@ CKCatalog.tabs['public-query'] = (function() {
                   console.log(fields['molecule'].value);
                   //console.log(fields['uuid'].value);
 
-                  var tempUpdatedURL = fields['url'].value + "?alphaMolecule=" + fields['molecule'].value;
+                  var tempUpdatedURL = fields['url'].value + "?alpha=" + fields['molecule'].value;
 
                   //Make new PenGroup
                   var pens_element = document.getElementById("picks-pens-grid");
