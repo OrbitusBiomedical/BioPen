@@ -19,7 +19,7 @@ a {
 
 
 #searchContainer {
-	display: none;
+	display: block;
 	position: absolute;
 	top: 10px;
 	left :50%;
