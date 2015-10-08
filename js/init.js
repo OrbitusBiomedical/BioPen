@@ -80,6 +80,11 @@ CKCatalog.init = function() {
     if ( window.location !== window.parent.location ) {
       // The page is in an iframe
       console.log("The page is in an iframe");
+      var searchContainer = document.getElementById("searchContainer");
+      searchContainer.style.display = "block";
+
+
+
     } else {
       // The page is not in an iframe
       console.log("The page is not in an iframe");
