@@ -933,7 +933,7 @@ function init() {
 	{
 		controls = new THREE.DeviceOrientationControls( camera );	
 
-		controls.addEventListener( 'change', render );
+		//controls.addEventListener( 'change', render );
 	}
 	else{
 
