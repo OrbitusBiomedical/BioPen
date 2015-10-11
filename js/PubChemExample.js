@@ -922,6 +922,10 @@ function init() {
 	    }            
 	});
 	
+
+	controls = new THREE.DeviceOrientationControls( camera );
+
+	/*
 	controls = new THREE.TrackballControls( camera  , renderer.domElement);
 
 	controls.rotateSpeed = 1.0;
@@ -939,7 +943,7 @@ function init() {
 	controls.keys = [ 65, 83, 68 ];
 
 	controls.addEventListener( 'change', render );
-	
+	*/	
 
 	window.addEventListener( 'resize', onWindowResize, false );
 
@@ -947,19 +951,16 @@ function init() {
 
 function onWindowResize() {
 
-	var isInIframe = (window != window.top);
-	if (!isInIframe)
-	{
-		windowHalfX = window.innerWidth / 2;
-		windowHalfY = window.innerHeight / 2;
+	windowHalfX = window.innerWidth / 2;
+	windowHalfY = window.innerHeight / 2;
 
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
 
-		controls.handleResize();
+	controls.handleResize();
 
-		renderer.setSize( window.innerWidth, window.innerHeight );
-	}
+	renderer.setSize( window.innerWidth, window.innerHeight );
+
 }
 
 function onDocumentMouseMove( event ) {
