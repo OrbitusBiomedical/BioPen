@@ -8,6 +8,24 @@ connection.onopen = function () {
     connection.send('Connection Initialized Successfully'); // Send the message 'Ping' to the server       
 
 };
+connection.onmessage = function(e) {
+   if (typeof e.data == "string") {
+      console.log("Text message received: " + e.data);
+   } else {
+      var arr = new Uint8Array(e.data);
+      var hex = '';
+      for (var i = 0; i < arr.length; i++) {
+         hex += ('00' + arr[i].toString(16)).substr(-2);
+      }
+      console.log("Binary message received: " + hex);
+   }
+}
+
+connection.onclose = function(e) {
+   console.log("Connection closed.");
+   socket = null;
+   isopen = false;
+}
 
 if (typeof document.hidden !== "undefined") {
     hiddenObj = "hidden";
