@@ -14,7 +14,7 @@ var selectedObjectsArray;
 var alphaDimension;
 
 var container, stats;
-var camera, scene, renderer, particles, geometry, materials = [], parameters, i, h, color, sprite, size;
+var camera, scene, renderer, effect, particles, geometry, materials = [], parameters, i, h, color, sprite, size;
 var mouseX = 0, mouseY = 0;
 
 var alphaTransformControl;
