@@ -1,6 +1,14 @@
 // Visiblity API startup
 // This block is to handle different browser implementations of the VisibilityAPI
 var hiddenObj, visChangeEvent;
+var connectionIsReady = false;
+var connection = new WebSocket('ws://127.0.0.1:9000');
+connection.onopen = function () {
+    connectionIsReady = true;
+    connection.send('Connection Initialized Successfully'); // Send the message 'Ping' to the server       
+
+};
+
 if (typeof document.hidden !== "undefined") {
     hiddenObj = "hidden";
     visChangeEvent = "visibilitychange";
@@ -159,9 +167,12 @@ function main_logic() {
                 document.getElementById("Start").disabled = false;
             });
         });
+        
 
         // Process hand data when ready
         function onHandData(sender, data) {
+
+            
 
             // if no hands found
             if (data.numberOfHands == 0) return;
@@ -173,7 +184,7 @@ function main_logic() {
             for (h = 0; h < data.numberOfHands; h++) {
                 var ihand = allData[h]; //retrieve hand data
                 var joints = ihand.trackedJoints; //retrieve all the joints
-
+                connection.send('HAND: ' + JSON.stringify(ihand);
                 // for every joint
                 for (j = 0; j < joints.length; j++) {
 
@@ -193,13 +204,17 @@ function main_logic() {
                 // notify the sample renderer the tracking alerts
                 if (_label == rs.hand.AlertType.ALERT_HAND_NOT_DETECTED || _label == rs.hand.AlertType.ALERT_HAND_NOT_TRACKED || _label == rs.hand.AlertType.ALERT_HAND_OUT_OF_BORDERS) {
                     clearHandsPosition();
+                    connection.send('HANDS ARE NOT DETECTED');
                 }
             }
 
             // retrieve the fired gestures
             for (g = 0; g < data.firedGestureData.length; g++) {
                 $('#gestures_status').text('Gesture: ' + JSON.stringify(data.firedGestureData[g]));
+                connection.send('GESTURE: ' + JSON.stringify(data.firedGestureData[g]);
             }
+
+
         }
 
         // stop streaming
