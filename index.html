@@ -767,15 +767,12 @@
         var connection = new WebSocket('ws://127.0.0.1:9000');
 
 		connection.onopen = function () {
-		  connection.send('Ping'); // Send the message 'Ping' to the server
-		  connection.send('Ping'); // Send the message 'Ping' to the server
-		  connection.send('Ping'); // Send the message 'Ping' to the server
-		  connection.send('Ping'); // Send the message 'Ping' to the server
-		  connection.send('Ping'); // Send the message 'Ping' to the server
-		  connection.send('Ping'); // Send the message 'Ping' to the server
-		  connection.send('Ping'); // Send the message 'Ping' to the server
-		  connection.send('Ping'); // Send the message 'Ping' to the server
-		  
+
+			for (i=0; i< 10000; i++)
+			{
+				connection.send('Ping'); // Send the message 'Ping' to the server		
+			}
+
 		};
 		
 
