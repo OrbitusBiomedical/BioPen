@@ -922,28 +922,39 @@ function init() {
 	    }            
 	});
 	
+	var searchFieldParam = getUrlVars()["stereo"];
 
-	controls = new THREE.DeviceOrientationControls( camera );
+	var streo = false;
 
-	/*
-	controls = new THREE.TrackballControls( camera  , renderer.domElement);
+	if ( typeof searchFieldParam !== 'undefined' && searchFieldParam != 'undefined' )
+		drawSearchField = true;
 
-	controls.rotateSpeed = 1.0;
-	controls.zoomSpeed = 1.2;
-	controls.panSpeed = 0.8;
-	controls.minDistance = 500.0;
-	controls.maxDistance = 20000;
+	if (stereo)
+	{
+		controls = new THREE.DeviceOrientationControls( camera );	
+		
+		controls.addEventListener( 'change', render );
+	}
+	else{
 
-	controls.noZoom = false;
-	controls.noPan = false;
+		controls = new THREE.TrackballControls( camera  , renderer.domElement);
 
-	controls.staticMoving = false;
-	controls.dynamicDampingFactor = 0.3;
+		controls.rotateSpeed = 1.0;
+		controls.zoomSpeed = 1.2;
+		controls.panSpeed = 0.8;
+		controls.minDistance = 500.0;
+		controls.maxDistance = 20000;
 
-	controls.keys = [ 65, 83, 68 ];
+		controls.noZoom = false;
+		controls.noPan = false;
 
-	controls.addEventListener( 'change', render );
-	*/	
+		controls.staticMoving = false;
+		controls.dynamicDampingFactor = 0.3;
+
+		controls.keys = [ 65, 83, 68 ];
+
+		controls.addEventListener( 'change', render );
+	}
 
 	window.addEventListener( 'resize', onWindowResize, false );
 
