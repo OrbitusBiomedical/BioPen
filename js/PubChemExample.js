@@ -947,16 +947,19 @@ function init() {
 
 function onWindowResize() {
 
-	windowHalfX = window.innerWidth / 2;
-	windowHalfY = window.innerHeight / 2;
+	var isInIframe = (window != window.top);
+	if (!isInIframe)
+	{
+		windowHalfX = window.innerWidth / 2;
+		windowHalfY = window.innerHeight / 2;
 
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
 
-	controls.handleResize();
+		controls.handleResize();
 
-	renderer.setSize( window.innerWidth, window.innerHeight );
-
+		renderer.setSize( window.innerWidth, window.innerHeight );
+	}
 }
 
 function onDocumentMouseMove( event ) {
