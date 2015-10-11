@@ -922,17 +922,17 @@ function init() {
 	    }            
 	});
 	
-	var searchFieldParam = getUrlVars()["stereo"];
+	var stereoFieldParam = getUrlVars()["stereo"];
 
-	var streo = false;
+	var stereo = false;
 
-	if ( typeof searchFieldParam !== 'undefined' && searchFieldParam != 'undefined' )
-		drawSearchField = true;
+	if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
+		stereo = true;
 
 	if (stereo)
 	{
 		controls = new THREE.DeviceOrientationControls( camera );	
-		
+
 		controls.addEventListener( 'change', render );
 	}
 	else{
