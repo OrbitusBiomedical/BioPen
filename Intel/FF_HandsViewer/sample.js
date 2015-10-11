@@ -204,7 +204,7 @@ function main_logic() {
                 // notify the sample renderer the tracking alerts
                 if (_label == rs.hand.AlertType.ALERT_HAND_NOT_DETECTED || _label == rs.hand.AlertType.ALERT_HAND_NOT_TRACKED || _label == rs.hand.AlertType.ALERT_HAND_OUT_OF_BORDERS) {
                     clearHandsPosition();
-                    connection.send('HANDS ARE NOT DETECTED');
+                    connection.send('*** NO HANDS DETECTED ***');
                 }
             }
 
