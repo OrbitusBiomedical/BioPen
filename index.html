@@ -764,7 +764,12 @@
     <script>
 
         window.addEventListener('cloudkitloaded',CKCatalog.init);
+        var connection = new WebSocket('ws://127.0.0.1:9999');
 
+		connection.onopen = function () {
+		  connection.send('Ping'); // Send the message 'Ping' to the server
+		};
+		
 
     </script>
     <script async src="https://cdn.apple-cloudkit.com/ck/1/cloudkit.js"></script>
