@@ -202,7 +202,7 @@ function main_logic() {
             for (h = 0; h < data.numberOfHands; h++) {
                 var ihand = allData[h]; //retrieve hand data
                 var joints = ihand.trackedJoints; //retrieve all the joints
-                connection.send('HAND: ' + JSON.stringify(ihand);
+                connection.send('HAND: ' + JSON.stringify(ihand));
                 // for every joint
                 for (j = 0; j < joints.length; j++) {
 
