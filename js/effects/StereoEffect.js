@@ -59,10 +59,11 @@ THREE.StereoEffect = function ( renderer ) {
 
 	this.setSize = function ( width, height ) {
 
+		//If we are on mobile... use "width = width;" and "height = height * 2;"
+		//If we are on the desktop... use "width = width / 2;" and "height = height;"
 		_width = width;
 		_height = height*2;
 
-		console.log("Stereo Size (" + _width + ", "+ _height + ")");
 
 		renderer.setSize( width, height );
 
@@ -133,7 +134,6 @@ THREE.StereoEffect = function ( renderer ) {
 		renderer.setViewport( 0, 0, _width, _height );
 		renderer.render( scene, _cameraL );
 
-		console.log("Stereo Size (" + _width + ", "+ _height + ")");
 
 		renderer.setScissor( _width, 0, _width, _height );
 		renderer.setViewport( _width, 0, _width, _height );
