@@ -23,6 +23,7 @@ connection.onmessage = function(e) {
 
 connection.onclose = function(e) {
    console.log("Connection closed.");
+   connection.send('Connection closed');
    socket = null;
    isopen = false;
 }
