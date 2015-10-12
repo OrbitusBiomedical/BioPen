@@ -853,7 +853,7 @@ function init() {
 	alphaDimension.position.y = maxY;
 
 	alphaDimension.position.x = 0;
-	alphaDimension.position.y = -maxY;
+	alphaDimension.position.y = 0;
 	
 	scene.add( alphaDimension );
 
@@ -927,10 +927,12 @@ function init() {
 	var stereoFieldParam = getUrlVars()["stereo"];
 	var deviceOrientationFieldParam = getUrlVars()["deviceOrientation"];
 
-deviceOrientation
+
 	if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
 	{
 		stereo = true;
+		alphaDimension.position.x = 0;
+		alphaDimension.position.y = -maxY;
 	}
 	if ( typeof deviceOrientationFieldParam !== 'undefined' && deviceOrientationFieldParam != 'undefined' )
 	{
