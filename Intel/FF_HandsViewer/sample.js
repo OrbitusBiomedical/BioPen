@@ -2,7 +2,7 @@
 // This block is to handle different browser implementations of the VisibilityAPI
 var hiddenObj, visChangeEvent;
 var connectionIsReady = false;
-var connection = new WebSocket('ws://127.0.0.1:9000');
+var connection = new WebSocket('ws://192.168.1.91:9000');
 connection.onopen = function () {
     connectionIsReady = true;
     connection.send('Connection Initialized Successfully'); // Send the message 'Ping' to the server       
