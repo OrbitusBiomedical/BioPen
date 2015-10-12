@@ -866,7 +866,7 @@ function init() {
 		pubChem_compoundSearchByName("ethanol", alphaDimension);
 
 	
-	pubChem_compoundSearchByName("phosphate", alphaDimension);
+	//pubChem_compoundSearchByName("phosphate", alphaDimension);
 
 	// lights
 
