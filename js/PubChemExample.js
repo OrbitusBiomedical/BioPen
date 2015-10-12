@@ -933,7 +933,7 @@ function init() {
 
 	if (stereo)
 	{
-		controls = new THREE.DeviceOrientationControls( camera );	
+		//controls = new THREE.DeviceOrientationControls( camera );	
 
 		effect = new THREE.StereoEffect( renderer );
 		effect.eyeSeparation = 10;
