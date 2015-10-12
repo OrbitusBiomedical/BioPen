@@ -929,7 +929,7 @@ function init() {
 	var stereoFieldParam = getUrlVars()["stereo"];
 	var deviceOrientationFieldParam = getUrlVars()["deviceOrientation"];
 
-deviceOrientation
+	
 	if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
 	{
 		stereo = true;
