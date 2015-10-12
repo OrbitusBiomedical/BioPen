@@ -879,7 +879,7 @@ function init() {
 
 	selectedDimension = alphaDimension;
 
-	pubChem_compoundSearchByName("benzene", alphaDimension);
+	pubChem_compoundSearchByName("phosphate", alphaDimension);
 
 	// lights
 
