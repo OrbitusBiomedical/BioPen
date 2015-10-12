@@ -999,7 +999,7 @@ function onWindowResize() {
 
 	if (stereo)
 	{
-		renderer.setSize( window.innerWidth, window.innerHeight );
+		//renderer.setSize( window.innerWidth, window.innerHeight );
 		effect.setSize( window.innerWidth, window.innerHeight );
 	}
 	else
