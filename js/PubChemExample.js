@@ -821,7 +821,7 @@ function init() {
 	//camera.position.z = 1000;
 	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 100000 );
 	camera.position.z = 1500;
-
+	camera.zoom = 1;
 
 
 
@@ -1107,7 +1107,9 @@ function render() {
 
 	if (stereo)
 	{
+		console.log(camera.zoomSpeed);
 		effect.render( scene, camera );
+
 	}
 	else
 	{
