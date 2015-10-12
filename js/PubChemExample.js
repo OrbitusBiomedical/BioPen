@@ -936,7 +936,26 @@ function init() {
 
 	if (stereo)
 	{
-		controls = new THREE.DeviceOrientationControls( camera );	
+		//controls = new THREE.DeviceOrientationControls( camera );	
+
+		//keep the controls to see if stereo works
+		controls = new THREE.TrackballControls( camera  , renderer.domElement);
+
+		controls.rotateSpeed = 1.0;
+		controls.zoomSpeed = 1.2;
+		controls.panSpeed = 0.8;
+		controls.minDistance = 500.0;
+		controls.maxDistance = 20000;
+
+		controls.noZoom = false;
+		controls.noPan = false;
+
+		controls.staticMoving = false;
+		controls.dynamicDampingFactor = 0.3;
+
+		controls.keys = [ 65, 83, 68 ];
+
+		controls.addEventListener( 'change', render );
 
 		effect = new THREE.StereoEffect( renderer );
 		effect.eyeSeparation = 10;
