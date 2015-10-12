@@ -927,7 +927,12 @@ function init() {
 
 
 	if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
-		stereo = true;
+	{
+		if (stereoFieldParam === "true")
+		{
+			stereo = true;
+		}
+	}
 
 	if (stereo)
 	{
