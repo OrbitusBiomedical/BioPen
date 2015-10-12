@@ -935,6 +935,24 @@ function init() {
 	{
 		//controls = new THREE.DeviceOrientationControls( camera );	
 
+		controls = new THREE.TrackballControls( camera  , renderer.domElement);
+
+		controls.rotateSpeed = 1.0;
+		controls.zoomSpeed = 1.2;
+		controls.panSpeed = 0.8;
+		controls.minDistance = 500.0;
+		controls.maxDistance = 20000;
+
+		controls.noZoom = false;
+		controls.noPan = false;
+
+		controls.staticMoving = false;
+		controls.dynamicDampingFactor = 0.3;
+
+		controls.keys = [ 65, 83, 68 ];
+
+		controls.addEventListener( 'change', render );
+		
 		effect = new THREE.StereoEffect( renderer );
 		effect.eyeSeparation = 10;
 		effect.setSize( window.innerWidth, window.innerHeight );
