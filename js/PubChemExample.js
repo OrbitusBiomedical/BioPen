@@ -854,8 +854,13 @@ function init() {
 
 	alphaDimension.position.x = 0;
 	alphaDimension.position.y = 0;
+
+
+	betaDimension = new THREE.Object3D();
+	betaDimension.position.x = 0;
+	betaDimension.position.y = -maxY;
 	
-	scene.add( alphaDimension );
+	scene.add( betaDimension );
 
 
 	selectedDimension = alphaDimension;
@@ -865,6 +870,8 @@ function init() {
 		pubChem_compoundSearchByName(alphaMolecule, alphaDimension);
 	else
 		pubChem_compoundSearchByName("ethanol", alphaDimension);
+
+	pubChem_compoundSearchByName("benzene", betaDimension);
 
 	// lights
 
