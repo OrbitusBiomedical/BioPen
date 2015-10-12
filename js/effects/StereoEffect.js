@@ -59,7 +59,7 @@ THREE.StereoEffect = function ( renderer ) {
 
 	this.setSize = function ( width, height ) {
 
-		_width = width;
+		_width = width / 2;
 		_height = height;
 
 		renderer.setSize( width, height );
@@ -120,21 +120,19 @@ THREE.StereoEffect = function ( renderer ) {
 		_cameraR.quaternion.copy( _quaternion );
 		_cameraR.translateX( this.eyeSeparation / 2.0 );
 
-		//
-
-		//1340 - 670 - height
-		//2560 - 1280 - width
-
+		// Droid s6 active
+		// 1340 - 670 - height
+		// 2560 - 1280 - width
 
 		renderer.clear();
-		renderer.enableScissorTest( false );
+		renderer.enableScissorTest( true );
 
-		//renderer.setScissor( 0, 0, _width, _height );
-		renderer.setViewport( 0, 0, 600, 600 );
+		renderer.setScissor( 0, 0, _width, _height );
+		renderer.setViewport( 0, 0, _width, _height );
 		renderer.render( scene, _cameraL );
 
-		//renderer.setScissor( 1280, 0, 1280, 670 );
-		renderer.setViewport( 600, 0, 600, 600 );
+		renderer.setScissor( _width, 0, _width, _height );
+		renderer.setViewport( _width, 0, _width, _height );
 		renderer.render( scene, _cameraR );
 
 		renderer.enableScissorTest( false );
