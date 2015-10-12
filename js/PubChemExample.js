@@ -997,7 +997,7 @@ function onWindowResize() {
 
 	controls.handleResize();
 
-//	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize( window.innerWidth, window.innerHeight );
 	effect.setSize( window.innerWidth, window.innerHeight );
 
 }
