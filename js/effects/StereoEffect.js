@@ -59,7 +59,7 @@ THREE.StereoEffect = function ( renderer ) {
 
 	this.setSize = function ( width, height ) {
 
-		_width = width / 2;
+		_width = width;
 		_height = height;
 
 		renderer.setSize( width, height );
@@ -121,6 +121,10 @@ THREE.StereoEffect = function ( renderer ) {
 		_cameraR.translateX( this.eyeSeparation / 2.0 );
 
 		//
+
+		//1340 - 670 - height
+		//2560 - 1280 - width
+
 
 		renderer.clear();
 		renderer.enableScissorTest( false );
