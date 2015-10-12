@@ -62,6 +62,8 @@ THREE.StereoEffect = function ( renderer ) {
 		_width = width / 2;
 		_height = height;
 
+		console.log("Stereo Size (" + _width + ", "+ _height + ")");
+
 		renderer.setSize( width, height );
 
 	};
@@ -130,6 +132,8 @@ THREE.StereoEffect = function ( renderer ) {
 		renderer.setScissor( 0, 0, _width, _height );
 		renderer.setViewport( 0, 0, _width, _height );
 		renderer.render( scene, _cameraL );
+
+		console.log("Stereo Size (" + _width + ", "+ _height + ")");
 
 		renderer.setScissor( _width, 0, _width, _height );
 		renderer.setViewport( _width, 0, _width, _height );
