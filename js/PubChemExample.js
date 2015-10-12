@@ -928,38 +928,16 @@ function init() {
 
 	if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
 	{
-		if (stereoFieldParam === "true")
-		{
-			stereo = true;
-		}
+		stereo = true;
 	}
 
 	if (stereo)
 	{
 		controls = new THREE.DeviceOrientationControls( camera );	
 
-		/*//keep the controls to see if stereo works
-		controls = new THREE.TrackballControls( camera  , renderer.domElement);
-
-		controls.rotateSpeed = 1.0;
-		controls.zoomSpeed = 1.2;
-		controls.panSpeed = 0.8;
-		controls.minDistance = 500.0;
-		controls.maxDistance = 20000;
-
-		controls.noZoom = false;
-		controls.noPan = false;
-
-		controls.staticMoving = false;
-		controls.dynamicDampingFactor = 0.3;
-
-		controls.keys = [ 65, 83, 68 ];
-
-		controls.addEventListener( 'change', render );
-
 		effect = new THREE.StereoEffect( renderer );
 		effect.eyeSeparation = 10;
-		effect.setSize( window.innerWidth, window.innerHeight );*/
+		effect.setSize( window.innerWidth, window.innerHeight );
 
 	}
 	else{
@@ -997,7 +975,7 @@ function onWindowResize() {
 
 	controls.handleResize();
 
-	renderer.setSize( window.innerWidth, window.innerHeight );
+//	renderer.setSize( window.innerWidth, window.innerHeight );
 	effect.setSize( window.innerWidth, window.innerHeight );
 
 }
@@ -1100,8 +1078,7 @@ function render() {
 
 	if (stereo)
 	{
-		//effect.render( scene, camera );
-		renderer.render( scene, camera );
+		effect.render( scene, camera );
 	}
 	else
 	{
