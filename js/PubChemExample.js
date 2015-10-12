@@ -931,8 +931,7 @@ function init() {
 	if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
 	{
 		stereo = true;
-		alphaDimension.position.x = 0;
-		alphaDimension.position.y = -maxY;
+		
 	}
 	if ( typeof deviceOrientationFieldParam !== 'undefined' && deviceOrientationFieldParam != 'undefined' )
 	{
@@ -942,7 +941,13 @@ function init() {
 	if (deviceOrientation)
 	{
 		controls = new THREE.DeviceOrientationControls( camera );	
-		
+
+		if (stereo)
+		{
+			//Mobile Device, and StereoVR - I want to look down at my hands a bit...
+			alphaDimension.position.x = 0;
+			alphaDimension.position.y = -maxY;
+		}
 		
 	}
 	else{
