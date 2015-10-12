@@ -1107,9 +1107,7 @@ function render() {
 
 	if (stereo)
 	{
-		console.log(camera.zoomSpeed);
 		effect.render( scene, camera );
-
 	}
 	else
 	{
