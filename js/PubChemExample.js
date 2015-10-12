@@ -933,8 +933,8 @@ function init() {
 
 	if (stereo)
 	{
-		//controls = new THREE.DeviceOrientationControls( camera );	
-
+		controls = new THREE.DeviceOrientationControls( camera );	
+		/*
 		controls = new THREE.TrackballControls( camera  , renderer.domElement);
 
 		controls.rotateSpeed = 1.0;
@@ -952,7 +952,7 @@ function init() {
 		controls.keys = [ 65, 83, 68 ];
 
 		controls.addEventListener( 'change', render );
-
+		*/
 		//effect = new THREE.StereoEffect( renderer );
 		//effect.eyeSeparation = 10;
 		//effect.setSize( window.innerWidth, window.innerHeight );
