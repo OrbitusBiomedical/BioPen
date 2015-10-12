@@ -874,6 +874,7 @@ function init() {
 		pubChem_compoundSearchByName("ethanol", alphaDimension);
 
 	pubChem_compoundSearchByName("benzene", betaDimension);
+	pubChem_compoundSearchByName("benzene", alphaDimension);
 
 	// lights
 
