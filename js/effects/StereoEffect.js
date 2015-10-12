@@ -60,7 +60,7 @@ THREE.StereoEffect = function ( renderer ) {
 	this.setSize = function ( width, height ) {
 
 		_width = width;
-		_height = height;
+		_height = height*2;
 
 		console.log("Stereo Size (" + _width + ", "+ _height + ")");
 
