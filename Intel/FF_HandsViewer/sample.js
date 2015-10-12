@@ -229,7 +229,7 @@ function main_logic() {
             // retrieve the fired gestures
             for (g = 0; g < data.firedGestureData.length; g++) {
                 $('#gestures_status').text('Gesture: ' + JSON.stringify(data.firedGestureData[g]));
-                connection.send('GESTURE: ' + JSON.stringify(data.firedGestureData[g]);
+                connection.send('GESTURE: ' + JSON.stringify(data.firedGestureData[g]));
             }
 
 
