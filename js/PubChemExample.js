@@ -967,7 +967,7 @@ deviceOrientation
 	if (stereo)
 	{
 		effect = new THREE.StereoEffect( renderer );
-		effect.eyeSeparation = 10;
+		effect.eyeSeparation = 100;
 		effect.setSize( window.innerWidth, window.innerHeight );
 	}
 	else
