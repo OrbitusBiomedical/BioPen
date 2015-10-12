@@ -969,6 +969,7 @@ deviceOrientation
 		effect = new THREE.StereoEffect( renderer );
 		effect.eyeSeparation = 4;
 		effect.setSize( window.innerWidth, window.innerHeight );
+		console.log(window.innerWidth, window.innerHeight);
 	}
 	else
 	{
