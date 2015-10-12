@@ -1100,7 +1100,8 @@ function render() {
 
 	if (stereo)
 	{
-		effect.render( scene, camera );
+		//effect.render( scene, camera );
+		renderer.render( scene, camera );
 	}
 	else
 	{
