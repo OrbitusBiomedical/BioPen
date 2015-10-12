@@ -12,6 +12,7 @@ var selectedObjectsArray;
 
 
 var alphaDimension;
+var betaDimension;
 
 var container, stats;
 var camera, scene, renderer, effect, particles, geometry, materials = [], parameters, i, h, color, sprite, size;
