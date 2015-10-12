@@ -16,6 +16,7 @@ var alphaDimension;
 var container, stats;
 var camera, scene, renderer, effect, particles, geometry, materials = [], parameters, i, h, color, sprite, size;
 var mouseX = 0, mouseY = 0;
+var stereo = false;
 
 var alphaTransformControl;
 
@@ -924,7 +925,6 @@ function init() {
 	
 	var stereoFieldParam = getUrlVars()["stereo"];
 
-	var stereo = false;
 
 	if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
 		stereo = true;
@@ -933,7 +933,10 @@ function init() {
 	{
 		controls = new THREE.DeviceOrientationControls( camera );	
 
-		//controls.addEventListener( 'change', render );
+		effect = new THREE.StereoEffect( renderer );
+		effect.eyeSeparation = 10;
+		effect.setSize( window.innerWidth, window.innerHeight );
+
 	}
 	else{
 
@@ -970,7 +973,8 @@ function onWindowResize() {
 
 	controls.handleResize();
 
-	renderer.setSize( window.innerWidth, window.innerHeight );
+//	renderer.setSize( window.innerWidth, window.innerHeight );
+	effect.setSize( window.innerWidth, window.innerHeight );
 
 }
 
@@ -1070,6 +1074,13 @@ function render() {
 
 	}
 
-	renderer.render( scene, camera );
+	if (stereo)
+	{
+		effect.render( scene, camera );
+	}
+	else
+	{
+		renderer.render( scene, camera );
+	}
 
 }
