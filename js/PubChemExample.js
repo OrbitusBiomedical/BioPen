@@ -1081,13 +1081,13 @@ function render() {
 
 	}
 
-	if (stereo)
-	{
-		effect.render( scene, camera );
-	}
-	else
-	{
+	//if (stereo)
+	//{
+	//	effect.render( scene, camera );
+	//}
+	//else
+	//{
 		renderer.render( scene, camera );
-	}
+	//}
 
 }
