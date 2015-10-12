@@ -858,8 +858,9 @@ function init() {
 
 
 	betaDimension = new THREE.Object3D();
-	betaDimension.position.x = maxX;
+	betaDimension.position.x = 0;
 	betaDimension.position.y = 0;
+	betaDimension.position.z = -100;
 	
 	scene.add( betaDimension );
 
