@@ -106,7 +106,7 @@ a {
 
   z-index: 200;
 
-  background: url(images/gamepad-body.png);
+  background: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/gamepad-body.png);
   background-size: 730px 499px;
   background-position: 120px 40px;
   background-repeat: no-repeat;
@@ -168,7 +168,7 @@ a {
   background-size: 164px 60px;
   background-repeat: no-repeat;
   background-position: 50%;
-  background-image: url(images/shoulder-top.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/shoulder-top.png);
 }
 #gamepads > li > .buttons > [name='button-left-shoulder-top'] {
   left: 185px;
@@ -192,7 +192,7 @@ a {
   background-size: 127px 44px;
   background-repeat: no-repeat;
   background-position: 50%;
-  background-image: url(images/shoulder-bottom.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/shoulder-bottom.png);
 }
 #gamepads > li > .buttons > [name='button-left-shoulder-bottom'] {
   left: 185px;
@@ -226,43 +226,43 @@ a {
 #gamepads > li > .buttons > [name='button-1'] {
   left: 676px;
   top: 241px;
-  background-image: url(images/button-0.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/button-0.png);
 }
 #gamepads > li > .buttons > [name='button-2'] {
   left: 718px;
   top: 200px;
-  background-image: url(images/button-1.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/button-1.png);
 }
 #gamepads > li > .buttons > [name='button-3'] {
   left: 635px;
   top: 200px;
-  background-image: url(images/button-2.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/button-2.png);
 }
 #gamepads > li > .buttons > [name='button-4'] {
   left: 677px;
   top: 158px;
-  background-image: url(images/button-3.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/button-3.png);
 }
 
 #gamepads > li > .buttons > [name='button-dpad-bottom'] {
   left: 246px;
   top: 242px;
-  background-image: url(images/button-down.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/button-down.png);
 }
 #gamepads > li > .buttons > [name='button-dpad-right'] {
   left: 286px;
   top: 201px;
-  background-image: url(images/button-right.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/button-right.png);
 }
 #gamepads > li > .buttons > [name='button-dpad-left'] {
   left: 203px;
   top: 201px;
-  background-image: url(images/button-left.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/button-left.png);
 }
 #gamepads > li > .buttons > [name='button-dpad-top'] {
   left: 244px;
   top: 159px;
-  background-image: url(images/button-up.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/button-up.png);
 }
 #gamepads > li > .buttons > .select-start {
   width: 90px;
@@ -276,7 +276,7 @@ a {
   background-repeat: no-repeat;
   background-position: 50%;
 
-  background-image: url(images/button-select-start.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/button-select-start.png);
 }
 #gamepads > li > .buttons > .select-start::after {
   left: 25px;
@@ -307,7 +307,7 @@ a {
   background-repeat: no-repeat;
   background-position: 50%;
 
-  background-image: url(images/stick.png);
+  background-image: url(http://www.html5rocks.com/en/tutorials/doodles/gamepad/gamepad-tester/images/stick.png);
 }
 #gamepads > li > .buttons > .stick::after {
   left: 54px;
