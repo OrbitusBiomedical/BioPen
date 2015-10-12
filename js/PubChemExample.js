@@ -973,10 +973,15 @@ function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 
-	controls.handleResize();
-
-//	renderer.setSize( window.innerWidth, window.innerHeight );
-	effect.setSize( window.innerWidth, window.innerHeight );
+	if (stereo)
+	{
+		effect.setSize( window.innerWidth, window.innerHeight );
+	}
+	else
+	{
+		controls.handleResize();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+	}
 
 }
 
