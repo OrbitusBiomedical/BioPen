@@ -967,7 +967,7 @@ deviceOrientation
 	if (stereo)
 	{
 		effect = new THREE.StereoEffect( renderer );
-		effect.eyeSeparation = 4;
+		effect.eyeSeparation = 10;
 		effect.setSize( window.innerWidth, window.innerHeight );
 		console.log("Window Width (" + window.innerWidth + ", "+ window.innerHeight + ")");
 	}
@@ -1112,7 +1112,7 @@ function render() {
 	{
 
 		console.log("Window Width (" + window.innerWidth + ", "+ window.innerHeight + ")");
-		
+
 		effect.render( scene, camera );
 	}
 	else
