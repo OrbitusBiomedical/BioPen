@@ -946,7 +946,7 @@ function init() {
 		{
 			//Mobile Device, and StereoVR - I want to look down at my hands a bit...
 			alphaDimension.position.x = 0;
-			alphaDimension.position.y = -maxY*4;
+			alphaDimension.position.y = -maxY*2;
 		}
 		
 	}
