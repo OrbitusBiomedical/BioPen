@@ -12,7 +12,6 @@ var selectedObjectsArray;
 
 
 var alphaDimension;
-var betaDimension;
 
 var container, stats;
 var camera, scene, renderer, effect, particles, geometry, materials = [], parameters, i, h, color, sprite, size;
@@ -855,6 +854,8 @@ function init() {
 
 	alphaDimension.position.x = 0;
 	alphaDimension.position.y = 0;
+	
+	scene.add( alphaDimension );
 
 
 	selectedDimension = alphaDimension;
@@ -864,9 +865,6 @@ function init() {
 		pubChem_compoundSearchByName(alphaMolecule, alphaDimension);
 	else
 		pubChem_compoundSearchByName("ethanol", alphaDimension);
-
-	
-	//pubChem_compoundSearchByName("phosphate", alphaDimension);
 
 	// lights
 
@@ -929,7 +927,7 @@ function init() {
 	var stereoFieldParam = getUrlVars()["stereo"];
 	var deviceOrientationFieldParam = getUrlVars()["deviceOrientation"];
 
-	
+deviceOrientation
 	if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
 	{
 		stereo = true;
