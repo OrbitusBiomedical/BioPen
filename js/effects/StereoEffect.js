@@ -7,12 +7,12 @@
  * Off-axis stereoscopic effect based on http://paulbourke.net/stereographics/stereorender/
  */
 
-THREE.StereoEffect = function ( renderer ) {
+THREE.StereoEffect = function ( renderer , deviceOrientation) {
 
 	// API
 
 	var scope = this;
-
+	this.isMobileDevice = deviceOrientation;
 	this.eyeSeparation = 3;
 	this.focalLength = 15; 	// Distance to the non-parallax or projection plane
 
@@ -61,9 +61,19 @@ THREE.StereoEffect = function ( renderer ) {
 
 		//If we are on mobile... use "width = width;" and "height = height * 2;"
 		//If we are on the desktop... use "width = width / 2;" and "height = height;"
-		_width = width;
-		_height = height*2;
-
+		if (this.isMobileDevice)
+		{
+			//Mobile Browser (iPhone:Safari)
+			_width = width;
+			_height = height*2;
+		}
+		else
+		{
+			//Desktop Browser (OSX:Chrome)
+			_width = width/2;
+			_height = height;
+		}
+		
 
 		renderer.setSize( width, height );
 
