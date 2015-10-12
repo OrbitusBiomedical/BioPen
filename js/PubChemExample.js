@@ -853,7 +853,7 @@ function init() {
 	alphaDimension.position.y = maxY;
 
 	alphaDimension.position.x = 0;
-	alphaDimension.position.y = 0;
+	alphaDimension.position.y = -maxY;
 	
 	scene.add( alphaDimension );
 
