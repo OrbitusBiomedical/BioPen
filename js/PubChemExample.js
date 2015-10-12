@@ -952,10 +952,10 @@ function init() {
 		controls.keys = [ 65, 83, 68 ];
 
 		controls.addEventListener( 'change', render );
-		
-		effect = new THREE.StereoEffect( renderer );
-		effect.eyeSeparation = 10;
-		effect.setSize( window.innerWidth, window.innerHeight );
+
+		//effect = new THREE.StereoEffect( renderer );
+		//effect.eyeSeparation = 10;
+		//effect.setSize( window.innerWidth, window.innerHeight );
 
 	}
 	else{
@@ -993,8 +993,12 @@ function onWindowResize() {
 
 	if (stereo)
 	{
-		effect.setSize( window.innerWidth, window.innerHeight );
+		//effect.setSize( window.innerWidth, window.innerHeight );
+		controls.handleResize();
+
 		renderer.setSize( window.innerWidth, window.innerHeight );
+		
+
 	}
 	else
 	{
