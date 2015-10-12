@@ -936,9 +936,9 @@ function init() {
 
 	if (stereo)
 	{
-		//controls = new THREE.DeviceOrientationControls( camera );	
+		controls = new THREE.DeviceOrientationControls( camera );	
 
-		//keep the controls to see if stereo works
+		/*//keep the controls to see if stereo works
 		controls = new THREE.TrackballControls( camera  , renderer.domElement);
 
 		controls.rotateSpeed = 1.0;
@@ -959,7 +959,7 @@ function init() {
 
 		effect = new THREE.StereoEffect( renderer );
 		effect.eyeSeparation = 10;
-		effect.setSize( window.innerWidth, window.innerHeight );
+		effect.setSize( window.innerWidth, window.innerHeight );*/
 
 	}
 	else{
