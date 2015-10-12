@@ -17,6 +17,7 @@ var container, stats;
 var camera, scene, renderer, effect, particles, geometry, materials = [], parameters, i, h, color, sprite, size;
 var mouseX = 0, mouseY = 0;
 var stereo = false;
+var deviceOrientation = false;
 
 var alphaTransformControl;
 
@@ -924,39 +925,23 @@ function init() {
 	});
 	
 	var stereoFieldParam = getUrlVars()["stereo"];
+	var deviceOrientationFieldParam = getUrlVars()["deviceOrientation"];
 
-
+deviceOrientation
 	if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
 	{
 		stereo = true;
 	}
+	if ( typeof deviceOrientationFieldParam !== 'undefined' && deviceOrientationFieldParam != 'undefined' )
+	{
+		deviceOrientation = true;
+	}
 
-	if (stereo)
+	if (deviceOrientation)
 	{
 		controls = new THREE.DeviceOrientationControls( camera );	
-		/*
-		controls = new THREE.TrackballControls( camera  , renderer.domElement);
-
-		controls.rotateSpeed = 1.0;
-		controls.zoomSpeed = 1.2;
-		controls.panSpeed = 0.8;
-		controls.minDistance = 500.0;
-		controls.maxDistance = 20000;
-
-		controls.noZoom = false;
-		controls.noPan = false;
-
-		controls.staticMoving = false;
-		controls.dynamicDampingFactor = 0.3;
-
-		controls.keys = [ 65, 83, 68 ];
-
-		controls.addEventListener( 'change', render );
-		*/
-		//effect = new THREE.StereoEffect( renderer );
-		//effect.eyeSeparation = 10;
-		//effect.setSize( window.innerWidth, window.innerHeight );
-
+		
+		
 	}
 	else{
 
@@ -979,6 +964,18 @@ function init() {
 		controls.addEventListener( 'change', render );
 	}
 
+	if (stereo)
+	{
+		//effect = new THREE.StereoEffect( renderer );
+		//effect.eyeSeparation = 10;
+		//effect.setSize( window.innerWidth, window.innerHeight );
+	}
+	else
+	{
+
+	}
+
+
 	window.addEventListener( 'resize', onWindowResize, false );
 
 }
@@ -991,15 +988,22 @@ function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 
-	if (stereo)
+	if (deviceOrientation)
 	{
-		//effect.setSize( window.innerWidth, window.innerHeight );
-		//controls.handleResize();
-		renderer.setSize( window.innerWidth, window.innerHeight );
+
 	}
 	else
 	{
 		controls.handleResize();
+	}
+
+	if (stereo)
+	{
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		effect.setSize( window.innerWidth, window.innerHeight );
+	}
+	else
+	{
 		renderer.setSize( window.innerWidth, window.innerHeight );
 	}
 
@@ -1101,13 +1105,13 @@ function render() {
 
 	}
 
-	//if (stereo)
-	//{
-	//	effect.render( scene, camera );
-	//}
-	//else
-	//{
+	if (stereo)
+	{
+		effect.render( scene, camera );
+	}
+	else
+	{
 		renderer.render( scene, camera );
-	//}
+	}
 
 }
