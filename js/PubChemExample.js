@@ -873,7 +873,12 @@ function init() {
 	else
 		pubChem_compoundSearchByName("ethanol", alphaDimension);
 
+	selectedDimension = betaDimension;
+
 	pubChem_compoundSearchByName("benzene", betaDimension);
+
+	selectedDimension = alphaDimension;
+
 	pubChem_compoundSearchByName("benzene", alphaDimension);
 
 	// lights
