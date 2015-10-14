@@ -14,9 +14,10 @@ var selectedObjectsArray;
 var alphaDimension;
 
 var container, stats;
-var camera, scene, renderer, effect, particles, geometry, materials = [], parameters, i, h, color, sprite, size;
+var camera, scene, renderer, effect, vreffect, particles, geometry, materials = [], parameters, i, h, color, sprite, size;
 var mouseX = 0, mouseY = 0;
 var stereo = false;
+var vr = false;
 var deviceOrientation = false;
 
 var alphaTransformControl;
@@ -925,14 +926,19 @@ function init() {
 	});
 	
 	var stereoFieldParam = getUrlVars()["stereo"];
+	var vrFieldParam = getUrlVars()["vr"];	
 	var deviceOrientationFieldParam = getUrlVars()["deviceOrientation"];
 
 
 	if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
 	{
-		stereo = true;
-		
+		stereo = true;		
 	}
+	if ( typeof vrFieldParam !== 'undefined' && vrFieldParam != 'undefined' )
+	{
+		vr = true;		
+	}
+
 	if ( typeof deviceOrientationFieldParam !== 'undefined' && deviceOrientationFieldParam != 'undefined' )
 	{
 		deviceOrientation = true;
@@ -982,6 +988,10 @@ function init() {
 
 	}
 
+	if (vr)
+	{
+		vreffect = new THREE.VREffect( renderer, false);
+	}
 
 	window.addEventListener( 'resize', onWindowResize, false );
 
