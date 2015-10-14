@@ -1,0 +1,4482 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>OrbitusBiomedical - ∂ipole</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		
+		<link href="css/bootstrap.css" rel="stylesheet">
+    	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+    
+    	<script type="text/javascript" src="..\..\common\JavaScript\jquery-1.11.0.min.js"></script>
+    	<script type="text/javascript" src="..\..\common\JavaScript\promise-1.0.0.min.js"></script>
+    	<script type="text/javascript" src="..\..\common\JavaScript\realsense-3.0.js"></script>
+    	<script type="text/javascript" src="..\..\common\JavaScript\realsenseinfo-3.0.js"></script>
+
+		<style>
+			body {
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+				font-family:Monospace;
+				font-size:13px;
+				text-align:center;
+				font-weight: bold;
+				text-align:center;
+			}
+
+			a {
+				color:#0078ff;
+			}
+
+			#info {
+				color:#fff;
+				position: absolute;
+				top: 0px; width: 100%;
+				padding: 5px;
+				z-index:100;
+			}
+
+			#bugReport_Container
+			{
+				color:#FFFFFF;
+				position:absolute;
+				left:30px;
+				bottom:20px;
+				width:40px;
+				border: 2px solid #a1a1a1;
+			    border-radius: 25px;
+			    background: #303080;
+
+			}
+			
+			#bugReport_Button {
+				position:relative;
+				top:25%;
+				width:40px;
+				height:40px;
+				
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				background: url(BugReport.png) no-repeat center; 
+				line-height : 30px;
+				font-size: 40px;
+				z-index: 1001;
+			}
+/*--------------------------------------- SearchField CSS ----------------------------------------------*/
+
+			#dimensionMenuSuperContainer {
+				position:absolute;
+				bottom:0%;
+				right:0px;
+				width:340px;
+				height:240px;
+			}
+
+			#dimensionMenuSuperPropertiesContainer {
+				position:relative;
+				left:0px;
+				bottom:0px;
+				top:0px;
+				right:88px;
+				width:280px;
+				height:240px;
+
+			}
+
+			#dimensionMenuContainer {
+				position:absolute;
+				bottom:0%;
+				right:0px;
+				width:60px;
+				height:240px;
+			}
+
+			#dimensionMenu_alpha_Button {
+				position:relative;
+				top:0%;
+				width:60px;
+				height:60px;
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				background: url() no-repeat #4d4d4d center; 
+				line-height : 30px;
+				font-size: 40px;
+			}
+
+			#dimensionMenu_beta_Button {
+				position:relative;
+				top:0%;
+				width:60px;
+				height:60px;
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				background: url() no-repeat #4d90fe center; 
+				line-height : 30px;
+				font-size: 40px;
+			}
+
+			#dimensionMenu_gamma_Button {
+				position:relative;
+				top:0%;
+				width:60px;
+				height:60px;
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				background: url() no-repeat #4d90fe center; 
+				line-height : 24px;
+				font-size: 40px;
+			}
+
+			#dimensionMenu_delta_Button {
+				position:relative;
+				top:0%;
+				width:60px;
+				height:60px;
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				background: url() no-repeat #4d90fe center; 
+				line-height : 30px;
+				font-size: 40px;
+			}
+
+
+
+			#alpha_properties_menu
+			{
+				position:relative;
+				top:0%;
+				left:0;
+				width = 360px;
+				height:60px;
+				background: url() no-repeat #4d90fe center; 
+
+			}
+			#beta_properties_menu
+			{
+				position:relative;
+				
+				width = 360px;
+				height:60px;
+				background: url() no-repeat #4d90fe center; 				
+			}
+			#gamma_properties_menu 
+			{
+				position:relative;
+				
+				width = 360px;
+				height:60px;
+				background: url() no-repeat #4d90fe center; 				
+			}
+			#delta_properties_menu 
+			{
+				position:relative;
+				
+				width = 360px;
+				height:60px;
+				background: url() no-repeat #4d90fe center; 				
+
+			}
+
+
+
+			#infoMenuContainer {
+				position:absolute;
+				top:0%;
+				right:0px;
+				width:200px;
+				height:100px;
+				z-index:1002;
+
+			}
+
+			#infoMenu_info_Button {
+				position:relative;
+				top:25%;
+				width:80px;
+				height:70px;
+				background: url(info.png) no-repeat center; 
+
+
+			}
+
+
+			#menuContainer {
+				position:absolute;
+				top:10%;
+				left:0px;
+				width:100px;
+				height:100px;
+			}
+
+
+			#mainMenu_file_Button {
+				position:relative;
+				top:25%;
+				width:80px;
+				height:70px;
+				background: url(__File.png) no-repeat #4d90fe center; 
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				font-size: 40px;
+				line-height : 40px;
+
+			}
+			#mainMenu_timePanel_Button {
+				position:relative;
+				top:25%;
+				width:80px;
+				height:70px;
+				background: url(__Time.png) no-repeat #4d90fe center; 
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				font-size: 40px;
+				line-height : 40px;
+			}
+			#mainMenu_quantumRuler_Button {
+				position:relative;
+				top:25%;
+				width:80px;
+				height:70px;
+				background: url(__Ruler.png) no-repeat #4d90fe center; 
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				font-size: 20px;
+			}
+			#mainMenu_tempPressure_Button {
+				position:relative;
+				top:25%;
+				width:80px;
+				height:70px;
+				background: url(__Temp.png) no-repeat #4d90fe center; 
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				font-size: 20px;
+			}
+			#mainMenu_ePaint_Button {
+				position:relative;
+				top:25%;
+				width:80px;
+				height:70px;
+				background: url(__EPaint.png) no-repeat #4d90fe center; 
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				font-size: 20px;
+			}
+			#mainMenu_photonics_Button {
+				position:relative;
+				top:25%;
+				width:80px;
+				height:70px;
+				background: url(__Photon.png) no-repeat #4d90fe center; 
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				font-size: 20px;
+
+			}
+
+/*--------------------------------------- SearchField CSS ----------------------------------------------*/
+
+
+			#searchContainer {
+				position: absolute;
+				top: 10px;
+				left :50%;
+				margin-left: -110px;
+				width:420px;
+				z-index: 2000;
+
+
+			}
+
+			/* Style the search input field. */
+			#field {
+				float:left; 
+				width:280px; 
+				height:27px; 
+				line-height:27px;
+				text-indent:10px; 
+				font-family:arial, sans-serif; 
+				font-size:1em; 
+				color:#333; 
+				background: #fff; 
+				border:solid 1px #d9d9d9; 
+				border-top:solid 1px #c0c0c0; 
+				border-right:none;
+				border-radius: 0px;
+			}
+
+			/* Style the "X" text button next to the search input field */
+			#delete {
+				float:left; 
+				width:16px;
+				height:27px; 
+				line-height:27px; 
+				margin-right:15px; 
+				padding:10 10px 0 10px;
+				font-family: "Lucida Sans", "Lucida Sans Unicode",sans-serif;
+				font-size:22px; 
+				background: #fff;  
+				border:solid 1px #d9d9d9; 
+				border-top:solid 1px #c0c0c0; 
+				border-left:none;
+			}
+			/* Set default state of "X" and hide it */
+			#delete #x {
+				color:#A1B9ED; 
+				cursor:pointer;
+				display:none;
+			}
+			/* Set the hover state of "X" */
+			#delete #x:hover {
+				color:#36c;
+			}
+			/* Syle the search button. Settings of line-height, font-size, text-indent used to hide submit value in IE */
+			#helpButton {
+				position:absolute;
+				
+				top:0px;
+				left:0px;
+				
+				margin-left:-60px;
+				width:40px;
+				height:40px;
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+				background: url() no-repeat #357AE8 center; 
+				text-indent: -10px;
+				line-height: 16px;
+				font-size: 40px;
+			}
+
+			#submitButton {
+				cursor:pointer; 
+				width:70px; 
+				height: 31px; 
+				line-height:0; 
+				margin-left:-26px;
+				font-size:0; 
+				text-indent:-999px;
+				color: transparent;  
+				background: url(ico-search.png) no-repeat #4d90fe center; 
+				border: 1px solid #3079ED; 
+				-moz-border-radius: 2px; 
+				-webkit-border-radius: 2px; 
+			}
+			/* Style the search button hover state */
+			#submit:hover {
+				background: url(ico-search.png) no-repeat center #357AE8; 
+				border: 1px solid #2F5BB7;
+			}
+
+
+
+
+
+			#outputcontent {
+				color: #ffffff;
+			}
+
+			#message {
+				color: #ffffff;
+			}
+
+			#info {
+				position: absolute;
+				top: 0px;
+				left:0px;
+				width: 100%;
+				color: #ffffff;
+				padding: 5px;
+				font-family: Monospace;
+				font-size: 13px;
+				font-weight: bold;
+				text-align: left;
+				z-index: 1;
+			}
+
+			* {
+				margin:0;
+				padding:0;
+				box-sizing:border-box;
+				-webkit-box-sizing:border-box;
+				-moz-box-sizing:border-box;
+				-webkit-font-smoothing:antialiased;
+				-moz-font-smoothing:antialiased;
+				-o-font-smoothing:antialiased;
+				font-smoothing:antialiased;
+				text-rendering:optimizeLegibility;
+			}
+			body {
+				font:400 12px/1.625 "Helvetica Neue", Helvetica, Arial, sans-serif;
+				color:#444;
+				background:#ffffff;
+				background-image:linear-gradient(left , #000000 0%, #000000 52%, #000000 100%);
+				background-image:-moz-linear-gradient(left , #000000 0%, #000000 52%, #000000 100%);
+				background-image:-webkit-linear-gradient(left , #000000 0%, #000000 52%, #000000 100%);
+			}
+			#float_background
+			{
+				background-color:#000000;
+				opacity:0.5;
+
+				position:fixed;
+			    top:-30px;
+			    right:400px;
+			    float:right;
+			}
+			#float{
+			    position:fixed;
+			    top:-30px;
+			    right:400px;
+			    float:right;
+			}
+
+			.wrapper {
+				max-width:400px;
+				min-width:400px;
+				position:absolute;
+				width:95%;
+				
+			}
+
+
+			#ContactPage{
+				margin-left:200px;
+				top:150px;
+				width: 400px;
+    			margin: 0 auto;
+    			z-index:1000;
+				-webkit-transition: opacity 0.5s ease-in;
+	            -moz-transition: opacity 0.5s ease-in;
+	            -o-transition: opacity 0.5s ease-in;
+
+			}
+
+
+			.hidden-display
+			{
+				visibility: hidden;
+				opacity:0;
+			}
+			.visible-display
+			{
+				visibility: visible;
+				opacity: 1;
+			}
+
+	        #ContactPage.fade-out
+	        {
+	        	visibility:hidden;
+	            opacity:0;
+	        }
+
+	        #ContactPage.fade-in
+	        {
+	        	visibility:visible;
+	            opacity:1;
+	        }
+
+			#ContactButton{
+				position:absolute;
+				right:50px;
+				top:50px;
+				width:100px;
+				height:50px;
+				background: url('images/Contact.png') 300 100 no-repeat;
+				z-index:100;
+				border-radius:25px;
+			}
+
+
+			#ContactButtonImg{
+				position:absolute;
+				left:0px;
+				top:0px;
+				width:100px;
+				height:50px;
+				z-index:100;
+				border-radius:25px;
+
+			}
+
+			#contact-form input[type="text"],
+			#contact-form input[type="email"],
+			#contact-form input[type="tel"],
+			#contact-form input[type="url"],
+			#contact-form textarea,
+			#contact-form button[type="submit"] {
+				font:400 12px/12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
+			#contact-form {
+
+				text-shadow:0 1px 0 #FFF;
+				border-radius:4px;
+				-webkit-border-radius:4px;
+				-moz-border-radius:4px;
+				background:#F7F7F7;
+				text-align: left;
+				padding:25px;
+
+				border: 4px solid #A0A9AD; 
+				-moz-border-radius: 4px; 
+				-webkit-border-radius: 4px; 
+			}
+			#MoleculeName{
+				color:#FF5050;
+				display:block;
+				font-size:26px;
+				word-wrap: break-word;
+			}
+			#contact-form h3 {
+				color:#FF5050;
+				display:block;
+				font-size:22px;
+				word-wrap: break-word;
+			}
+			#contact-form h4 {
+				margin:5px 0 15px;
+				display:block;
+				font-size:13px;
+			}
+			#contact-form label span {
+				cursor:pointer;
+				color:#606060;
+				display:block;
+				margin:5px 0;
+				font-weight:900;
+			}
+			#contact-form input[type="text"],
+			#contact-form input[type="email"],
+			#contact-form input[type="tel"],
+			#contact-form input[type="url"],
+			#contact-form textarea {
+				width:100%;
+				box-shadow:inset 0 1px 2px #DDD, 0 1px 0 #FFF;
+				-webkit-box-shadow:inset 0 1px 2px #DDD, 0 1px 0 #FFF;
+				-moz-box-shadow:inset 0 1px 2px #DDD, 0 1px 0 #FFF;
+				border:1px solid #CCC;
+				background:#FFF;
+				margin:0 0 5px;
+				padding:10px;
+				border-radius:5px;
+			}
+			#contact-form input[type="text"]:hover,
+			#contact-form input[type="email"]:hover,
+			#contact-form input[type="tel"]:hover,
+			#contact-form input[type="url"]:hover,
+			#contact-form textarea:hover {
+				-webkit-transition:border-color 0.3s ease-in-out;
+				-moz-transition:border-color 0.3s ease-in-out;
+				transition:border-color 0.3s ease-in-out;
+				border:1px solid #AAA;
+			}
+			#contact-form textarea {
+				height:100px;
+				max-width:100%;
+			}
+			#contact-form button[type="submit"] {
+				cursor:pointer;
+				width:100%;
+				border:none;
+				background:#693e5a;
+				background-image:linear-gradient(bottom, #2d70de 10%, #4d90fe 50%);
+				background-image:-moz-linear-gradient(bottom, #2d70de 10%, #4d90fe 50%);
+				background-image:-webkit-linear-gradient(bottom, #2d70de 10%, #4d90fe 50%);
+				color:#FFF;
+				margin:0 0 5px;
+				padding:10px;
+				border-radius:5px;
+			}
+			#contact-form button[type="submit"]:hover {
+				background-image:linear-gradient(bottom, #0d50be 0%, #4d90fe 52%);
+				background-image:-moz-linear-gradient(bottom, #0d50be 0%, #4d90fe 52%);
+				background-image:-webkit-linear-gradient(bottom, #0d50be 0%, #4d90fe 52%);
+				-webkit-transition:background 0.3s ease-in-out;
+				-moz-transition:background 0.3s ease-in-out;
+				transition:background-color 0.3s ease-in-out;
+			}
+			#contact-form button[type="submit"]:active {
+				box-shadow:inset 0 1px 3px rgba(0,0,0,0.5);
+			}
+			#contact-form input:focus,
+			#contact-form textarea:focus {
+				outline:0;
+				border:1px solid #999;
+			}
+			::-webkit-input-placeholder {
+			    color:#888;
+			}
+			:-moz-placeholder {
+			    color:#888;
+			}
+			::-moz-placeholder {
+			    color:#888;
+			}
+			:-ms-input-placeholder {
+			    color:#888;
+			}
+
+/*--------------------------------------- END SearchField CSS ----------------------------------------------*/
+			.drag {
+		        width: 70px;
+		        height: 70px;
+		        line-height: 70px;
+		        cursor: pointer;
+		        border-radius: 10px;
+		        float: left;
+		        margin-left: 5px;
+		        text-align: center;
+		        font-size: 12px;
+		    }
+		    
+		    #dragbasic {
+		    	position:absolute;
+		    	top:200px;
+		    	left:260px;
+		        width: 500px;
+		        height: 500px;
+		        border: 1px solid gray;
+		        background-color: #E0F0FF;
+		    }
+
+
+						
+			nav.vertical {
+			  border-radius: 4px;
+			  box-shadow: 0 0 10px rgba(0,0,0,.15);
+			  overflow: hidden;
+			  text-align: center;
+			}
+
+			nav.vertical > ul {
+			  list-style-type: none;
+			}
+
+		    nav.vertical > ul > li {
+		      display: block;
+		    }
+
+			nav.vertical > ul > li > a {
+			background-color: rgb(157, 34, 60);
+			background-image: -webkit-linear-gradient(135deg, rgb(114, 51, 98), rgb(157, 34, 60));
+			background-image: -moz-linear-gradient(135deg, rgb(114, 51, 98), rgb(157, 34, 60));
+			background-image: -o-linear-gradient(135deg, rgb(114, 51, 98), rgb(157, 34, 60));
+			background-image: linear-gradient(135deg, rgb(114, 51, 98), rgb(157, 34, 60));
+			border-bottom: 1px solid rgba(255,255,255,.1);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 1px rgba(0,0,0,.1);
+			color: rgb(255,255,255);
+			display: block;
+			font-size: .85rem;
+			font-weight: 500;
+			height: 50px;
+			letter-spacing: .5rem;
+			line-height: 50px;
+			text-shadow: 0 1px 1px rgba(0,0,0,.1);
+			text-transform: uppercase;
+			transition: all .1s ease;
+			text-decoration: none;
+			}
+
+			nav.vertical > ul > li > a:hover {
+			background-color: rgb(114, 51, 98);
+			background-image: -webkit-linear-gradient(150deg, rgb(114, 51, 98), rgb(114, 51, 98));
+			background-image: -moz-linear-gradient(150deg, rgb(114, 51, 98), rgb(114, 51, 98));
+			background-image: -o-linear-gradient(150deg, rgb(114, 51, 98), rgb(114, 51, 98));
+			background-image: linear-gradient(150deg, rgb(114, 51, 98), rgb(114, 51, 98)); 
+			cursor: pointer;
+			}
+        
+			nav.vertical > ul > li > div {
+			background-color: rgb(255,255,255);
+			}
+ 
+			nav.vertical > ul > li > div > ul {
+			list-style-type: none;
+			}
+
+			nav.vertical > ul > li > div > ul > li > a {
+			background-color: rgb(255,255,255);
+			border-bottom: 1px solid rgba(0,0,0,.05);
+			color: #333331;
+			display: block;
+			font-size: 1.1rem;
+			padding: 10px 0;
+			text-decoration: none;
+			transition: all 0.15s linear;
+			}
+
+			nav.vertical > ul > li > div > ul > li:hover > a {
+			background-color: lightBlue;
+			color: rgb(255,255,255);
+			padding: 10px 0 10px 50px;
+			}
+
+		    #fileMenuPanel {
+		    	position:absolute;
+		    	top:12%;
+		    	left:90px;
+		    	max-width:200px;
+				min-width:200px;
+				color:#444;
+				display: none;
+				z-index: 1001;
+		    }
+		    
+		    #rulerMenuPanel {
+		    	position:absolute;
+		    	top:12%;
+		    	left:110px;
+		    	width:300px;
+		    	height:300px;
+		    	max-width:300px;
+				min-width:300px;
+				background-color:#F0F0F0;
+				color:#444;
+				display: none;
+				z-index: 1001;
+				border: 4px solid #A0A9AD; 
+				-moz-border-radius: 4px; 
+				-webkit-border-radius: 4px; 
+		    }
+
+
+		    #photonMenuPanel {
+		    	position:absolute;
+		    	top:12%;
+		    	left:110px;
+		    	width:300px;
+		    	height:300px;
+		    	max-width:300px;
+				min-width:300px;
+				background-color:#F0F0F0;
+				color:#444;
+				display: none;
+				z-index: 1001;
+				border: 4px solid #A0A9AD; 
+				-moz-border-radius: 4px; 
+				-webkit-border-radius: 4px; 
+		    }
+
+		    
+		    #tempMenuPanel {
+		    	position:absolute;
+		    	top:12%;
+		    	left:110px;
+		    	width:300px;
+		    	height:300px;
+		    	max-width:300px;
+				min-width:300px;
+				background-color:#F0F0F0;
+				color:#444;
+				display: none;
+				z-index: 1001;
+				border: 4px solid #A0A9AD; 
+				-moz-border-radius: 4px; 
+				-webkit-border-radius: 4px; 
+		    }
+
+		    #tempPanel_tempLabel{
+				position: absolute;
+				bottom:0px;
+				left:0px;
+				width:80px;
+				height:50px;
+		    }
+
+			#tempPanel_pressureLabel{
+				position: absolute;
+				bottom:0px;
+				left:110px;
+				width:80px;
+				height:50px;
+				text-align: center;
+			}
+
+
+			#tempPanel_hydroniumLabel{
+				position: absolute;
+				bottom:0px;
+				right:0px;
+				width:80px;
+				height:50px;
+			}
+
+			#tempSlider{
+				position:absolute;
+				top:60px;
+				left:30px;
+				width:30px;
+				height:190px;
+				
+			    -webkit-appearance: slider-vertical;
+			}
+			#pressureSlider{
+				position:absolute;
+				top:60px;
+				left:130px;
+				width:30px;
+				height:190px;
+				
+			    -webkit-appearance: slider-vertical;
+			}
+			#hydroniumSlider{
+				position:absolute;
+				top:60px;
+				right:30px;
+				width:30px;
+				height:190px;
+				
+			    -webkit-appearance: slider-vertical;	
+			}
+
+			#tempInputField {
+				position:absolute;
+				top:20px;
+				left:10px;
+				width: 80px;
+    			height:80px;
+    			font-size:180%;
+    			z-index: 1001;
+    			width:80px;
+				height:80px;
+				font-size:180%;
+			}
+
+			#pressureInputField {
+				position:absolute;
+				top:20px;
+				left:110px;
+				width: 80px;
+    			height:80px;
+    			font-size:180%;
+    			z-index: 1001;
+    			width:80px;
+				height:80px;
+				font-size:180%;
+			}
+
+			#hydroniumInputField {
+				position:absolute;
+				top:20px;
+				left:210px;
+				width: 80px;
+    			height:80px;
+    			font-size:180%;
+    			z-index: 1001;
+    			width:80px;
+				height:80px;
+				font-size:180%;
+			}
+
+		    #timeMenuPanel {
+		    	position:absolute;
+		    	top:12%;
+		    	left:110px;
+		    	width:300px;
+		    	height:300px;
+		    	max-width:300px;
+				min-width:300px;
+				background-color:#F0F0F0;
+				color:#444;
+				display: none;
+				z-index: 1001;
+				border: 4px solid #A0A9AD; 
+				-moz-border-radius: 4px; 
+				-webkit-border-radius: 4px; 
+		    }
+
+		    #timeSpeedSliderContainer {
+		    	position:absolute;
+				width:30px;
+				height:230px;
+				left:0px;
+				top:50px;
+				
+		    }
+
+			#timeSpeedSlider {
+				position:absolute;
+				top:4px;
+				width:30px;
+				height:230px;
+				
+			    -webkit-appearance: slider-vertical;
+			}
+
+			#timeLogDeltaTLabel {
+				position: absolute;
+				top:0px;
+				left:10px;
+				width:80px;
+				height:50px;
+			}
+
+			#timeDeltaTLabel {
+				position: absolute;
+				top:20px;
+				right:20px;
+				width:50px;
+				height:50px;
+			}
+
+			#timeDeltaInputField {
+				position:absolute;
+				top:240px;
+				right:80px;
+				width: 80px;
+    			height:80px;
+    			font-size:180%;
+    			z-index: 1001;
+    			width:80px;
+				height:80px;
+				font-size:180%;
+			}
+
+			input {
+			    border: 0;
+			    outline: 0;
+			    background: yellow
+			        ;
+			    border-bottom: 2px solid black;
+			    width: 80px;
+			    height:80px;
+			    font-size:180%;
+			}
+			#timeDeltaInputFieldUnitsLabel {
+				position:absolute;
+				top:220px;
+				right:10px;
+				width:80px;
+				height:80px;
+				font-size:180%;
+			}
+			#drag_infoPanel {
+				visibility: hidden;
+				position:absolute;
+				top:100px;
+				right:50px;
+				font-size:24px;	
+			}
+
+			#quantumRulerVisibilityButtonContainer {
+				position:absolute;
+				top:25px;
+				left:25px;
+
+			}
+			#quantumRulerVisibilityButton {
+				width:35px;
+				height:35px;
+				background:red;
+			}
+
+			.block {
+				position: absolute;
+				display: block;
+				text-align: left;
+				left:40px;
+			}
+
+			#rulerRadioButton1 {
+				top:100px;
+			}
+
+
+			#rulerRadioButton2 {
+				top:200px;	
+			}
+
+			#epaintMenuPanel {
+		    	position:absolute;
+		    	top:12%;
+		    	left:110px;
+		    	width:300px;
+		    	height:300px;
+		    	max-width:300px;
+				min-width:300px;
+				background-color:#F0F0F0;
+				color:#444;
+				display: none;
+				z-index: 1001;
+				border: 4px solid #A0A9AD; 
+				-moz-border-radius: 4px; 
+				-webkit-border-radius: 4px; 
+		    }
+
+			#epaintTracksVisibilityButtonContainer {
+				position:absolute;
+				top:25px;
+				left:25px;
+
+			}
+			#epaintTracksVisibilityButton {
+				width:35px;
+				height:35px;
+				background:red;
+			}
+
+
+
+			#colorHiggsFieldVisibilityButtonContainer {
+				position:absolute;
+				top:75px;
+				left:25px;
+
+			}
+			#colorHiggsFieldVisibilityButton {
+				width:35px;
+				height:35px;
+				background:red;
+			}
+
+
+			#vanDerWallsOverlayVisibilityButtonContainer {
+				position:absolute;
+				top:125px;
+				left:25px;
+
+			}
+			#vanDerWallsOverlayVisibilityButton {
+				width:35px;
+				height:35px;
+				background:red;
+			}
+
+			#photonAbsorbtionVisibilityButtonContainer {
+				position:absolute;
+				top:25px;
+				left:25px;				
+			}
+
+			#photonAbsorbtionVisibilityButton {
+				width:35px;
+				height:35px;
+				background:red;	
+			}
+
+			#photonRadioButton1 {
+				top:100px;
+			}
+
+
+			#photonRadioButton2 {
+				top:200px;	
+			}
+
+			#webgl_div {
+				position:absolute;
+				top:0%;
+				left:0%;
+				width = 100%;
+				height = 100%;
+			}
+
+
+			#alphaDimension_opacity_slider {
+
+				top:0%;
+				width:200px;
+				height:80px;
+
+			}
+
+			#betaDimension_opacity_slider {
+
+				top:0%;
+				width:200px;
+				height:80px;
+
+			}
+
+			#gammaDimension_opacity_slider {
+
+				top:0%;
+				width:200px;
+				height:80px;
+
+			}
+
+			#deltaDimension_opacity_slider {
+
+				top:0%;
+				width:200px;
+				height:80px;
+
+			}
+
+			#info_helptip {
+				position:absolute;
+				top:8%;
+				right:6%;
+			}
+
+			#search_helptip {
+				position:absolute;
+				top:8%;
+				left :50%;
+				margin-left: -100px;
+				
+			}
+
+			#company_helptip {
+				position:absolute;
+				top:8%;
+				left:6%;	
+			}
+
+			#bugReport_helptip {
+				position:absolute;
+				bottom:8%;
+				left:6%;					
+			}
+
+			#keyboard_helptip {
+				position:absolute;
+				top:44%;
+				margin-bottom:160px;
+				left :40%;
+			}
+
+			#mouseTrackpad_helptip {
+				position:absolute;
+				top:80%;
+				/*left :50%;
+				margin-left: -360px;*/
+				
+				left :40%;	
+			}
+
+			#dimensions_helptip {
+				position:absolute;
+				bottom:8%;
+				right:6%;						
+			}
+
+			#helpPanel {
+				position:absolute;
+				width:100%;
+				height:100%;
+				-webkit-transition: opacity 0.6s ease-in;
+	            -moz-transition: opacity 0.6s ease-in;
+	            -o-transition: opacity 0.6s ease-in;
+
+				
+			}
+			#info_intel {
+				position: absolute;
+				bottom: 0px;
+			}
+
+			#gestures_status {
+				background: url() no-repeat #FFF center;
+				position: absolute;
+				left: 0px;
+				bottom: 0px;
+				z-index: 1009;
+			}
+
+			#blackOpaqueBackground {
+				position:absolute;
+				width:100%;
+				height:100%;
+				opacity:0.6;
+				background: url() no-repeat #000000 center; 
+			}
+
+
+		</style>
+	</head>
+	<body>
+
+		<div id="webgl_div">
+		</div>
+
+		<div id="searchContainer">
+			<form id="pubChemSearchForm" onSubmit="return checkField()">
+				<a id="helpButton" href="javascript:toggleHelpOverlay();" class="btn btn-large btn-danger" type="button">?</a>
+				<input id="field" name="field" type="text" />
+				<div id="delete"><span id="x">x</span></div>
+				<input id="submitButton" name="submit" type="button" value="Search" />
+				<div id="outputbox">
+			    	<p id="outputcontent"></p>
+				</div>
+			</form>
+		</div>
+		<div id="info">	
+			<a href="http://localhost/OrbitusBiomedical" target="_blank">
+			<img src="textures/sprites/OrbitusRobotics_logo.png" alt="OrbitusRobotics" height="100" width="100"></img></a>
+		</div>
+
+
+		<div id="helpPanel" class="hidden-display">
+			<div id="blackOpaqueBackground">
+			</div>
+			<div id="container"></div>
+			
+			<div id="info_helptip">	
+				<a href="http://orbitusrobotics.com" target="_blank">
+				<img src="img/tooltips/InfoButton_tooltip.png" alt="Info Help" height="200" width="200"></img></a>
+			</div>
+			<div id="search_helptip">	
+				<a href="http://orbitusrobotics.com" target="_blank">
+				<img src="img/tooltips/SearchField_tooltip.png" alt="Info Help" height="200" width="200"></img></a>
+			</div>
+			<div id="company_helptip">	
+				<a href="http://orbitusrobotics.com" target="_blank">
+				<img src="img/tooltips/Company_tooltip.png" alt="Info Help" height="200" width="200"></img></a>
+			</div>
+			<div id="bugReport_helptip">	
+				<a href="http://orbitusrobotics.com" target="_blank">
+				<img src="img/tooltips/BugReport_tooltip.png" alt="Info Help" height="200" width="200"></img></a>
+			</div>
+			<div id="keyboard_helptip">	
+				<a href="http://orbitusrobotics.com" target="_blank">
+				<img src="img/tooltips/Keyboard_tooltip.png" alt="Info Help" height="180" width="180"></img></a>
+			</div>
+			<div id="mouseTrackpad_helptip">	
+				<a href="http://orbitusrobotics.com" target="_blank">
+				<img src="img/tooltips/MouseTrackpad_tooltip.png" alt="Info Help" height="180" width="230"></img></a>
+			</div>
+			<div id="dimensions_helptip">	
+				<a href="http://orbitusrobotics.com" target="_blank">
+				<img src="img/tooltips/Dimension_tooltip.png" alt="Info Help" height="200" width="200"></img></a>
+			</div>
+			
+		</div>
+		
+		 
+
+
+		<div id="float" >
+			<div id="float_background">	
+			</div>
+					
+			<div id="drag_infoPanel"  class="fade-out">
+
+		    <div id="ContactWrapper" title="Properties" class="wrapper">
+				<div id="main" >
+				<!-- Form -->
+				<form id="contact-form" onSubmit="return checkField()">
+					
+					<label id="MoleculeName">Water</label>
+					<h4>Molecular Formula: <label id="MoleculeFormula">H2O</label></h4>
+					<div>
+						<label>
+							<span>CID: <label id="MoleculeCID">0000</label></span>
+							
+						</label>
+					</div>
+					<div>
+						<label>
+							<span>IUPAC Preferred Name: <label id="IUPAC_PreferredName">oxidane</label></span>
+							
+						</label>
+					</div>
+					<div>
+						<label>
+							<span>Molecular Weight: <label id="MolecularWeight">18.010565</label> g/mol</span>
+							
+						</label>
+					</div>
+					<div>
+						<label>
+							<span>RotatableBond: <label id="RotatableBond">1</label></span>
+							
+						</label>
+					</div>
+					<div>
+						<label>
+							<span>Hydrogen Bond Acceptor: <label id="HydrogenBondAcceptor">0</label></span>
+						</label>
+					</div>
+					<div>
+						<label>
+							<span>Hydrogen Bond Donor: <label id="HydrogenBondDonor">0</label></span>
+							
+						</label>
+					</div>
+					<div>
+						
+					</div>
+				</form>
+				<!-- /Form -->
+				
+				</div>
+			</div>
+			</div>
+		</div>
+
+		<!--
+		<div id="menuContainer">
+        	<a id="mainMenu_file_Button" href="javascript:toggleSelectedPanel('file');" class="btn btn-large btn-danger" data-toggle="confirmation" type="button"></a>
+        	<a id="mainMenu_timePanel_Button" href="javascript:toggleSelectedPanel('time');" class="btn btn-large btn-danger" data-toggle="confirmation" type="button"></a>
+        	<a id="mainMenu_quantumRuler_Button" href="javascript:toggleSelectedPanel('ruler');" class="btn btn-large btn-danger" data-toggle="confirmation" type="button"></a>
+        	<a id="mainMenu_tempPressure_Button" href="javascript:toggleSelectedPanel('temp');" class="btn btn-large btn-danger" data-toggle="confirmation" type="button"></a>
+        	<a id="mainMenu_ePaint_Button" href="javascript:toggleSelectedPanel('epaint');" class="btn btn-large btn-danger" data-toggle="confirmation" type="button"></a>
+        	<a id="mainMenu_photonics_Button" href="javascript:toggleSelectedPanel('photon');" class="btn btn-large btn-danger" data-toggle="confirmation" type="button"></a>
+        </div>
+		-->
+
+		<div id="infoMenuContainer">
+        	<a id="infoMenu_info_Button" href="javascript:toggleInfoPanel();" class="btn btn-large btn-danger" type="button"></a>
+        	<button id="Start">Start</button>
+        	<button id="Stop" disabled="disabled">Stop</button>
+        
+        </div>
+        
+
+
+
+        <div id="dimensionMenuSuperContainer" onMouseOver="show('alpha_properties_menu');show('beta_properties_menu');show('gamma_properties_menu');show('delta_properties_menu');" onMouseOut="hide('alpha_properties_menu');hide('beta_properties_menu');hide('gamma_properties_menu');hide('delta_properties_menu')">
+        	<div id="dimensionMenuSuperPropertiesContainer">
+		        <div id="alpha_properties_menu">
+					<!-- <input type="color" name="alphaDimension_color"> -->
+					<input type="range" name="alphaDimension_opacity_slider" id="alphaDimension_opacity_slider" value="50" min="0" max="100" data-theme="b" data-track-theme="a" oninput="updateAlphaDimensionSlider(value)" />
+					<script>
+						function updateAlphaDimensionSlider(opacity) {
+							document.querySelector('#alpha_opacity').value = opacity;
+							for ( var i = 0; i < alphaObjects.length; i ++ ) {
+
+								var object = alphaObjects[ i ];
+								object.material.opacity = opacity/100;
+
+							}
+
+						}
+					</script>
+					<output for="alphaDimension_opacity_slider" id="alpha_opacity">50</output>
+
+					<button onclick="clearDimension('alpha')" type="button">Clear</button>
+		        </div>
+
+
+		        <div id="beta_properties_menu">
+					<!-- <input type="color" name="betaDimension_color"> -->
+					<input type="range" name="betaDimension_opacity_slider" id="betaDimension_opacity_slider" value="50" min="0" max="100" data-theme="b" data-track-theme="a" oninput="updateBetaDimensionSlider(value)" />
+					<script>
+						function updateBetaDimensionSlider(opacity) {
+							document.querySelector('#beta_opacity').value = opacity;
+							for ( var i = 0; i < betaObjects.length; i ++ ) {
+
+								var object = betaObjects[ i ];
+								object.material.opacity = opacity/100;
+
+							}
+						}
+					</script>
+					<output for="betaDimension_opacity_slider" id="beta_opacity">50</output>
+
+					<button onclick="clearDimension('beta')" type="button">Clear</button>
+		        </div>
+
+
+		        <div id="gamma_properties_menu">
+					<!-- <input type="color" name="gammaDimension_color"> -->
+					<input type="range" name="gammaDimension_opacity_slider" id="gammaDimension_opacity_slider" value="50" min="0" max="100" data-theme="b" data-track-theme="a"  oninput="updateGammaDimensionSlider(value)" />
+					<script>
+						function updateGammaDimensionSlider(opacity) {
+							document.querySelector('#gamma_opacity').value = opacity;
+							for ( var i = 0; i < gammaObjects.length; i ++ ) {
+
+								var object = gammaObjects[ i ];
+								object.material.opacity = opacity/100;
+
+							}
+						}
+					</script>
+					<output for="gammaDimension_opacity_slider" id="gamma_opacity">50</output>
+
+					<button onclick="clearDimension('gamma')" type="button">Clear</button>
+		        </div>
+
+
+		        <div id="delta_properties_menu">
+					<!-- <input type="color" name="deltaDimension_color"> -->
+					<input type="range" name="deltaDimension_opacity_slider" id="deltaDimension_opacity_slider" value="50" min="0" max="100" data-theme="b" data-track-theme="a"  oninput="updateDeltaDimensionSlider(value)" />
+					<script>
+						function updateDeltaDimensionSlider(opacity) {
+							document.querySelector('#delta_opacity').value = opacity;
+							for ( var i = 0; i < deltaObjects.length; i ++ ) {
+
+								var object = deltaObjects[ i ];
+								object.material.opacity = opacity/100;
+
+							}
+						}
+					</script>
+					<output for="deltaDimension_opacity_slider" id="delta_opacity">50</output>
+
+					<button onclick="clearDimension('delta')" type="button">Clear</button>
+		        </div>
+		    </div>
+
+	        <div id="dimensionMenuContainer">
+
+	        	<a id="dimensionMenu_alpha_Button" href="javascript:toggleSelectedDimension('alpha');" onMouseOver="show('alpha_properties_menu')" class="btn btn-large btn-danger" type="button">α</a>
+
+	        	<a id="dimensionMenu_beta_Button" href="javascript:toggleSelectedDimension('beta');" onMouseOver="show('beta_properties_menu')" class="btn btn-large btn-danger" type="button">β</a>
+
+	        	<a id="dimensionMenu_gamma_Button" href="javascript:toggleSelectedDimension('gamma');" onMouseOver="show('gamma_properties_menu')" class="btn btn-large btn-danger" type="button">γ</a>
+
+	        	<a id="dimensionMenu_delta_Button" href="javascript:toggleSelectedDimension('delta');" onMouseOver="show('delta_properties_menu')" class="btn btn-large btn-danger" type="button">δ</a>
+
+			</div>
+        </div>
+
+
+
+
+		<div id="bugReport_Container">
+			<a id="bugReport_Button" value="Fade In" href="javascript:fade(this);" class="btn btn-large btn-danger" type="button"></a>		
+		</div>
+
+		<div id="ContactPage" title="BugReporter" class="fade-out">
+			<div id="ContactWrapper2" class="wrapper">
+				<div id="main" >
+				<!-- Form -->
+				<form id="contact-form" onSubmit="return submitBugReport()">
+					<h3>Found a Bug?</h3>
+					<h4>Fill in the form below, and we'll get back to you within 24 hours.</h4>
+					<div>
+						<label>
+							<span>Name: (required)</span>
+							<input placeholder="Please enter your name" id="nameField" type="text" tabindex="1" required autofocus>
+						</label>
+					</div>
+					<div>
+						<label>
+							<span>Bug: (required)</span>
+							<input placeholder="Please enter a brief description of the bug" id="bugTitle" type="text" tabindex="2" required>
+						</label>
+					</div>
+					<div>
+						<label>
+							<span>Bug Description: (required)</span>
+							<textarea id="messageField" tabindex="5" required>Please describe the Bug in detail... remember Operating System, Browser, Steps to reproduce, and/or any enhancment requests!</textarea>
+						</label>
+					</div>
+					<div>
+						<button name="submit" type="submit" id="contact-submit">Send</button>
+					</div>
+				</form>
+				<!-- /Form -->
+				
+				</div>
+			</div>
+		</div>
+
+
+
+		<div id="fileMenuPanel" class="wrapper">
+			<nav class="vertical">
+			    <ul>
+			      <li>
+			        <a href="#">Load</a>
+				  </li>
+				   <li>
+			        <a href="#">Save</a>
+				  </li>
+				   <li>
+			        <a href="#">Share</a>
+				  </li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div id="timeMenuPanel" class="wrapper">
+			<div id="timeLogDeltaTLabel">
+				<h3> log ∆t </h3>
+			</div>
+
+			<div id="timeDeltaTLabel">
+				<h3>∆t</h3>
+			</div>
+
+			<div id="timeDeltaInputField">
+				<input type="text" id="timeDelta" name="timeDelta" value="10">
+			</div>
+
+			<div id="timeDeltaInputFieldUnitsLabel">
+				<h3>ƒs</h3>
+			</div>
+
+			<div id="timeSpeedSliderContainer">
+				<canvas id="myCanvas" width="200" height="230"></canvas>
+			    <script>
+			      var canvas = document.getElementById('myCanvas');
+			      var context = canvas.getContext('2d');
+			      
+			      	
+			     context.fillStyle = "black";
+			     context.font = "bold 16px Arial";
+			     context.fillText("1,000,000", 80, 16);
+
+
+			     context.fillStyle = "black";
+			     context.font = "bold 16px Arial";
+			     context.fillText("100,000", 80, 16+44);
+
+
+			     context.fillStyle = "black";
+			     context.font = "bold 16px Arial";
+			     context.fillText("10,000", 80, 16+44*2);
+
+
+			     context.fillStyle = "black";
+			     context.font = "bold 16px Arial";
+			     context.fillText("1,000", 80, 16+44*3);
+  			 	
+
+  			 	 context.fillStyle = "black";
+			     context.font = "bold 16px Arial";
+			     context.fillText("100", 80, 16+44*4);
+  			 
+			      for (i=0; i<5; i++)
+			      {
+		      		var j = i*44+10;
+		      		
+					context.beginPath();
+					context.moveTo(40, 0+j);
+					context.lineTo(80, 0+j);
+					context.stroke();
+
+					context.beginPath();
+					context.moveTo(40, 3+j);
+					context.lineTo(60, 3+j);
+					context.stroke();
+
+					context.beginPath();
+					context.moveTo(40, 9+j);
+					context.lineTo(60, 9+j);
+					context.stroke();
+
+					context.beginPath();
+					context.moveTo(40, 15+j);
+					context.lineTo(60, 15+j);
+					context.stroke();
+
+					context.beginPath();
+					context.moveTo(40, 30+j);
+					context.lineTo(60, 30+j);
+					context.stroke();
+			      }
+			      
+			    </script>
+				<input type="range" name="timeSpeedSlider" id="timeSpeedSlider" value="0" min="0" max="100" data-theme="b" data-track-theme="a"  />
+			</div>
+		</div>
+
+
+
+		<div id="epaintMenuPanel" class="wrapper">
+			
+			
+			<div id="epaintTracksVisibilityButtonContainer">
+				<a id="epaintTracksVisibilityButton" href="javascript:toggleEPaint_ETracks_Visibility();" class="btn btn-small btn-danger" type="button"></a>   e- Tracks Visible
+			</div>
+			<div id="colorHiggsFieldVisibilityButtonContainer">
+				<a id="colorHiggsFieldVisibilityButton" href="javascript:toggleEPaint_ColorHiggsField_Visibility();" class="btn btn-small btn-danger" type="button"></a>   Color Higgs Field Matrix (B,hv,g)
+			</div>
+			<div id="vanDerWallsOverlayVisibilityButtonContainer">
+				<a id="vanDerWallsOverlayVisibilityButton" href="javascript:toggleEPaint_VanDerWalls_Visibility();" class="btn btn-small btn-danger" type="button"></a>   Toggle Van der Walls Spheres Overlay
+			</div>
+
+
+
+		</div>
+
+
+		<div id="rulerMenuPanel" class="wrapper">
+			
+			
+			<div id="quantumRulerVisibilityButtonContainer">
+				<a id="quantumRulerVisibilityButton" href="javascript:toggleQuantumRulerVisibility();" class="btn btn-small btn-danger" type="button"></a>   Toggle Ruler
+			</div>
+
+			<br>
+			<br>
+			<br>
+			<br>
+			<label class="block" id="rulerRadioButton1"><input id="rulerRadioButton1_button" type="radio" name="ruler" value="Cube"> 1 Å Cube</label>
+			
+			<label class="block" id="rulerRadioButton2"><input id="rulerRadioButton2_button" type="radio" name="ruler" value="Length"> 1 Å Length Ruler</label>
+
+		</div>
+
+
+		<div id="photonMenuPanel" class="wrapper">
+			
+			
+			<div id="photonAbsorbtionVisibilityButtonContainer">
+				<a id="photonAbsorbtionVisibilityButton" href="javascript:togglePhotonWavelengthAbsobtionVisibility();" class="btn btn-small btn-danger" type="button"></a>   Show Radiation Absorption Bands
+			</div>
+
+			<br>
+			<br>
+			<br>
+			<br>
+			<label class="block" id="photonRadioButton1"><input id="photonRadioButton1_button" type="radio" name="ruler" value="Cube"> 450nm</label>
+			
+			<label class="block" id="photonRadioButton2"><input id="photonRadioButton2_button" type="radio" name="ruler" value="Length"> 650nm</label>
+
+		</div>
+
+		<div id="tempMenuPanel" class="wrapper">
+			<div id="tempPanel_tempLabel">
+				<h3>TºK</h3>
+			</div>
+			<div id="tempPanel_pressureLabel">
+				<h3>atm</h3>
+			</div>
+			<div id="tempPanel_hydroniumLabel">
+				<h3>pH</h3>
+			</div>
+			
+			<div id="tempInputField">
+				<input type="text" id="tempField" name="tempField" value="273">
+			</div>
+			<div id="pressureInputField">
+				<input type="text" id="pressureField" name="pressureField" value="1">
+			</div>
+			<div id="hydroniumInputField">
+				<input type="text" id="hydroniumField" name="hydroniumField" value="7.0">
+			</div>
+
+			<input type="range" name="tempPanel_tempSlider" id="tempSlider" value="273" min="0" max="1000" data-theme="b" data-track-theme="a"  />
+			<input type="range" name="tempPanel_pressureSlider" id="pressureSlider" value="0" min="0" max="1000" data-theme="b" data-track-theme="a"  />
+			<input type="range" name="tempPanel_hydroniumSlider" id="hydroniumSlider" value="0" min="-100" max="100" data-theme="b" data-track-theme="a"  />
+		</div>
+
+		<div id="info_intel"></div>
+        <br>
+        <input id="gestures" type="checkbox"/>Gestures
+        <input id="alerts" type="checkbox"/>Alerts
+        <br>
+        <br>
+        <button id="Start">Start</button>
+        <button id="Stop" disabled="disabled">Stop</button>
+        <br>
+        <br>
+
+        <canvas id="myCanvas" style="border:1px solid #000000;"></canvas>
+
+        <div id="gestures_status"></div>
+        <div id="alerts_status"></div>
+        <br>
+        Status:<div id="status"></div>
+		<textarea id="commands" cols="40" rows="5" style="display:none">left
+right</textarea>
+
+		<script src="libraries/three.min.js"></script>
+
+		<script src="js/controls/TrackballControls.js"></script>
+		<script src="js/controls/TransformControls.js"></script>
+
+		<script src="js/loaders/PubChem_3DJSONLoader.js"></script>
+		<script src="js/loaders/PDBLoader.js"></script>
+		
+		<script src="js/libs/stats.min.js"></script>
+		
+		<script src="js/THREEx.KeyboardState.js"></script>
+		<script src="js/THREEx.FullScreen.js"></script>
+		<script src="js/THREEx.WindowResize.js"></script>
+
+		<script src='js/threex.dilategeometry.js'></script>
+		<script src='js/threex.atmospherematerial.js'></script>
+		<script src="js/threex.geometricglowmesh.js"></script>
+
+		<script src="js/jquery-2.1.0.js" ></script>
+		<script src="js/jquery.blockUI.js" ></script>
+		<script src="js/Detector.js"></script>
+		
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
+		<script type="text/javascript" src="js/bootstrap-confirmation.js"></script>		
+
+		<link href="css/jquery-ui.css" rel="stylesheet">
+		<script src="js/jquery-ui.js"></script>
+
+		
+
+		<script>
+
+			var infoShowing = false;
+			var fileShowing = false;
+			var tempShowing = false;
+			var rulerShowing = false;
+			var photonShowing = false;
+			var epaintShowing = false;
+			var timeShowing = false;
+			var showQuantumRuler = false;
+			var showEPaint_eTracks = false;
+			var showEPaint_colorHiggs = false;
+			var showEPaint_vanDerWalls = false;
+			var showPhotonAbsorbtion = false;
+			var alphaObjects = [];
+			var betaObjects = [];
+			var gammaObjects = [];
+			var deltaObjects = [];
+
+			var alphaOpacity = 1.0;
+			var betaOpacity = 1.0;
+			var gammaOpacity = 1.0;
+			var deltaOpacity = 1.0;
+
+			var alphaDataResponse;
+			var alphaDataTitle;
+			var betaDataResponse;
+			var betaDataTitle;
+			var gammaDataResponse;
+			var gammaDataTitle;
+			var deltaDataResponse;
+			var deltaDataTitle;
+
+
+			var keyboard = new THREEx.KeyboardState();
+			
+			var selectedDimension;
+			var selectedObjectsArray;
+			var universal_material;
+
+			var pos = $('#dimensionMenuContainer').position(); 
+
+	        //$tooltip = $('<div id="tooltip">A new element</div>').appendTo('body');
+			
+	        /*
+		    $('#alpha_properties_menu').css({
+				position: 'absolute',
+				top : pos.top + 10,
+				right : pos.right,				
+			});
+			*/
+
+			document.getElementById("rulerRadioButton1_button").disabled = true;
+			document.getElementById("rulerRadioButton2_button").disabled = true;
+			
+			document.getElementById("photonRadioButton1_button").disabled = true;
+			document.getElementById("photonRadioButton2_button").disabled = true;
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+			
+			hide('alpha_properties_menu');
+			hide('beta_properties_menu');
+			hide('gamma_properties_menu');
+			hide('delta_properties_menu')
+
+			$( "#ContactPage" ).draggable();
+
+			//$( "#ContactPage" ).dialog({height:536 ,width:410});
+
+			$( "#timeMenuPanel" ).draggable();
+			$( "#tempMenuPanel" ).draggable();			
+			$( "#rulerMenuPanel" ).draggable();
+			$( "#epaintMenuPanel" ).draggable();
+			$( "#photonMenuPanel" ).draggable();
+				/* basic */
+	        $("#dragbasic div[id^='drag']").draggable({
+	            containment: "#dragbasic",
+	            stack: ".drag"
+	        });
+
+
+	        /* make draggable div always on top */
+	        $("div[id^='drag']").mousedown(function() {
+	            $("div[id^='drag']").each(function() {
+	                var seq = $(this).attr("id").replace("drag", "");
+	                $(this).css('z-index', seq);
+	            });
+	        });
+
+			//------------------------
+	        //Initialize RealSense SDK variables
+	        var sense;
+            var imageSize;
+            var handModule;
+            var handConfiguration;
+            var speech_rec;
+            var mode;
+
+            // check platform compatibility
+            RealSenseInfo(['hand'], function (info) {
+                if (info.IsReady == true) {
+                    $('#info_intel').append('<b>Platform supports Intel(R) RealSense(TM) SDK feature</b>');
+                    status('OK');
+                    document.getElementById("Start").disabled = false;
+                } else {
+                    status('Platform not supported: ' + info.responseText);
+                    if (info.IsPlatformSupported != true) {
+                        $('#info_intel').append('<b>Intel® RealSense™ 3D camera not found</b>');
+                    } else if (info.IsBrowserSupported != true) {
+                        $('#info_intel').append('<b>Please update your browser to latest version</b>');
+                    } else {
+                        $('#info_intel').append('<b>Please download and install the following update(s) before running sample: </b>');
+                        for (i = 0; i < info.Updates.length; i++) {
+                            $('#info_intel').append('<a href="' + info.Updates[i].url + '">' + info.Updates[i].href + '</a><br>');
+                        }
+                    }
+                }
+            })
+
+			//go ahead and start the RealSense SDK
+			// INITIALIZE MOTION TRACKING FOR GESTURES HERE
+			document.getElementById("Start").disabled = true;
+            PXCMSenseManager_CreateInstance().then(function (result) {
+                sense = result;
+                return sense.EnableHand(onHandData);
+            }).then(function (result) {
+                handModule = result;
+                status('Init started');
+                return sense.Init(onConnect, onStatus);
+            }).then(function (result) {
+                return handModule.CreateActiveConfiguration();
+            }).then(function (result) {
+                handConfiguration = result;
+                //if (document.getElementById("alerts").checked)
+                    return handConfiguration.EnableAllAlerts();
+                //else
+                //    return handConfiguration.DisableAllAlerts();
+            }).then(function (result) {
+                //if (document.getElementById("gestures").checked)
+                    return handConfiguration.EnableAllGestures(false);
+                //else
+                //    return handConfiguration.DisableAllGestures();
+            }).then(function (result) {
+                return handConfiguration.ApplyChanges();
+            }).then(function (result) {
+                return sense.QueryCaptureManager();
+            }).then(function (capture) {
+                return capture.QueryImageSize(pxcmConst.PXCMCapture.STREAM_TYPE_DEPTH);
+            }).then(function (result) {
+                imageSize = result.size;
+                return sense.StreamFrames();
+            }).then(function (result) {
+                status('Streaming ' + imageSize.width + 'x' + imageSize.height);
+                document.getElementById("Stop").disabled = false;
+            }).catch(function (error) {
+                status('Init failed: ' + JSON.stringify(error));
+                document.getElementById("Start").disabled = false;
+            });
+
+			// INITIALIZE Speech Rec Her
+
+			document.getElementById("Start").disabled = true;
+                PXCMSession_CreateInstance().then(function (result) {
+                    session = result;
+                    status('Initilizing');
+                    return session.CreateImpl(undefined, undefined, pxcmConst.PXCMSpeechRecognition.CUID);
+                }).then(function (result) {
+                    speech_rec = result;
+                    
+                    //var commands = "alpha".split(','); //,beta,gamma,delta,hold
+                    var mode = 1;
+                    var commands = $('#commands').val().split('\n');
+                    return speech_rec.BuildGrammarFromStringList(mode, commands, null);
+                
+                }).then(function (result) {
+                    if (mode != 0) {
+                        return speech_rec.SetGrammar(mode);
+                    } else {
+                        return session.QueryVersion(); // for chain of operations
+                    }
+                }).then(function (result) {
+                    status('Grammar created');
+                    return speech_rec.StartRec(OnRecognition, OnAlert);
+                }).then(function (result) {
+                    status('Started');
+                    document.getElementById("Stop").disabled = false;
+                }).catch(function (error) {
+                    status('StartRec failed: ' + JSON.stringify(error));
+                    document.getElementById("Start").disabled = false;
+                });
+
+
+			// END Initialize RealSense SDK
+			//-----------------------------------------------
+
+			//------------------------
+			// RealSense SDK functions
+			$('#Start').click(function () {
+                document.getElementById("Start").disabled = true;
+                PXCMSenseManager_CreateInstance().then(function (result) {
+                    sense = result;
+                    return sense.EnableHand(onHandData);
+                }).then(function (result) {
+                    handModule = result;
+                    status('Init started');
+                    return sense.Init(onConnect, onStatus);
+                }).then(function (result) {
+                    return handModule.CreateActiveConfiguration();
+                }).then(function (result) {
+                    handConfiguration = result;
+                    //if (document.getElementById("alerts").checked)
+                        return handConfiguration.EnableAllAlerts();
+                    //else
+                    //    return handConfiguration.DisableAllAlerts();
+                }).then(function (result) {
+                    //if (document.getElementById("gestures").checked)
+                        return handConfiguration.EnableAllGestures(false);
+                    //else
+                    //    return handConfiguration.DisableAllGestures();
+                }).then(function (result) {
+                    return handConfiguration.ApplyChanges();
+                }).then(function (result) {
+                    return sense.QueryCaptureManager();
+                }).then(function (capture) {
+                    return capture.QueryImageSize(pxcmConst.PXCMCapture.STREAM_TYPE_DEPTH);
+                }).then(function (result) {
+                    imageSize = result.size;
+                    return sense.StreamFrames();
+                }).then(function (result) {
+                    status('Streaming ' + imageSize.width + 'x' + imageSize.height);
+                    document.getElementById("Stop").disabled = false;
+                }).catch(function (error) {
+                    status('Init failed: ' + JSON.stringify(error));
+                    document.getElementById("Start").disabled = false;
+                });
+            });
+
+            function clear() {
+                $('#alerts_status').text('');
+                $('#gestures_status').text('');
+                document.getElementById("Start").disabled = false;
+                var canvas = document.getElementById('myCanvas');
+                var context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+            }
+
+            $('#Stop').click(function () {
+                document.getElementById("Stop").disabled = true;
+                sense.Close().then(function (result) {
+                    status('Stopped');
+                    clear();
+                });
+            });
+
+            function onHandData(mid, module, data) {
+                var canvas = document.getElementById('myCanvas');
+                var context = canvas.getContext('2d');
+                var radius = 5;
+                var scale = 1;
+
+                canvas.width = imageSize.width;
+                canvas.height = imageSize.height;
+
+                if (!data.hands)
+                {
+                	isGrabbing = false;
+                	currentGesture = "";
+                	return;	
+                } 
+                for (h = 0; h < data.hands.length; h++) {
+                    var joints = data.hands[h].trackedJoint;
+                    var baseX = joints[0].positionImage.x;
+                    var baseY = joints[0].positionImage.y;
+                    var wristX = joints[0].positionImage.x;
+                    var wristY = joints[0].positionImage.y;
+
+                    //console.log('coords = (' + joints[0].positionWorld.x, joints[0].positionWorld.y, joints[0].positionWorld.z)
+                    
+                    if (isGrabbing == true)
+                    {
+	                    grab_delta_x = current_x - joints[0].positionWorld.x;
+	                    grab_delta_y = current_y - joints[0].positionWorld.y;
+	                    grab_delta_z = current_z - joints[0].positionWorld.z;	
+                    }
+                    
+                    current_x = joints[0].positionWorld.x;
+                    current_y = joints[0].positionWorld.y;
+                    current_z = joints[0].positionWorld.z;
+
+                    for (j = 0; j < joints.length; j++) {
+                        if (joints[j] == null || joints[j].confidence <= 0) continue;
+
+                        var x = joints[j].positionImage.x;
+                        var y = joints[j].positionImage.y;
+
+                        context.beginPath();
+                        context.arc(x * scale, y * scale, radius, 0, 2 * Math.PI);
+                        context.lineWidth = 2;
+                        context.strokeStyle = 'green';
+                        context.stroke();
+
+                        if (j == 2 || j == 6 || j == 10 || j == 14 || j == 18) {
+                            baseX = wristX;
+                            baseY = wristY;
+                        }
+
+                        context.beginPath();
+                        context.moveTo(baseX * scale, baseY * scale);
+                        context.lineTo(x * scale, y * scale);
+                        context.stroke();
+
+                        baseX = x;
+                        baseY = y;
+                    }
+                }
+                for (a = 0; a < data.alerts.length; a++) {
+                    $('#alerts_status').text('Alert: ' + JSON.stringify(data.alerts[a]));
+                }
+
+                for (g = 0; g < data.gestures.length; g++) {
+                    $('#gestures_status').text('Gesture: ' + JSON.stringify(data.gestures[g]));
+                    console.log('Gesture: ' + JSON.stringify(data.gestures[g]))
+
+
+                    currentGesture = data.gestures[0].name
+
+                    if (data.gestures[0].name == "fist")
+                    {
+                    	//console.log('fist gesture')
+                    	if (isGrabbing == false)
+                    	{
+                    		//transitions between grab/nograb
+                    		console.log('DidGrab');
+                    		grab_init_x = current_x;
+                    		grab_init_y = current_y;
+                    		grab_init_z = current_z;
+                    	}
+                    	isGrabbing = true;
+                    	break;
+                    }	
+                    else if (data.gestures[0].name == "full_pinch")
+                    {
+                    	if (isGrabbing == false)
+                    	{
+                    		//transitions between grab/nograb
+                    		console.log('DidGrab');
+                    		grab_init_x = current_x;
+                    		grab_init_y = current_y;
+                    		grab_init_z = current_z;
+
+                    	}
+                    	//console.log('no gesture')	
+                    	isGrabbing = true;
+                    	break;
+                    }
+                    else if (data.gestures[0].name == "thumb_down")
+                    {
+                    	rotateMolecules = false;
+                    	if (isGrabbing == false)
+                    	{
+                    		//transitions between grab/nograb
+                    		console.log('DidGrab');
+                    		grab_init_x = current_x;
+                    		grab_init_y = current_y;
+                    		grab_init_z = current_z;
+                    	}
+                    	//console.log('no gesture')	
+                    	isGrabbing = true;
+                    	break;
+                    }
+                    else if (data.gestures[0].name == "thumb_up")
+                    {
+                    	rotateMolecules = true;
+                    	if (isGrabbing == false)
+                    	{
+                    		//transitions between grab/nograb
+                    		console.log('DidGrab');
+                    		grab_init_x = current_x;
+                    		grab_init_y = current_y;
+                    		grab_init_z = current_z;
+                    	}
+                    	//console.log('no gesture')	
+                    	isGrabbing = true;
+                    	break;
+                    }
+                    else if (data.gestures[0].name == "two_fingers_pinch_open")
+                    {
+                    	if (isGrabbing == true)
+                    	{
+                    		//transitions between grab/nograb
+                    		console.log('LetGo');
+                    	}
+                    	//console.log('no gesture')	
+                    	isGrabbing = false;
+                    	break;
+                    }
+                    else if (data.gestures[0].name == "v_sign")
+                    {
+                    	alphaDimension.position.x = 0.0;
+                    	alphaDimension.position.y = 0.0;
+                    	alphaDimension.position.z = 0.0;
+                    	//console.log('no gesture')
+                    	if (isGrabbing == true)
+                    	{
+                    		//transitions between grab/nograb
+                    		console.log('LetGo');
+                    	}	
+                    	isGrabbing = false;
+                    	break;
+                    }
+                    else if (data.gestures[0].name == "spreadfingers")
+                    {
+                    	//console.log('no gesture')
+                    	if (isGrabbing == true)
+                    	{
+                    		//transitions between grab/nograb
+                    		console.log('LetGo');
+                    	}	
+                    	isGrabbing = false;
+                    	break;
+                    }
+                    
+                }
+            }
+
+            function onConnect(data) {
+                if (data.connected == false) {
+                    $('#alerts_status').append('Alert: ' + JSON.stringify(data) + '<br>');
+                }
+            }
+
+            function onStatus(data) {
+                if (data.sts < 0) {
+                    status('Error ' + data.sts);
+                    clear();
+                }
+            }
+
+            function status(msg) {
+                $('#status').text(msg);
+            }
+
+
+
+
+
+
+            function OnRecognition(result) {
+                var res = result.data.scores[0];
+                if (res.confidence !== 'undefined' && res.confidence != 0)
+                {
+                	res.sentence += ' (' + res.confidence + '%)';
+                }
+
+
+                console.log('SPEECH Spoke: ' + res.sentence)
+                //$('#recognition').append(res.sentence + '<br>');
+                //var obj = document.getElementById("recognition");
+                //obj.scrollTop = obj.scrollHeight;
+					
+				//var result = string.match(/best/i);
+
+				if (res.sentence.toLowerCase().indexOf("alpha") > -1)
+				{
+					console.log('alpha dimension selection')
+					toggleSelectedDimension('alpha');
+				}
+				if (res.sentence.toLowerCase().indexOf("beta") > -1)
+				{
+					console.log('beta dimension selection')
+					toggleSelectedDimension('beta');
+				}
+				if (res.sentence.toLowerCase().indexOf("gamma") > -1)
+				{
+					console.log('gamma dimension selection')
+					toggleSelectedDimension('gamma');
+				}
+				if (res.sentence.toLowerCase().indexOf("delta") > -1)
+				{
+					console.log('delta dimension selection')
+					toggleSelectedDimension('delta');
+				}
+                
+            }
+
+            function OnAlert(result) {
+                console.log('SPEECH Alert: ' + result.data.name)
+
+            }
+
+            function status(msg) {
+				console.log('SPEECH Status: ' + msg)
+            }
+			//---------------------------
+
+
+
+
+
+	        function toggleHelpOverlay() {
+	        	if (document.getElementById("helpPanel").className == 'visible-display')
+                	document.getElementById("helpPanel").className = "hidden-display";
+                else
+                	document.getElementById("helpPanel").className = "visible-display";
+
+	        }
+
+			function getUrlVars() {
+			    var vars = {};
+			    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			        vars[key] = value;
+			    });
+			    return vars;
+			}
+
+
+			function show(id) {
+			    document.getElementById(id).style.visibility = "visible";
+			}
+			function hide(id) {
+			    document.getElementById(id).style.visibility = "hidden";
+			}
+
+	        function clearDimension(targetDimensionToClear)
+	        {
+
+	        	if (targetDimensionToClear == 'alpha')
+	        	{
+	        		console.log('alpha clear, ', alphaObjects);
+					for ( var i = 0; i < alphaObjects.length; i ++ ) {
+						var object = alphaObjects[ i ];
+						console.log('alpha clear object - ', alphaObjects);
+						object.parent.remove( object );
+
+					}
+					alphaObjects = [];
+		        	scene.remove( alphaTransformControl );
+					alphaDataResponse = "";
+					alphaDataTitle = "";
+					setCookie("alphaDimension", "", 999);
+
+	        	}
+	        	if (targetDimensionToClear == 'beta')
+	        	{
+	        		console.log('beta clear, ', betaObjects);
+					for ( var i = 0; i < betaObjects.length; i ++ ) {
+
+						var object = betaObjects[ i ];
+						console.log('beta clear object - ', betaObjects);
+						object.parent.remove( object );
+
+					}
+					betaObjects = [];
+					scene.remove( betaTransformControl );
+					betaDataResponse = "";
+					setCookie("betaDimension", "", 999);
+	        	}
+	        	if (targetDimensionToClear == 'gamma')
+	        	{
+	        		console.log('gamma clear, ', gammaObjects);
+					for ( var i = 0; i < gammaObjects.length; i ++ ) {
+
+						var object = gammaObjects[ i ];
+						console.log('gamma clear object - ', gammaObjects);
+						object.parent.remove( object );
+
+					}
+					gammaObjects = [];
+					scene.remove( gammaTransformControl );
+					gammaDataResponse = "";
+					setCookie("gammaDimension", "", 999);
+	        	}
+	        	if (targetDimensionToClear == 'delta')
+	        	{
+	        		console.log('delta clear, ', deltaObjects);
+					for ( var i = 0; i < deltaObjects.length; i ++ ) {
+
+						var object = deltaObjects[ i ];
+						console.log('delta clear object - ', deltaObjects);
+						object.parent.remove( object );
+
+					}
+					deltaObjects = [];
+					scene.remove( deltaTransformControl );
+					deltaDataResponse = "";
+					setCookie("deltaDimension", "", 999);
+	        	}
+	        }
+	        function togglePhotonWavelengthAbsobtionVisibility()
+	        {
+				showPhotonAbsorbtion = !showPhotonAbsorbtion;
+
+	        	if (showPhotonAbsorbtion)
+	        	{
+	        		//console.log('showPhotonAbsorbtion');
+					document.getElementById("photonAbsorbtionVisibilityButton").style.backgroundColor='blue';
+					document.getElementById("photonRadioButton1_button").disabled = false;
+					document.getElementById("photonRadioButton2_button").disabled = false;
+	        	}
+	        	else
+	        	{
+	        		//console.log('hidePhotonAbsorbtion');
+	        		document.getElementById("photonAbsorbtionVisibilityButton").style.backgroundColor='red';
+	        		document.getElementById("photonRadioButton1_button").disabled = true;
+					document.getElementById("photonRadioButton2_button").disabled = true;
+	        	}
+	        }
+
+
+	        function toggleEPaint_ETracks_Visibility()
+	        {
+	        	showEPaint_eTracks = !showEPaint_eTracks;
+
+	        	if (showEPaint_eTracks)
+	        	{
+	        		//console.log('showEPaint_eTracks');
+					document.getElementById("epaintTracksVisibilityButton").style.backgroundColor='blue';
+	        	}
+	        	else
+	        	{
+	        		//console.log('hideEPaint_eTracks');
+	        		document.getElementById("epaintTracksVisibilityButton").style.backgroundColor='red';
+	        	}
+	        }
+
+	        function toggleEPaint_ColorHiggsField_Visibility()
+	        {
+	        	showEPaint_colorHiggs = !showEPaint_colorHiggs;
+
+	        	if (showEPaint_colorHiggs)
+	        	{
+	        		//console.log('showEPaint_colorHiggs');
+					document.getElementById("colorHiggsFieldVisibilityButton").style.backgroundColor='blue';
+	        	}
+	        	else
+	        	{
+	        		//console.log('hideEPaint_colorHiggs');
+	        		document.getElementById("colorHiggsFieldVisibilityButton").style.backgroundColor='red';
+	        	}
+	        }
+
+	        function toggleEPaint_VanDerWalls_Visibility()
+	        {
+				showEPaint_vanDerWalls = !showEPaint_vanDerWalls;
+
+	        	if (showEPaint_vanDerWalls)
+	        	{
+	        		//console.log('ruler visible');
+					document.getElementById("vanDerWallsOverlayVisibilityButton").style.backgroundColor='blue';
+	        	}
+	        	else
+	        	{
+	        		//console.log('ruler not visible');
+	        		document.getElementById("vanDerWallsOverlayVisibilityButton").style.backgroundColor='red';
+	        	}
+	        }
+
+	        function toggleQuantumRulerVisibility()
+	        {
+	        	
+	        	showQuantumRuler = !showQuantumRuler;
+
+	        	if (showQuantumRuler)
+	        	{
+	        		//console.log('ruler visible');
+
+					document.getElementById("quantumRulerVisibilityButton").style.backgroundColor='blue';
+					document.getElementById("rulerRadioButton1_button").disabled = false;
+					document.getElementById("rulerRadioButton2_button").disabled = false;
+	
+	        	}
+	        	else
+	        	{
+	        		//console.log('ruler not visible');
+	        		document.getElementById("quantumRulerVisibilityButton").style.backgroundColor='red';
+	        		document.getElementById("rulerRadioButton1_button").disabled = true;
+					document.getElementById("rulerRadioButton2_button").disabled = true;
+	        	}
+	        }
+
+
+	       	function logslider(position) {
+			  // position will be between 0 and 100
+			  var minp = 0;
+			  var maxp = 100;
+
+			  // The result should be between 100 an 10000000
+			  var minv = Math.log(100);
+			  var maxv = Math.log(10000000);
+
+			  // calculate adjustment factor
+			  var scale = (maxv-minv) / (maxp-minp);
+
+			  return Math.exp(minv + scale*(position-minp));
+			}
+
+			function fade(btnElement) {
+	            if (btnElement.value === "Fade Out") {
+	                document.getElementById("ContactPage").className = "fade-out";
+	                btnElement.value = "Fade In";
+	            }
+	            else {
+	                document.getElementById("ContactPage").className = "fade-in";
+	                btnElement.value = "Fade Out";
+	            }
+	        }
+
+
+			function closeFileWindows(selectedPanel, delay)
+			{
+				
+				if (selectedPanel != 'file') 
+					fileShowing = false;
+	            $("#fileMenuPanel").hide(delay);   
+
+	            if (selectedPanel != 'time')
+	            	timeShowing = false;
+            	$("#timeMenuPanel").hide(delay);   
+	            
+				if (selectedPanel != 'temp')
+	            	tempShowing = false;
+	            $("#tempMenuPanel").hide(delay);   	
+
+	            if (selectedPanel != 'ruler')
+	            	rulerShowing = false;
+	            $("#rulerMenuPanel").hide(delay);   
+
+	            if (selectedPanel != 'photon')
+	            	photonShowing = false;
+	            $("#photonMenuPanel").hide(delay);   
+
+	            if (selectedPanel != 'epaint')
+	            	epaintShowing = false;
+	            $("#epaintMenuPanel").hide(delay); 
+	            
+			}
+
+			function toggleSelectedPanel(selectedPanel)
+			{
+				if (selectedPanel == "file")
+				{
+
+					if (fileShowing) {
+
+						//console.log('file');
+			            closeFileWindows(selectedPanel, 200);
+			        }
+			        else {
+			        	//console.log('no file');
+
+			        	closeFileWindows(selectedPanel, 200);
+			        	$("#fileMenuPanel").show(200);
+			        }
+
+					fileShowing = !fileShowing;
+
+				}
+				if (selectedPanel == "time")
+				{
+					//console.log('time');
+
+					if (timeShowing) {
+			            closeFileWindows(selectedPanel, 200);
+			        }
+			        else {
+			        	closeFileWindows(selectedPanel, 200);
+			        	$("#timeMenuPanel").show(200);
+			        }
+
+					timeShowing = !timeShowing;
+				}
+				if (selectedPanel == "temp")
+				{
+					//console.log('temp');
+
+					if (tempShowing) {
+			            closeFileWindows(selectedPanel, 200);
+			        }
+			        else {
+			        	closeFileWindows(selectedPanel, 200);
+			        	$("#tempMenuPanel").show(200);
+			        }
+
+					tempShowing = !tempShowing;
+				}
+				if (selectedPanel == "ruler")
+				{
+					//console.log('ruler');
+
+					if (rulerShowing) {
+			            closeFileWindows(selectedPanel, 200);
+			        }
+			        else {
+			        	closeFileWindows(selectedPanel, 200);
+			        	$("#rulerMenuPanel").show(200);
+			        }
+
+					rulerShowing = !rulerShowing;
+				}
+				if (selectedPanel == "epaint")
+				{
+					//console.log('epaint');
+
+					if (epaintShowing) {
+			            closeFileWindows(selectedPanel, 200);
+			        }
+			        else {
+			        	closeFileWindows(selectedPanel, 200);
+			        	$("#epaintMenuPanel").show(200);
+			        }
+
+					epaintShowing = !epaintShowing;
+				}
+				if (selectedPanel == "photon")
+				{
+					//console.log('photon');
+
+					if (photonShowing) {
+			            closeFileWindows(selectedPanel, 200);
+			        }
+			        else {
+			        	closeFileWindows(selectedPanel, 200);
+			        	$("#photonMenuPanel").show(200);
+			        }
+
+					photonShowing = !photonShowing;
+				}
+
+			}
+
+			function toggleSelectedDimension(dimension) {
+				scene.remove( alphaTransformControl );
+				scene.remove( betaTransformControl );
+				scene.remove( gammaTransformControl );
+				scene.remove( deltaTransformControl );
+
+
+				if (dimension == "alpha")
+				{
+					//console.log('alpha');
+					selectedDimension = alphaDimension;
+					selectedObjectsArray = alphaObjects;
+					scene.add( alphaTransformControl );
+
+					document.getElementById("dimensionMenu_alpha_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_beta_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_gamma_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_delta_Button").style.backgroundColor='#4d90fe';
+
+					document.getElementById("dimensionMenu_alpha_Button").style.backgroundColor='#4d4d4d';
+
+					
+				}
+				if (dimension == "beta")
+				{
+					//console.log('beta');
+					selectedDimension = betaDimension;
+					selectedObjectsArray = betaObjects;
+					scene.add( betaTransformControl );
+
+					document.getElementById("dimensionMenu_alpha_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_beta_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_gamma_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_delta_Button").style.backgroundColor='#4d90fe';
+
+					document.getElementById("dimensionMenu_beta_Button").style.backgroundColor='#4d4d4d';
+				}
+				if (dimension == "gamma")
+				{
+					//console.log('gamma');
+					selectedDimension = gammaDimension;
+					selectedObjectsArray = gammaObjects;
+					scene.add( gammaTransformControl );
+
+					document.getElementById("dimensionMenu_alpha_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_beta_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_gamma_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_delta_Button").style.backgroundColor='#4d90fe';
+
+					document.getElementById("dimensionMenu_gamma_Button").style.backgroundColor='#4d4d4d';
+				}
+				if (dimension == "delta")
+				{
+					//console.log('delta');
+					selectedDimension = deltaDimension;
+					selectedObjectsArray = deltaObjects;
+					scene.add( deltaTransformControl );
+
+					document.getElementById("dimensionMenu_alpha_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_beta_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_gamma_Button").style.backgroundColor='#4d90fe';
+					document.getElementById("dimensionMenu_delta_Button").style.backgroundColor='#4d90fe';
+
+					document.getElementById("dimensionMenu_delta_Button").style.backgroundColor='#4d4d4d';
+				}
+
+				parseDataResponseIntoInfoPanel(selectedDimension);
+			}
+
+			var info_dialog;
+			function toggleInfoPanel() {
+
+				parseDataResponseIntoInfoPanel(selectedDimension);
+
+			    info_dialog = $( "#ContactWrapper" ).dialog({width:410, position:{my:'right', at:'left', of: $("#infoMenu_info_Button")}, resizable: false});
+
+			}
+
+
+			function setCookie(cname,cvalue,exdays)
+			{
+				var d = new Date();
+				d.setTime(d.getTime()+(exdays*24*60*60*1000));
+				var expires = "expires="+d.toGMTString();
+				document.cookie = cname + "=" + cvalue + "; " + expires;
+			} 
+
+			function getCookie(cname)
+			{
+				var name = cname + "=";
+				var ca = document.cookie.split(';');
+
+				for(var i=0; i<ca.length; i++)
+				{
+					var c = ca[i].trim();
+					if (c.indexOf(name)==0)
+						return c.substring(name.length,c.length);
+				}
+				return "";
+			}
+
+
+			function pubChem_compoundSearchByName( searchTerm, destinationDimension)
+			{
+					if (destinationDimension == alphaDimension)
+					{
+						setCookie("alphaDimension", searchTerm, 999);
+						alphaDataTitle = searchTerm;
+					}
+					if (destinationDimension == betaDimension)
+					{
+						setCookie("betaDimension", searchTerm, 999);
+						betaDataTitle = searchTerm;
+					}
+					if (destinationDimension == gammaDimension)
+					{
+						setCookie("gammaDimension", searchTerm, 999);
+						gammaDataTitle = searchTerm;
+					}
+					if (destinationDimension == deltaDimension)
+					{
+						setCookie("deltaDimension", searchTerm, 999);
+						deltaDataTitle = searchTerm;
+					}
+
+					var url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/" + searchTerm + "/JSON?record_type=3d"; 
+					var pubChemSearchHTTPRequest_json = new XMLHttpRequest(); 
+					pubChemSearchHTTPRequest_json.open("GET", url, true);
+
+					$.blockUI({
+							message: '<h1>Searching...</h1>'
+						});
+				    
+				
+					 // subscribe to this event before you send your request.
+					pubChemSearchHTTPRequest_json.onreadystatechange=function()
+					{
+					 	if (pubChemSearchHTTPRequest_json.readyState==4)
+					 	{
+					 		//console.log('responseText json =', pubChemSearchHTTPRequest_json.responseText);
+					   		var jsonResponse = JSON.parse(pubChemSearchHTTPRequest_json.responseText);
+							//console.log('searchTerm json results =', jsonResponse);
+							$.unblockUI();
+
+							
+							if (jsonResponse.Fault)
+							{
+								var searchErrorMessage = 'Search Error' + "\n" + jsonResponse.Fault.Code + "\n" + jsonResponse.Fault.Message;
+								//console.log(searchErrorMessage);
+								alert(searchErrorMessage);
+							}
+							else
+							{
+								if (jsonResponse)
+								{
+									//console.log('atoms - ' , jsonResponse.PC_Compounds[0].atoms);
+									//console.log('bonds - ' , jsonResponse.PC_Compounds[0].bonds);
+									//console.log('coords - ' , jsonResponse.PC_Compounds[0].coords);
+									//console.log('cid - ' , jsonResponse.PC_Compounds[0].id.id.cid);
+									if (!selectedDimension)
+									{
+										selectedDimension = alphaDimension;
+										scene.add( alphaTransformControl );
+										scene.remove( betaTransformControl );
+										scene.remove( gammaTransformControl );
+										scene.remove( deltaTransformControl );
+
+									}
+									console.log('mylog = ', jsonResponse.PC_Compounds[0]);
+
+									loadPubChemMoleculeProperties( jsonResponse.PC_Compounds[0].id.id.cid , destinationDimension);
+
+									loadPubChemMolecule(jsonResponse.PC_Compounds[0], destinationDimension);
+								}
+							}
+							
+					  	}
+
+					}
+					pubChemSearchHTTPRequest_json.send(null);
+			}
+
+			function pubChem_compoundSearch( searchTerm ){
+
+					var url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pccompound&term=" + searchTerm + "&retmode=json&retmax=1000"; 
+					var pubChemSearchHTTPRequest_json = new XMLHttpRequest(); 
+					pubChemSearchHTTPRequest_json.open("GET", url, true);
+
+					$.blockUI({
+							message: '<h1>Searching...</h1>'
+						});
+				    
+				
+					 // subscribe to this event before you send your request.
+					pubChemSearchHTTPRequest_json.onreadystatechange=function()
+					{
+					 	if (pubChemSearchHTTPRequest_json.readyState==4)
+					 	{
+					 		//console.log('responseText json =', pubChemSearchHTTPRequest_json.responseText);
+					   		var jsonResponse = JSON.parse(pubChemSearchHTTPRequest_json.responseText);
+							//console.log('searchTerm json results =', jsonResponse.esearchresult);
+							$.unblockUI();
+
+
+							if (jsonResponse.esearchresult.errorlist)
+							{
+								//console.log('search error - ', jsonResponse.esearchresult.errorlist.phrasesnotfound);
+							}
+							if (jsonResponse.esearchresult.idlist)
+							{
+								//console.log('search results found - ' + jsonResponse.esearchresult.idlist[0]);	
+
+								//load the first molecule and morph between its conformers....
+								pubChem_CID_getName(jsonResponse.esearchresult.idlist[0]);
+								
+								// CAN"T DO ANYTHING DURING YTHE ASYNC CALL
+								//console.log('molecule_IUPAC_Preferred_Name -', molecule_IUPAC_Preferred_Name);
+		   						//$("#info").html(molecule_IUPAC_Preferred_Name);
+
+								/*
+								for ( var cid in jsonResponse.esearchresult.idlist)
+								{
+									pubChem_CID_getName(jsonResponse.esearchresult.idlist[cid]);
+								}
+								*/
+							}
+							//Sometimes we don't get any synonyms back! nothing to name the molecule!?!?
+							return jsonResponse.esearchresult;
+					  	}
+
+					}
+					pubChemSearchHTTPRequest_json.send(null);
+			}
+
+
+
+
+			function pubChem_printJSON( cid )
+			{
+				//console.log('loading -', cid);
+				var url = "https://pubchem.ncbi.nlm.nih.gov/classification/cgi/classifications.fcgi?hid=1&search_uid=2244&search_uid_type=cid&search_type=tree&format=json"; 
+
+				//console.log('url44 -', url);
+
+				var pubSearch_json = new XMLHttpRequest(); 
+
+				pubSearch_json.open("GET", url, true);
+				//console.log('async');
+				 // subscribe to this event before you send your request.
+				pubSearch_json.onreadystatechange=function()
+				{
+				 	if (pubSearch_json.readyState==4)
+				 	{
+
+				 		//console.log('responseText json =', pubSearch_json.responseText);
+				 		/*
+				   		var jsonResponse = JSON.parse(pubSearch_json.responseText);
+				   		if (jsonResponse.PC_Compounds)
+				   		{
+				   			console.log('cid json =', jsonResponse.PC_Compounds[0].props); //0 because we only sent off 1 cid request...asyncronously btw	
+				   			for (var propIndex in jsonResponse.PC_Compounds[0].props)
+				   			{
+				   				var propertyObject = jsonResponse.PC_Compounds[0].props[propIndex];
+				   				
+				   				if (propertyObject.urn.label == 'IUPAC Name')
+				   				{
+				   					if (propertyObject.urn.name == 'Preferred')
+				   					{
+				   						console.log('property Object = ' + propertyObject.value.sval);		
+				   						//$("#info").html(propertyObject.value.sval);
+				   						return propertyObject.value.sval;
+				   					}
+				   				}
+				   			}
+				   		}*/
+					}
+				}
+			}
+
+
+
+			function pubChem_load_molecule( cid )
+			{
+				//console.log('loading -', cid);
+				var url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/" + cid + "/JSON"; 
+
+				var pubSearch_json = new XMLHttpRequest(); 
+
+				pubSearch_json.open("GET", url, true);
+
+				 // subscribe to this event before you send your request.
+				pubSearch_json.onreadystatechange=function()
+				{
+				 	if (pubSearch_json.readyState==4)
+				 	{
+
+				 		//console.log('responseText json =', pubSearch_json.responseText);
+				 		/*
+				   		var jsonResponse = JSON.parse(pubSearch_json.responseText);
+				   		if (jsonResponse.PC_Compounds)
+				   		{
+				   			console.log('cid json =', jsonResponse.PC_Compounds[0].props); //0 because we only sent off 1 cid request...asyncronously btw	
+				   			for (var propIndex in jsonResponse.PC_Compounds[0].props)
+				   			{
+				   				var propertyObject = jsonResponse.PC_Compounds[0].props[propIndex];
+				   				
+				   				if (propertyObject.urn.label == 'IUPAC Name')
+				   				{
+				   					if (propertyObject.urn.name == 'Preferred')
+				   					{
+				   						console.log('property Object = ' + propertyObject.value.sval);		
+				   						//$("#info").html(propertyObject.value.sval);
+				   						return propertyObject.value.sval;
+				   					}
+				   				}
+				   			}
+				   		}*/
+					}
+				}
+			}
+
+
+
+			function pubChem_CID_getName( cid ){
+
+					var url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/" + cid + "/JSON"; 
+					var pubChemSearchHTTPRequest_json = new XMLHttpRequest(); 
+					pubChemSearchHTTPRequest_json.open("GET", url, true);
+
+					 // subscribe to this event before you send your request.
+					pubChemSearchHTTPRequest_json.onreadystatechange=function()
+					{
+					 	if (pubChemSearchHTTPRequest_json.readyState==4)
+					 	{
+					 		//console.log('responseText json =', pubChemSearchHTTPRequest_json.responseText);
+					   		var jsonResponse = JSON.parse(pubChemSearchHTTPRequest_json.responseText);
+					   		if (jsonResponse.PC_Compounds)
+					   		{
+					   			//console.log('props =', jsonResponse.PC_Compounds[0].props); //0 because we only sent off 1 cid request...asyncronously btw	
+					   			for (var propIndex in jsonResponse.PC_Compounds[0].props)
+					   			{
+					   				var propertyObject = jsonResponse.PC_Compounds[0].props[propIndex];
+					   				
+					   				if (propertyObject.urn.label == 'IUPAC Name')
+					   				{
+					   					
+					   					if (propertyObject.urn.name == 'Preferred')
+					   					{
+					   						//console.log('property Object = ' + propertyObject.value.sval);		
+					   						$("#info").html(propertyObject.value.sval);
+					   						return propertyObject.value.sval;
+					   					}
+					   				}
+					   			}
+					   		}
+							//Sometimes we don't get any synonyms back! nothing to name the molecule!?!?
+							//return jsonResponse;
+					  	}
+					}
+					pubChemSearchHTTPRequest_json.send(null);
+			}
+
+			function pubChem_SID_getName( sid ){
+
+					var url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/sid/" + sid + "/JSON"; 
+					var pubChemSearchHTTPRequest_json = new XMLHttpRequest(); 
+					pubChemSearchHTTPRequest_json.open("GET", url, true);
+
+					 // subscribe to this event before you send your request.
+					pubChemSearchHTTPRequest_json.onreadystatechange=function()
+					{
+					 	if (pubChemSearchHTTPRequest_json.readyState==4)
+					 	{
+					 		//console.log('responseText json =', pubChemSearchHTTPRequest_json.responseText);
+					   		var jsonResponse = JSON.parse(pubChemSearchHTTPRequest_json.responseText);
+							console.log('sid json =', jsonResponse.PC_Substances[0].synonyms);
+
+							//Sometimes we don't get any synonyms back! nothing to name the molecule!?!?
+							return jsonResponse.PC_Substances[0].synonyms;
+					  	}
+					}
+					pubChemSearchHTTPRequest_json.send(null);
+			}
+			
+			function submitBugReport() {
+
+				var name = $("#nameField").val();
+				var email = $("#emailField").val();
+				var message = $("#messageField").val();
+
+				window.open("mailto:" + "orbitus@orbitusrobotics.com" + "?subject=" + name + " &body=" + message);
+				document.getElementById("ContactPage").className = "fade-out";
+
+				return false;
+			}
+
+			function checkField(){
+				
+				if($("#field").val() == "")
+				{
+					alert('Search Field is Empty, Search for molecules on PubChem by PuchChem index, name, or any other keyword you might use on PubChem!');
+					return false;
+				}
+
+				str = $("#field").val();
+				//document.all.helpiframe.src="smm3.jsp?searchStr=" + str;
+				//showHide('passwordLayer','visible');
+
+				return false;
+
+			}
+
+			function process_pubChem_compoundSearch()
+			{
+				console.log("begin pubChem compound Search - " + $("#field").val());
+				pubChem_compoundSearchByName($("#field").val(), selectedDimension);
+			}
+
+
+			function colorify( ctx, width, height, color, a ) {
+
+				var r = color.r;
+				var g = color.g;
+				var b = color.b;
+
+				var imageData = ctx.getImageData( 0, 0, width, height );
+				var data = imageData.data;
+
+				for ( var y = 0; y < height; y ++ ) {
+
+					for ( var x = 0; x < width; x ++ ) {
+
+						var index = ( y * width + x ) * 4;
+
+						data[ index ]     *= r;
+						data[ index + 1 ] *= g;
+						data[ index + 2 ] *= b;
+						data[ index + 3 ] *= a;
+
+					}
+
+				}
+
+				ctx.putImageData( imageData, 0, 0 );
+
+			}
+
+			
+			function imageToCanvas( image ) {
+
+				var width = image.width;
+				var height = image.height;
+
+				var canvas = document.createElement( 'canvas' );
+
+				canvas.width = width;
+				canvas.height = height;
+
+				var context = canvas.getContext( '2d' );
+				context.drawImage( image, 0, 0, width, height );
+
+				return canvas;
+
+			}
+
+			function setAtomSize( atom, element)
+			{
+				//console.log('atom size -', atom.width, atom.height);
+				//console.log('element -', element);
+				switch(element)
+				{
+					case 'c':
+					//console.log('carbon');
+					atom.width = 73;//picometers
+					atom.height = 73;//picometers
+					break;
+					case 'o':
+					//console.log('oxygen');
+					atom.width = 66;//picometers
+					atom.height = 66;//picometers
+					break;
+					case 'n':
+					//console.log('nitrogen');
+					atom.width = 71;//picometers
+					atom.height = 71;//picometers
+					break;
+					case 'h':
+					//console.log('hydrogen');
+					atom.width = 31;//picometers
+					atom.height = 31;//picometers
+					break;
+				}
+			}
+
+			function getAtomSize(element)
+			{
+				//console.log('element -', element);
+				switch(element)
+				{
+					case 'c':
+					//console.log('carbon');
+					return 73/2.0;//picometers
+					break;
+					case 'o':
+					//console.log('oxygen');
+					return 66/2.0;//picometers
+					break;
+					case 'n':
+					//console.log('nitrogen');
+					return 71/2.0;//picometers
+					break;
+					case 'h':
+					//console.log('hydrogen');
+					return 31/2.0;//picometers
+					break;
+				}
+			}
+
+
+
+			function loadPubChemMoleculeProperties( cid , destinationDimension)
+			{
+
+				//console.log('pubChem_3djson ', + cid);
+				
+
+				document.getElementById('MoleculeCID').innerHTML = cid;
+
+
+				var url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/" + cid + "/JSON"; 
+				var pubChemSearchHTTPRequest_json = new XMLHttpRequest(); 
+				pubChemSearchHTTPRequest_json.open("GET", url, true);
+
+				 // subscribe to this event before you send your request.
+				pubChemSearchHTTPRequest_json.onreadystatechange=function()
+				{
+				 	if (pubChemSearchHTTPRequest_json.readyState==4)
+				 	{
+				 		//console.log('responseText json =', pubChemSearchHTTPRequest_json.responseText);
+				   		var jsonResponse = JSON.parse(pubChemSearchHTTPRequest_json.responseText);
+				   		
+				   		if (destinationDimension == alphaDimension)
+				   		{
+				   			alphaDataResponse = jsonResponse;
+				   		}
+				   		if (destinationDimension == betaDimension)
+				   		{
+				   			betaDataResponse = jsonResponse;
+				   		}
+				   		if (destinationDimension == gammaDimension)
+				   		{
+				   			gammaDataResponse = jsonResponse;
+				   		}
+				   		if (destinationDimension == deltaDimension)
+				   		{
+				   			deltaDataResponse = jsonResponse;
+				   		}
+
+
+				   		parseDataResponseIntoInfoPanel(selectedDimension);
+						
+				  	}
+				}
+				pubChemSearchHTTPRequest_json.send(null);
+			}
+
+			function parseDataResponseIntoInfoPanel(selectedDimension)
+			{
+				var jsonResponse;
+				if (selectedDimension == alphaDimension)
+				{
+					jsonResponse = alphaDataResponse;
+					document.getElementById('MoleculeName').innerHTML = alphaDataTitle;
+				}
+				if (selectedDimension == betaDimension)
+				{
+					jsonResponse = betaDataResponse;
+					document.getElementById('MoleculeName').innerHTML = betaDataTitle;
+				}
+				if (selectedDimension == gammaDimension)
+				{
+					jsonResponse = gammaDataResponse;
+					document.getElementById('MoleculeName').innerHTML = gammaDataTitle;
+				}
+				if (selectedDimension == deltaDimension)
+				{
+					jsonResponse = deltaDataResponse;
+					document.getElementById('MoleculeName').innerHTML = deltaDataTitle;
+				}
+
+
+				if (jsonResponse)
+				{
+			   		if (jsonResponse.PC_Compounds)
+			   		{
+			   			//console.log('props =', jsonResponse.PC_Compounds[0].props); //0 because we only sent off 1 cid request...asyncronously btw	
+			   			for (var propIndex in jsonResponse.PC_Compounds[0].props)
+			   			{
+			   				var propertyObject = jsonResponse.PC_Compounds[0].props[propIndex];
+			   				
+
+			   				
+			   				if (propertyObject.urn.label == 'Count')
+			   				{	
+			   					if (propertyObject.urn.name == 'Rotatable Bond')
+			   					{
+			   						//console.log('property Object = ' + propertyObject.value.ival);		
+									document.getElementById('RotatableBond').innerHTML = propertyObject.value.ival;
+			   					}
+								if (propertyObject.urn.name == 'Hydrogen Bond Acceptor')
+			   					{
+			   						//console.log('property Object = ' + propertyObject.value.ival);		
+									document.getElementById('HydrogenBondAcceptor').innerHTML = propertyObject.value.ival;
+			   					}
+			   					if (propertyObject.urn.name == 'Hydrogen Bond Donor')
+			   					{
+			   						//console.log('property Object = ' + propertyObject.value.ival);		
+									document.getElementById('HydrogenBondDonor').innerHTML = propertyObject.value.ival;
+			   					}
+			   					
+			   					
+			   				}
+
+			   				if (propertyObject.urn.label == 'Molecular Weight')
+			   				{	
+		   						//console.log('property Object = ' + propertyObject.value.fval);		
+								document.getElementById('MolecularWeight').innerHTML = propertyObject.value.fval;
+			   				}
+			   				if (propertyObject.urn.label == 'Molecular Formula')
+			   				{	
+		   						//console.log('property Object = ' + propertyObject.value.sval);		
+								document.getElementById('MoleculeFormula').innerHTML = propertyObject.value.sval;
+			   				}
+			   				if (propertyObject.urn.label == 'IUPAC Name')
+			   				{	
+			   					if (propertyObject.urn.name == 'Preferred')
+			   					{
+			   						//console.log('MoleculeName = ' + propertyObject.value.sval);
+									document.getElementById('IUPAC_PreferredName').innerHTML = propertyObject.value.sval;
+			   					}
+			   				}
+			   			}
+			   		}
+				}
+			}
+
+			function loadRCSB_PDBFile( url , destinationDimension)
+			{
+				//var url = "molecules/bdna.pdb";
+
+
+				//------------
+				// Clear out old objects from the DOM
+				if (!destinationDimension)
+				{
+					console.log('Need destinationDimension... defaulting to alpha');
+				}
+				else
+				{
+					console.log("Loading molecule into destinationDimension - ", destinationDimension);	
+					selectedDimension = destinationDimension;
+				}
+					
+
+				clearSelectedDimensionObjects();
+
+				//------------
+
+
+				loader.load( url, function ( geometry, geometryBonds ) {
+
+					var offset = THREE.GeometryUtils.center( geometry );
+					geometryBonds.applyMatrix( new THREE.Matrix4().makeTranslation( offset.x, offset.y, offset.z ) );
+
+
+					for ( var i = 0; i < geometry.vertices.length; i ++ ) {
+
+						var position = geometry.vertices[ i ];
+						var color = geometry.colors[ i ];
+
+						var element = geometry.elements[ i ];
+						var atomSize = getAtomSize(element);
+
+						var texture = THREE.ImageUtils.loadTexture( 'textures/sprites/ball.png' );
+  	 					var material = new THREE.SpriteMaterial( { color:color.getHex(), map: texture /*, blending: THREE.AdditiveBlending, depthTest: true, transparent : true*/} );
+    
+
+   						var sprite = new THREE.Sprite( material );
+  	 					sprite.position.x = position.x;
+  	 					sprite.position.y = position.y;
+  	 					sprite.position.z = position.z;
+  	 					
+  	 					//console.log('atomSize = ', atomSize);
+
+
+  	 					if (atomSize)
+  	 						sprite.scale.set( atomSize, atomSize, 1 );
+  	 					else
+  	 						sprite.scale.set( 100, 100, 1 );
+
+						sprite.position.multiplyScalar( 100 );
+
+
+
+						selectedDimension.add( sprite );
+
+						if (selectedDimension == alphaDimension)	
+							alphaObjects.push( sprite );
+						if (selectedDimension == betaDimension)
+							betaObjects.push( sprite );						
+						if (selectedDimension == gammaDimension)	
+							gammaObjects.push( sprite );
+						if (selectedDimension == deltaDimension)
+							deltaObjects.push( sprite );
+
+					}
+					/*
+					for ( var i = 0; i < geometryBonds.vertices.length; i += 2 ) {
+
+						var start = geometryBonds.vertices[ i ];
+						var end = geometryBonds.vertices[ i + 1 ];
+
+						start.multiplyScalar( 100 );
+						end.multiplyScalar( 100 );
+
+						tmpVec1.subVectors( end, start );
+						var bondLength = tmpVec1.length();
+
+
+						var axis = tmpVec2.set( 0, 1, 0 ).cross( tmpVec1 );
+						var radians = Math.acos( tmpVec3.set( 0, 1, 0 ).dot( tmpVec4.copy( tmpVec1 ).normalize() ) );
+
+						var objMatrix = new THREE.Matrix4().makeRotationAxis( axis.normalize(), radians );
+							
+
+						
+						var bond = document.createElement( 'div' );
+						bond.className = "bond";
+						bond.style.height = bondLength + "px";
+
+						var bond2 = document.createElement( 'div' );
+						bond2.className = "bond";
+						bond2.style.height = bondLength + "px";
+
+						var joint = new THREE.Object3D( bond );
+						joint.position.copy( start );
+						joint.position.lerp( end, 0.5 );
+
+						joint.matrix.copy( objMatrix );
+						joint.rotation.setFromRotationMatrix( joint.matrix, joint.rotation.order );
+
+						joint.matrixAutoUpdate = false;
+						joint.updateMatrix();
+
+
+						var joint2 = new THREE.Object3D( bond2 );
+						joint2.position.copy( start );
+						joint2.position.lerp( end, 0.5 );
+
+						joint2.matrix.copy( objMatrix );
+						joint2.rotation.setFromRotationMatrix( joint2.matrix, joint2.rotation.order );
+
+						joint2.matrixAutoUpdate = false;
+						joint2.updateMatrix();
+
+
+
+						var geometry = new THREE.CylinderGeometry( 4, 4, bondLength, 4, 1 );
+						var material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading, transparent: true } );
+						var mesh = new THREE.Mesh( geometry, material );
+		
+
+						mesh.rotation.y = Math.PI/2;
+
+						mesh.matrixAutoUpdate = false;
+						mesh.updateMatrix();
+
+						mesh.userData.bondLengthShort = bondLength + "px";
+						mesh.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+
+						mesh.userData.joint = joint;
+
+						joint.add( mesh );
+						selectedDimension.add( joint );
+
+
+						if (selectedDimension == alphaDimension)	
+							alphaObjects.push( mesh );
+						if (selectedDimension == betaDimension)
+							betaObjects.push( mesh );						
+						if (selectedDimension == gammaDimension)	
+							gammaObjects.push( mesh );
+						if (selectedDimension == deltaDimension)
+							deltaObjects.push( mesh );
+
+						var geometry = new THREE.CylinderGeometry( 4, 4, bondLength, 4, 1 );
+						var material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading, transparent: true } );
+						var mesh2 = new THREE.Mesh( geometry, material );
+
+						
+						mesh2.matrixAutoUpdate = false;
+						mesh2.updateMatrix();
+
+						mesh2.userData.bondLengthShort = bondLength + "px";
+						mesh2.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+
+						mesh2.userData.joint = joint;
+
+						joint2.add( mesh2 );
+						selectedDimension.add( joint2 );
+
+
+						if (selectedDimension == alphaDimension)	
+							alphaObjects.push( mesh2 );
+						if (selectedDimension == betaDimension)
+							betaObjects.push( mesh2 );						
+						if (selectedDimension == gammaDimension)	
+							gammaObjects.push( mesh2 );
+						if (selectedDimension == deltaDimension)
+							deltaObjects.push( mesh2 );
+						break;
+					}
+					*/
+						
+
+					render();
+
+				});
+			}
+
+			function clearSelectedDimensionObjects()
+			{
+
+				//Clear the objects array
+				if (selectedDimension == alphaDimension)
+				{
+					console.log('alpha clear, ', alphaObjects);
+					for ( var i = 0; i < alphaObjects.length; i ++ ) {
+
+						var object = alphaObjects[ i ];
+						console.log('alpha clear object - ', alphaObjects);
+						object.parent.remove( object );
+
+					}
+					alphaObjects = [];
+					scene.add( alphaTransformControl );
+				}
+				if (selectedDimension == betaDimension)
+				{
+					console.log('beta clear');
+					for ( var i = 0; i < betaObjects.length; i ++ ) {
+
+						var object = betaObjects[ i ];
+						object.parent.remove( object );
+
+					}
+					betaObjects = [];
+					scene.add( betaTransformControl );
+				}
+				if (selectedDimension == gammaDimension)
+				{
+					console.log('gamma clear');
+					for ( var i = 0; i < gammaObjects.length; i ++ ) {
+
+						var object = gammaObjects[ i ];
+						object.parent.remove( object );
+
+					}
+					gammaObjects = [];
+					scene.add( gammaTransformControl );
+				}
+				if (selectedDimension == deltaDimension)
+				{
+					console.log('delta clear');
+					for ( var i = 0; i < deltaObjects.length; i ++ ) {
+
+						var object = deltaObjects[ i ];
+						object.parent.remove( object );
+
+					}
+					deltaObjects = [];
+					scene.add( deltaTransformControl );
+				}
+			}
+
+
+			function loadPubChemMolecule( pubChem_3djson , destinationDimension)
+			{
+
+
+
+				//------------
+				// Clear out old objects from the DOM
+				if (!destinationDimension)
+				{
+					console.log('Need destinationDimension... defaulting to alpha');
+				}
+				else
+				{
+					console.log("Loading molecule into destinationDimension - ", destinationDimension);	
+					selectedDimension = destinationDimension;
+				}
+					
+
+				clearSelectedDimensionObjects();
+
+				//------------
+
+				loader.pubChem_load( pubChem_3djson, function ( geometry, geometryBonds, order ) {
+					
+
+
+					var offset = THREE.GeometryUtils.center( geometry );
+					geometryBonds.applyMatrix( new THREE.Matrix4().makeTranslation( offset.x, offset.y, offset.z ) );
+
+					for ( var i = 0; i < geometry.vertices.length; i ++ ) {
+
+						var position = geometry.vertices[ i ];
+						var color = geometry.colors[ i ];
+						//console.log('geometry -', geometry);
+						//console.log('geometryBonds -', geometryBonds);
+						//console.log('geometryColor -', color);
+
+						var element = geometry.elements[ i ];
+						
+						//WebGL way of adding a sprite atom
+						
+						var geometry2 = new THREE.SphereGeometry( getAtomSize(element), 32, 32 );
+
+						var material =  new THREE.MeshLambertMaterial( { color:color.getHex(), shading: THREE.FlatShading , transparent: true} );
+						//var material = new THREE.MeshBasicMaterial( {color: color.getHex()} );
+						var sphere = new THREE.Mesh( geometry2, material );
+
+
+
+						material.opacity = 0.7;
+						sphere.position.copy( position );
+						sphere.position.multiplyScalar( 100 );
+						
+
+						selectedDimension.add( sphere );
+
+						if (selectedDimension == alphaDimension)	
+							alphaObjects.push( sphere );
+						if (selectedDimension == betaDimension)
+							betaObjects.push( sphere );						
+						if (selectedDimension == gammaDimension)	
+							gammaObjects.push( sphere );
+						if (selectedDimension == deltaDimension)
+							deltaObjects.push( sphere );
+
+						//console.log('round1');
+					}
+
+					for ( var i = 0; i < geometryBonds.vertices.length; i += 2 ) {
+
+						var start = geometryBonds.vertices[ i ];
+						var end = geometryBonds.vertices[ i + 1 ];
+
+						start.multiplyScalar( 100 );
+						end.multiplyScalar( 100 );
+
+						tmpVec1.subVectors( end, start );
+						var bondLength = tmpVec1.length();
+
+
+						var axis = tmpVec2.set( 0, 1, 0 ).cross( tmpVec1 );
+						var radians = Math.acos( tmpVec3.set( 0, 1, 0 ).dot( tmpVec4.copy( tmpVec1 ).normalize() ) );
+
+						var objMatrix = new THREE.Matrix4().makeRotationAxis( axis.normalize(), radians );
+							
+
+						//console.log('geometryBonds = ', geometryBonds);
+						//console.log('order = ', order[i]);
+						//console.log('i =', i/2);
+
+
+						switch (order[i/2])
+						{
+							case 'single':
+							{
+								// One Bond
+								//console.log('single bond rudy');
+								var bond = document.createElement( 'div' );
+								bond.className = "bond";
+								bond.style.height = bondLength + "px";
+
+								var bond2 = document.createElement( 'div' );
+								bond2.className = "bond";
+								bond2.style.height = bondLength + "px";
+
+								var joint = new THREE.Object3D( bond );
+								joint.position.copy( start );
+								joint.position.lerp( end, 0.5 );
+
+								joint.matrix.copy( objMatrix );
+								joint.rotation.setFromRotationMatrix( joint.matrix, joint.rotation.order );
+
+								joint.matrixAutoUpdate = false;
+								joint.updateMatrix();
+
+
+								var joint2 = new THREE.Object3D( bond2 );
+								joint2.position.copy( start );
+								joint2.position.lerp( end, 0.5 );
+
+								joint2.matrix.copy( objMatrix );
+								joint2.rotation.setFromRotationMatrix( joint2.matrix, joint2.rotation.order );
+
+								joint2.matrixAutoUpdate = false;
+								joint2.updateMatrix();
+
+
+
+								var geometry = new THREE.CylinderGeometry( 4, 4, bondLength, 4, 1 );
+								var material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading, transparent: true } );
+								var mesh = new THREE.Mesh( geometry, material );
+				
+
+								//var object = new THREE.CSS3DObject( bond );
+								mesh.rotation.y = Math.PI/2;
+
+								mesh.matrixAutoUpdate = false;
+								mesh.updateMatrix();
+
+								mesh.userData.bondLengthShort = bondLength + "px";
+								mesh.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+
+								mesh.userData.joint = joint;
+
+								joint.add( mesh );
+								selectedDimension.add( joint );
+
+
+								if (selectedDimension == alphaDimension)	
+									alphaObjects.push( mesh );
+								if (selectedDimension == betaDimension)
+									betaObjects.push( mesh );						
+								if (selectedDimension == gammaDimension)	
+									gammaObjects.push( mesh );
+								if (selectedDimension == deltaDimension)
+									deltaObjects.push( mesh );
+
+								var geometry = new THREE.CylinderGeometry( 4, 4, bondLength, 4, 1 );
+								var material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading, transparent: true } );
+								var mesh2 = new THREE.Mesh( geometry, material );
+
+								//var object2 = new THREE.CSS3DObject( bond2 );
+								//object2.rotation.y = Math.PI/2;
+								mesh2.matrixAutoUpdate = false;
+								mesh2.updateMatrix();
+
+								mesh2.userData.bondLengthShort = bondLength + "px";
+								mesh2.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+
+								mesh2.userData.joint = joint;
+
+								joint2.add( mesh2 );
+								selectedDimension.add( joint2 );
+
+
+								if (selectedDimension == alphaDimension)	
+									alphaObjects.push( mesh2 );
+								if (selectedDimension == betaDimension)
+									betaObjects.push( mesh2 );						
+								if (selectedDimension == gammaDimension)	
+									gammaObjects.push( mesh2 );
+								if (selectedDimension == deltaDimension)
+									deltaObjects.push( mesh2 );
+								break;
+							}
+							case 'double':
+							{
+								// One Bond
+
+								//console.log('double bond rudy');
+								var bond = document.createElement( 'div' );
+								bond.className = "bond";
+								bond.style.height = bondLength + "px";
+
+								var bond2 = document.createElement( 'div' );
+								bond2.className = "bond";
+								bond2.style.height = bondLength + "px";
+
+								var joint = new THREE.Object3D( bond );
+								joint.position.copy( start );
+								joint.position.lerp( end, 0.5 );
+
+								joint.matrix.copy( objMatrix );
+								joint.rotation.setFromRotationMatrix( joint.matrix, joint.rotation.order );
+
+								joint.matrixAutoUpdate = false;
+								joint.updateMatrix();
+
+
+								var joint2 = new THREE.Object3D( bond2 );
+								joint2.position.copy( start );
+								joint2.position.lerp( end, 0.5 );
+
+								joint2.matrix.copy( objMatrix );
+								joint2.rotation.setFromRotationMatrix( joint2.matrix, joint2.rotation.order );
+
+								joint2.matrixAutoUpdate = false;
+								joint2.updateMatrix();
+
+
+								var geometry = new THREE.CylinderGeometry( 4, 4, bondLength, 4, 1 );
+								var material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading, transparent: true } );
+								var object2 = new THREE.Mesh( geometry, material );								//object2.rotation.y = Math.PI/2;
+								object2.position.x -= 10;
+								object2.matrixAutoUpdate = false;
+								object2.updateMatrix();
+
+								object2.userData.bondLengthShort = bondLength + "px";
+								object2.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+
+								object2.userData.joint = joint;
+
+								joint2.add( object2 );
+								selectedDimension.add( joint2 );
+
+								if (selectedDimension == alphaDimension)	
+									alphaObjects.push( object2 );
+								if (selectedDimension == betaDimension)
+									betaObjects.push( object2 );						
+								if (selectedDimension == gammaDimension)	
+									gammaObjects.push( object2 );
+								if (selectedDimension == deltaDimension)
+									deltaObjects.push( object2 );
+
+
+
+								// Another Bond
+
+								var bond = document.createElement( 'div' );
+								bond.className = "bond";
+								bond.style.height = bondLength + "px";
+
+								var bond2 = document.createElement( 'div' );
+								bond2.className = "bond";
+								bond2.style.height = bondLength + "px";
+
+								var joint = new THREE.Object3D( bond );
+								joint.position.copy( start );
+								joint.position.lerp( end, 0.5 );
+
+								joint.matrix.copy( objMatrix );
+								joint.rotation.setFromRotationMatrix( joint.matrix, joint.rotation.order );
+
+								joint.matrixAutoUpdate = false;
+								joint.updateMatrix();
+
+
+								var joint2 = new THREE.Object3D( bond2 );
+								joint2.position.copy( start );
+								joint2.position.lerp( end, 0.5 );
+
+								joint2.matrix.copy( objMatrix );
+								joint2.rotation.setFromRotationMatrix( joint2.matrix, joint2.rotation.order );
+
+								joint2.matrixAutoUpdate = false;
+								joint2.updateMatrix();
+
+
+								var geometry = new THREE.CylinderGeometry( 4, 4, bondLength, 4, 1 );
+								var material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading, transparent: true } );
+								var object2 = new THREE.Mesh( geometry, material );								//object2.rotation.y = Math.PI/2;
+								//object2.rotation.y = Math.PI/2;
+								object2.position.x += 10;
+								object2.matrixAutoUpdate = false;
+								object2.updateMatrix();
+
+								object2.userData.bondLengthShort = bondLength + "px";
+								object2.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+
+								object2.userData.joint = joint;
+
+								joint2.add( object2 );
+								selectedDimension.add( joint2 );
+
+
+								if (selectedDimension == alphaDimension)	
+									alphaObjects.push( object2 );
+								if (selectedDimension == betaDimension)
+									betaObjects.push( object2 );						
+								if (selectedDimension == gammaDimension)	
+									gammaObjects.push( object2 );
+								if (selectedDimension == deltaDimension)
+									deltaObjects.push( object2 );
+							}
+							break;
+							case 'triple':
+							{
+								// One Bond
+								//console.log('triple bond rudy');
+								var bond = document.createElement( 'div' );
+								bond.className = "bond";
+								bond.style.height = bondLength + "px";
+
+								var bond2 = document.createElement( 'div' );
+								bond2.className = "bond";
+								bond2.style.height = bondLength + "px";
+
+								var joint = new THREE.Object3D( bond );
+								joint.position.copy( start );
+								joint.position.lerp( end, 0.5 );
+
+								joint.matrix.copy( objMatrix );
+								joint.rotation.setFromRotationMatrix( joint.matrix, joint.rotation.order );
+
+								joint.matrixAutoUpdate = false;
+								joint.updateMatrix();
+
+
+								var joint2 = new THREE.Object3D( bond2 );
+								joint2.position.copy( start );
+								joint2.position.lerp( end, 0.5 );
+
+								joint2.matrix.copy( objMatrix );
+								joint2.rotation.setFromRotationMatrix( joint2.matrix, joint2.rotation.order );
+
+								joint2.matrixAutoUpdate = false;
+								joint2.updateMatrix();
+
+								var geometry = new THREE.CylinderGeometry( 4, 4, bondLength, 4, 1 );
+								var material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading, transparent: true } );
+								var object2 = new THREE.Mesh( geometry, material );
+
+
+								//object2.rotation.y = Math.PI/2;
+								object2.matrixAutoUpdate = false;
+								object2.updateMatrix();
+
+								object2.userData.bondLengthShort = bondLength + "px";
+								object2.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+
+								object2.userData.joint = joint;
+
+								joint2.add( object2 );
+								selectedDimension.add( joint2 );
+								if (selectedDimension == alphaDimension)	
+									alphaObjects.push( object2 );
+								if (selectedDimension == betaDimension)
+									betaObjects.push( object2 );						
+								if (selectedDimension == gammaDimension)	
+									gammaObjects.push( object2 );
+								if (selectedDimension == deltaDimension)
+									deltaObjects.push( object2 );
+
+
+
+								// One Bond
+
+								var bond = document.createElement( 'div' );
+								bond.className = "bond";
+								bond.style.height = bondLength + "px";
+
+								var bond2 = document.createElement( 'div' );
+								bond2.className = "bond";
+								bond2.style.height = bondLength + "px";
+
+								var joint = new THREE.Object3D( bond );
+								joint.position.copy( start );
+								joint.position.lerp( end, 0.5 );
+
+								joint.matrix.copy( objMatrix );
+								joint.rotation.setFromRotationMatrix( joint.matrix, joint.rotation.order );
+
+								joint.matrixAutoUpdate = false;
+								joint.updateMatrix();
+
+
+								var joint2 = new THREE.Object3D( bond2 );
+								joint2.position.copy( start );
+								joint2.position.lerp( end, 0.5 );
+
+								joint2.matrix.copy( objMatrix );
+								joint2.rotation.setFromRotationMatrix( joint2.matrix, joint2.rotation.order );
+
+								joint2.matrixAutoUpdate = false;
+								joint2.updateMatrix();
+
+
+
+								var geometry = new THREE.CylinderGeometry( 4, 4, bondLength, 4, 1 );
+								var material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading, transparent: true } );
+								var object2 = new THREE.Mesh( geometry, material );								//object2.rotation.y = Math.PI/2;
+								object2.position.x -= 20;
+								object2.matrixAutoUpdate = false;
+								object2.updateMatrix();
+
+								object2.userData.bondLengthShort = bondLength + "px";
+								object2.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+
+								object2.userData.joint = joint;
+
+								joint2.add( object2 );
+								selectedDimension.add( joint2 );
+
+								if (selectedDimension == alphaDimension)	
+									alphaObjects.push( object2 );
+								if (selectedDimension == betaDimension)
+									betaObjects.push( object2 );						
+								if (selectedDimension == gammaDimension)	
+									gammaObjects.push( object2 );
+								if (selectedDimension == deltaDimension)
+									deltaObjects.push( object2 );
+
+
+
+
+
+								// Another Bond
+
+								var bond = document.createElement( 'div' );
+								bond.className = "bond";
+								bond.style.height = bondLength + "px";
+
+								var bond2 = document.createElement( 'div' );
+								bond2.className = "bond";
+								bond2.style.height = bondLength + "px";
+
+								var joint = new THREE.Object3D( bond );
+								joint.position.copy( start );
+								joint.position.lerp( end, 0.5 );
+
+								joint.matrix.copy( objMatrix );
+								joint.rotation.setFromRotationMatrix( joint.matrix, joint.rotation.order );
+
+								joint.matrixAutoUpdate = false;
+								joint.updateMatrix();
+
+
+								var joint2 = new THREE.Object3D( bond2 );
+								joint2.position.copy( start );
+								joint2.position.lerp( end, 0.5 );
+
+								joint2.matrix.copy( objMatrix );
+								joint2.rotation.setFromRotationMatrix( joint2.matrix, joint2.rotation.order );
+
+								joint2.matrixAutoUpdate = false;
+								joint2.updateMatrix();
+
+
+								var geometry = new THREE.CylinderGeometry( 4, 4, bondLength, 4, 1 );
+								var material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading, transparent: true } );
+								var object2 = new THREE.Mesh( geometry, material );
+								object2.position.x += 20;
+								object2.matrixAutoUpdate = false;
+								object2.updateMatrix();
+
+								object2.userData.bondLengthShort = bondLength + "px";
+								object2.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+
+								object2.userData.joint = joint;
+
+								joint2.add( object2 );
+								selectedDimension.add( joint2 );
+
+								if (selectedDimension == alphaDimension)	
+									alphaObjects.push( object2 );
+								if (selectedDimension == betaDimension)
+									betaObjects.push( object2 );						
+								if (selectedDimension == gammaDimension)	
+									gammaObjects.push( object2 );
+								if (selectedDimension == deltaDimension)
+									deltaObjects.push( object2 );
+							}
+						}
+						
+
+					}
+
+					render();
+
+				} );
+
+			}
+
+
+
+			$(document).ready(function() {  
+			    
+				//----
+				//pubChem_printJSON(2244); //Test that you can print from the server.... unit tests #1
+				//----
+
+				$('#searchContainer').focus();
+
+
+				$('#pubChemSearchForm').submit(function () {
+				 //console.log('userDidEnter in pubChemSearchForm');
+				 process_pubChem_compoundSearch();
+				 return false;
+				});
+
+			    $('#submitButton').click(function() {
+					//console.log('submit clicked - ' + $("#field").val());
+					process_pubChem_compoundSearch();
+				});
+
+				$('#field').submit(function () {
+					//sendContactForm();
+					//console.log('Submit without refreshing');
+					return false;
+				});
+
+			    // if text input field value is not empty show the "X" button
+				$("#field").keyup(function() {
+					//console.log('search field keyup - ' + $("#field").val());
+					$("#x").fadeIn();
+					if ($.trim($("#field").val()) == "") {
+						$("#x").fadeOut();
+					}
+
+				});
+					// on click of "X", delete input field value and hide "X"
+				$("#x").click(function() {
+					//console.log('X clicked');
+					$("#field").val("");
+					$(this).hide();
+				});
+
+
+			});  
+
+
+
+			var isGrabbing = false;
+			var currentGesture = "";
+			var grab_init_handID_A = "";
+			var grab_init_handID_B = "";
+
+			var current_x = 0.0;
+			var current_y = 0.0;
+			var current_z = 0.0;
+
+			var grab_init_x = 0.0;
+			var grab_init_y = 0.0
+			var grab_init_z = 0.0;
+
+			var grab_delta_x = 0.0;
+			var grab_delta_y = 0.0;
+			var grab_delta_z = 0.0;
+
+
+
+
+			var alphaDimension;
+			var betaDimension;
+			var gammaDimension;
+			var deltaDimension;
+
+			var container, stats;
+			var camera, scene, renderer, particles, geometry, materials = [], parameters, i, h, color, sprite, size;
+			var mouseX = 0, mouseY = 0;
+			
+			var alphaTransformControl;
+			var betaTransformControl;
+			var gammaTransformControl;
+			var deltaTransformControl;
+
+			var objects = [];
+			var tmpVec1 = new THREE.Vector3();
+			var tmpVec2 = new THREE.Vector3();
+			var tmpVec3 = new THREE.Vector3();
+			var tmpVec4 = new THREE.Vector3();
+
+
+			var loader = new THREE.PubChem_3DJSONLoader();
+			var pdbLoader = new THREE.PDBLoader();
+
+			var colorSpriteMap = {};
+			var baseSprite = document.createElement( 'img' );
+
+			var rotateMolecules = true;
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			$("field").focusin(function(){
+			    $(this).css("background-color","#FFFFCC");
+		  	});
+			$("field").focusout(function(){
+				$(this).css("background-color","#FFFFFF");
+			});
+
+			init();
+			animate();
+			closeFileWindows(0);
+
+			function init() {
+
+				container = document.getElementById('webgl_div');
+
+				//camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 2000 );
+				//camera.position.z = 1000;
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 100000 );
+				camera.position.z = 1500;
+
+
+
+
+				scene = new THREE.Scene();
+				var color = new THREE.Color();
+				color.setRGB( 1, 1, 1 );
+				scene.backgroundColor = color;
+				
+
+				scene.fog = new THREE.FogExp2( 0x000000, 0.00003 );
+				
+				var maxX = 660;
+				var maxY = 400;
+
+
+				var alphaMolecule = getUrlVars()["alpha"];
+				var betaMolecule = getUrlVars()["beta"];
+				var gammaMolecule = getUrlVars()["gamma"];
+				var deltaMolecule = getUrlVars()["delta"];
+				rotateMolecules = getUrlVars()["rotate"];
+
+				var drawAlpha = false, drawBeta = false, drawGamma = false, drawDelta = false;
+
+				if ( typeof alphaMolecule !== 'undefined' && alphaMolecule != 'undefined' )
+					drawAlpha = true;
+				if ( typeof betaMolecule !== 'undefined' && betaMolecule != 'undefined' )
+					drawBeta = true;
+				if ( typeof gammaMolecule !== 'undefined' && gammaMolecule != 'undefined' )
+					drawGamma = true;
+				if ( typeof deltaMolecule !== 'undefined' && deltaMolecule != 'undefined' )
+					drawDelta = true;
+
+				console.log('rotateMolecules = ', rotateMolecules);
+
+
+
+				alphaDimension = new THREE.Object3D();
+				alphaDimension.position.x = -maxX;
+				alphaDimension.position.y = maxY;
+
+				if (drawAlpha && !drawBeta && !drawGamma && !drawDelta)
+				{
+					alphaDimension.position.x = 0;
+					alphaDimension.position.y = 0;
+				}
+
+				scene.add( alphaDimension );
+
+
+				betaDimension = new THREE.Object3D();
+				betaDimension.position.x = maxX;
+				betaDimension.position.y = maxY;
+			
+				if (drawAlpha && drawBeta && !drawGamma && !drawDelta)
+				{
+					alphaDimension.position.x = -maxX;
+					alphaDimension.position.y = 0;
+
+					betaDimension.position.x = maxX;
+					betaDimension.position.y = 0;
+							
+				}
+
+
+				scene.add( betaDimension );
+
+				gammaDimension = new THREE.Object3D();
+				gammaDimension.position.x = -maxX;
+				gammaDimension.position.y = -maxY;
+				
+				scene.add( gammaDimension );
+
+				deltaDimension = new THREE.Object3D();
+				deltaDimension.position.x = maxX;
+				deltaDimension.position.y = -maxY;
+				
+				scene.add( deltaDimension );
+
+				selectedDimension = alphaDimension;
+				selectedObjectsArray = alphaObjects;
+
+
+				
+				//loadRCSB_PDBFile("molecules/adna.pdb" , alphaDimension);
+
+
+				//loadRCSB_PDBFile("molecules/bdna.pdb" , alphaDimension);
+				//loadRCSB_PDBFile("molecules/zdna.pdb" , gammaDimension);
+				//loadRCSB_PDBFile("molecules/bdna.pdb" , deltaDimension);
+
+				
+				//Search cookies and reload the last thing we had...
+				if ( typeof alphaMolecule !== 'undefined' && alphaMolecule != 'undefined' )
+				{
+					console.log("alpha = ", alphaMolecule);					
+					pubChem_compoundSearchByName( alphaMolecule, alphaDimension);
+
+					if ( typeof betaMolecule !== 'undefined' && betaMolecule != 'undefined')
+					{
+						console.log("beta = ", betaMolecule);
+						pubChem_compoundSearchByName( betaMolecule, betaDimension);
+					}
+					if ( typeof gammaMolecule !== 'undefined' && gammaMolecule != 'undefined')
+					{
+						console.log("gamma = ", gammaMolecule);						
+						pubChem_compoundSearchByName( gammaMolecule, gammaDimension);
+					}
+					if ( typeof deltaMolecule !== 'undefined' && deltaMolecule != 'undefined')
+					{
+						console.log("delta = ", deltaMolecule);						
+						pubChem_compoundSearchByName( deltaMolecule, deltaDimension);
+					}
+
+				}
+				else
+				{
+
+			    	var alphaDimensionSearchTerm = getCookie("alphaDimension");
+					if (alphaDimensionSearchTerm!="")
+					{
+						pubChem_compoundSearchByName(alphaDimensionSearchTerm, alphaDimension);
+					}
+					else
+					{
+						pubChem_compoundSearchByName("benzene", alphaDimension);
+						pubChem_compoundSearchByName("nitrobenzene", betaDimension);
+						pubChem_compoundSearchByName("trinitrobenzene", gammaDimension);
+						pubChem_compoundSearchByName("octanitrocubane", deltaDimension);					
+					}
+
+
+					var betaDimensionSearchTerm = getCookie("betaDimension");
+					if (betaDimensionSearchTerm!="")
+					{
+						pubChem_compoundSearchByName(betaDimensionSearchTerm, betaDimension);
+					}
+					
+
+
+					var gammaDimensionSearchTerm = getCookie("gammaDimension");
+					if (gammaDimensionSearchTerm!="")
+					{
+						pubChem_compoundSearchByName(gammaDimensionSearchTerm, gammaDimension);
+					}
+					
+
+					var deltaDimensionSearchTerm = getCookie("deltaDimension");
+					if (deltaDimensionSearchTerm!="")
+					{
+						pubChem_compoundSearchByName(deltaDimensionSearchTerm, deltaDimension);
+					}
+				}
+
+				
+
+
+				// lights
+
+				light = new THREE.DirectionalLight( 0xffffff );
+				light.position.set( 1, 1, 1 );
+				scene.add( light );
+
+				light = new THREE.DirectionalLight( 0xffffff );
+				light.position.set( -1, -1, -1 );
+				scene.add( light );
+
+				light = new THREE.AmbientLight( 0x444444 );
+				scene.add( light );
+
+				light = new THREE.AmbientLight( 0x444444 );
+				light.position.set( 0, 100, 0 );
+				scene.add( light );
+
+				
+
+				renderer = new THREE.WebGLRenderer( { clearAlpha: 1 } );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setClearColorHex( 0x111111, 1 );
+
+				container.appendChild( renderer.domElement );
+
+				// EVENTS
+				THREEx.WindowResize(renderer, camera);
+				THREEx.FullScreen.bindKey({ charCode : '`'.charCodeAt(0) });
+				// CONTROLS
+
+				//controls
+				alphaTransformControl = new THREE.TransformControls( camera, renderer.domElement );
+				alphaTransformControl.addEventListener( 'change', render );
+				alphaTransformControl.attach( alphaDimension );
+				
+
+				betaTransformControl = new THREE.TransformControls( camera, renderer.domElement );
+				betaTransformControl.addEventListener( 'change', render );
+				betaTransformControl.attach( betaDimension );
+
+				
+				gammaTransformControl = new THREE.TransformControls( camera, renderer.domElement );
+				gammaTransformControl.addEventListener( 'change', render );
+				gammaTransformControl.attach( gammaDimension );
+
+				
+				deltaTransformControl = new THREE.TransformControls( camera, renderer.domElement );
+				deltaTransformControl.addEventListener( 'change', render );
+				deltaTransformControl.attach( deltaDimension );
+
+				
+
+				window.addEventListener( 'keydown', function ( event ) {
+	            //console.log(event.keyCode);
+
+	            switch ( event.keyCode ) {
+	              case 49: //1
+					toggleSelectedDimension('alpha');
+	              	break;
+	              case 50: //2
+	              	toggleSelectedDimension('beta');
+	              	//loadRCSB_PDBFile("molecules/bdna.pdb" , betaDimension);
+	              	break;
+	              case 51: //3
+	              	toggleSelectedDimension('gamma');
+	              	//loadRCSB_PDBFile("molecules/bdna.pdb" , gammaDimension);
+		            break;
+	              case 52: //4
+	              	toggleSelectedDimension('delta');
+
+	              	//loadRCSB_PDBFile("molecules/bdna.pdb" , deltaDimension);
+
+		            break;
+	              case 82: // R
+	                alphaTransformControl.setMode( "rotate" );
+	                betaTransformControl.setMode( "rotate" );
+	                gammaTransformControl.setMode( "rotate" );
+	                deltaTransformControl.setMode( "rotate" );
+	                break;
+	              case 84: // T
+	                alphaTransformControl.setMode( "translate" );
+	                betaTransformControl.setMode( "translate" );
+	                gammaTransformControl.setMode( "translate" );
+	                deltaTransformControl.setMode( "translate" );
+	                break;
+				case 187:
+				case 107: // +,=,num+
+					alphaTransformControl.setSize( alphaTransformControl.size + 0.1 );
+					betaTransformControl.setSize( betaTransformControl.size + 0.1 );
+					gammaTransformControl.setSize( gammaTransformControl.size + 0.1 );
+					deltaTransformControl.setSize( deltaTransformControl.size + 0.1 );
+					break;
+				case 189:
+				case 10: // -,_,num-
+					alphaTransformControl.setSize( Math.max(alphaTransformControl.size - 0.1, 0.1 ) );
+					betaTransformControl.setSize( Math.max(betaTransformControl.size - 0.1, 0.1 ) );
+					gammaTransformControl.setSize( Math.max(gammaTransformControl.size - 0.1, 0.1 ) );
+					deltaTransformControl.setSize( Math.max(deltaTransformControl.size - 0.1, 0.1 ) );
+
+					break;
+	            }            
+    		});
+				
+				controls = new THREE.TrackballControls( camera  , renderer.domElement);
+
+				controls.rotateSpeed = 1.0;
+				controls.zoomSpeed = 1.2;
+				controls.panSpeed = 0.8;
+				controls.minDistance = 500.0;
+				controls.maxDistance = 20000;
+
+				controls.noZoom = false;
+				controls.noPan = false;
+
+				controls.staticMoving = false;
+				controls.dynamicDampingFactor = 0.3;
+
+				controls.keys = [ 65, 83, 68 ];
+
+				controls.addEventListener( 'change', render );
+				
+
+
+				
+				// Stats for OpenGL
+				/*
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				container.appendChild( stats.domElement );
+				*/
+				/*
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+				*/
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				controls.handleResize();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function onDocumentMouseMove( event ) {
+
+				mouseX = event.clientX - windowHalfX;
+				mouseY = event.clientY - windowHalfY;
+
+			}
+
+			function onDocumentTouchStart( event ) {
+
+				if ( event.touches.length === 1 ) {
+
+					event.preventDefault();
+
+					mouseX = event.touches[ 0 ].pageX - windowHalfX;
+					mouseY = event.touches[ 0 ].pageY - windowHalfY;
+
+				}
+
+			}
+
+			function onDocumentTouchMove( event ) {
+
+				if ( event.touches.length === 1 ) {
+
+					event.preventDefault();
+
+					mouseX = event.touches[ 0 ].pageX - windowHalfX;
+					mouseY = event.touches[ 0 ].pageY - windowHalfY;
+
+				}
+
+			}
+
+			//
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				controls.update();
+
+				render();
+				//stats.update();
+
+			}
+
+			function render() {
+
+				var time = Date.now() * 0.00005;
+
+				//camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+				//camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+
+				var scaleFactor = 2000;
+
+				if (isGrabbing == true)
+				{
+					console.log('GrabDelta: (' + grab_delta_x + "," + grab_delta_y + "," + grab_delta_z + ")");
+					selectedDimension.position.x += grab_delta_x*scaleFactor;
+					selectedDimension.position.y += -grab_delta_y*scaleFactor;
+					selectedDimension.position.z += -grab_delta_z*scaleFactor;
+
+					console.log('alphaPosition: (' + selectedDimension.position.x + "," + selectedDimension.position.y + "," + selectedDimension.position.z + ")");
+
+
+					if (selectedDimension.position.z > 2000)
+						selectedDimension.position.z = 2000;
+					if (selectedDimension.position.z < -2000)
+						selectedDimension.position.z = -2000;
+
+
+
+				}
+				else
+				{
+					//console.log('No Grab!' + currentGesture);
+				}
+					
+				//camera.lookAt( scene.position );
+				if (rotateMolecules)
+				{
+					//alphaDimension.rotation.x = 3.141596/2.0;
+	 				alphaDimension.rotation.x = time * -2.7;
+	 				alphaDimension.rotation.y = time * -5.7;
+	 				//betaDimension.rotation.x = 3.141596/2.0;
+	 				betaDimension.rotation.z = time * -5.7;
+	 				//gammaDimension.rotation.x = 3.141596/2.0;
+	 				gammaDimension.rotation.z = time * -5.7;
+	 				//deltaDimension.rotation.x = 3.141596/2.0;
+	 				deltaDimension.rotation.z = time * -5.7;	
+				}
+				
+
+				alphaTransformControl.update();
+				betaTransformControl.update();
+				gammaTransformControl.update();
+				deltaTransformControl.update();
+
+				for ( i = 0; i < scene.children.length; i ++ ) {
+
+					var object = scene.children[ i ];
+					
+
+					if ( object instanceof THREE.ParticleSystem ) {
+
+						object.rotation.y = time * ( i < 4 ? i + 1 : - ( i + 1 ) );
+
+					}
+
+				}
+
+				for ( i = 0; i < materials.length; i ++ ) {
+
+					color = parameters[i][0];
+
+					h = ( 360 * ( color[0] + time ) % 360 ) / 360;
+					materials[i].color.setHSL( h, color[1], color[2] );
+
+				}
+
+				renderer.render( scene, camera );
+
+			}
+
+
+		</script>
+	</body>
+</html>
