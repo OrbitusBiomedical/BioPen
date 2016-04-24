@@ -23,7 +23,6 @@ CKCatalog.init_pen = function (){
       return uuid;
   };
 
-  debugger;
 
       var zoneName = undefined;
       var recordName = generateUUID();
@@ -64,7 +63,7 @@ CKCatalog.init_pen = function (){
       var molecule = fields['molecule'];
       var title = fields['title'];
       
-      console.log("YourData = " + molecule + "; Title = " + title);
+      console.log("YourData = " + JSON.stringify(molecule) + "; Title = " + JSON.stringify(title);
     }
   });
 
