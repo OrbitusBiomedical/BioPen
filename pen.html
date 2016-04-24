@@ -100,7 +100,7 @@
 
 	        if (param1var == null)
 	        {
-	        	console.log("create a new pen");
+	        	
 
 	        	function generateUUID() {
 				    var d = new Date().getTime();
@@ -112,6 +112,7 @@
 				        d = Math.floor(d/16);
 				        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
 				    });
+					console.log("creating new pen: " + uuid);
 				    return uuid;
 				};
 
