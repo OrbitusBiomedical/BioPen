@@ -27,6 +27,18 @@
 				</a>
 			</div>
 			<div class="header-center">
+			
+				<div id="searchContainer">
+					<form id="pubChemSearchForm" onSubmit="return checkField()">
+						<input id="field" name="field" type="text" />
+						<div id="delete"><span id="x">x</span></div>
+						<input id="submitButton" name="submit" type="button" value="Search" />
+						<div id="outputbox">
+					    	<p id="outputcontent"></p>
+						</div>
+					</form>
+				</div>
+
 			</div>
 			<div class="header-right">
 				<div class="user-stuff">
@@ -40,17 +52,6 @@
 		</header>
 
 		<div id="webgl_div">
-		</div>
-
-		<div id="searchContainer">
-			<form id="pubChemSearchForm" onSubmit="return checkField()">
-				<input id="field" name="field" type="text" />
-				<div id="delete"><span id="x">x</span></div>
-				<input id="submitButton" name="submit" type="button" value="Search" />
-				<div id="outputbox">
-			    	<p id="outputcontent"></p>
-				</div>
-			</form>
 		</div>
 
         <div id="molecule_details">
