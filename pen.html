@@ -17,6 +17,41 @@
 	</head>
 	<body>
 
+		<header class="main-header">
+			<div class="header-left">
+				<h1 class="logo">
+					<a href="http://orbitusbiomedical.github.io/BioPen/">
+						BioPen
+					</a>
+
+				</h1>
+				<a href="/BioPen/pen.html" id="new" class="new-pen-button">
+					NewPen
+				</a>
+			</div>
+			<div class="header-center">
+				<div class="header-search">
+					<a href="#0" class="header-search-button">
+						Search
+					</a>
+					<form method="get" action="/search" class="search-form">
+						<div>
+							<input type="search" class="search-input" value placeholder="Search Pens">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="header-right">
+				<div class="user-stuff">
+					<div id="apple-sign-in-button"></div>
+					<div id="apple-sign-out-button"></div>
+					<span id="username" class="username"></span>
+					<!--<h2 id="displayed-username" class="displayed-username"></h2>-->
+					
+				</div>
+			</div>
+		</header>
+		
 		<div id="webgl_div" style="width:100%; height:100%; ">
 		</div>
 
