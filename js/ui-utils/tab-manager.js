@@ -13,7 +13,7 @@ CKCatalog.tabManager = (function() {
   var self = {};
 
   var page = document.getElementById('page');
-  var scrollView = page; //page.parentNode
+  var scrollView = page.parentNode;
   var menuItems = document.querySelectorAll('.menu-item');
   var runButton = document.getElementById('run-button');
   var defaultRoute = 'readme';
