@@ -48,6 +48,7 @@ if ( window.location !== window.parent.location ) {
 
   var drawSearchField = false;
 
+  rotateMolecules = true;
   if ( typeof searchFieldParam !== 'undefined' && searchFieldParam != 'undefined' )
   	drawSearchField = true;
 
@@ -62,6 +63,7 @@ if ( window.location !== window.parent.location ) {
   console.log("The page is not in an iframe");
   var searchContainer = document.getElementById("searchContainer");
   searchContainer.style.display = "block";
+  rotateMolecules = false;
 
 }
 
