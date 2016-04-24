@@ -63,7 +63,7 @@ CKCatalog.init_pen = function (){
       var molecule = fields['molecule'];
       var title = fields['title'];
       
-      console.log("YourData = " + JSON.stringify(molecule) + "; Title = " + JSON.stringify(title);
+      console.log("YourData = " + JSON.stringify(molecule) + "; Title = " + JSON.stringify(title));
     }
   });
 
