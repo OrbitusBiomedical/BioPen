@@ -144,7 +144,7 @@
 					}
 				};
 
-				return publicDB.saveRecord(record,options)
+				publicDB.saveRecord(record,options)
 				.then(function(response) {
 				  if(response.hasErrors) {
 
