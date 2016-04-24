@@ -141,7 +141,7 @@
 					}
 				};
 
-				return publicDB.saveRecord(record,options)
+				publicDB.saveRecord(record,options)
 				.then(function(response) {
 				  if(response.hasErrors) {
 
@@ -153,7 +153,7 @@
 				    var fields = createdRecord.fields;
 				    var molecule = fields['molecule'];
 				    var title = fields['title'];
-				    
+
 				    console.log("YourData = " + molecule + "; Title = " + title);
 				  }
 				});
