@@ -1,5 +1,5 @@
 
-function load_pen (){
+CKCatalog.init_pen = function (){
 
     //log the parameter pushed into the html line
     var param1var = getQueryVariable("uuid");
