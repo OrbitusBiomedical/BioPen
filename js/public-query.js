@@ -174,7 +174,7 @@ CKCatalog.tabs['public-query'] = (function() {
 
 
       // Get the user's current geolocation.
-      return getUsersPosition().then(function (position) {
+      //return getUsersPosition().then(function (position) {
 
         // position is an object containing keys 'latitude' and 'longitude'.
 
@@ -228,7 +228,7 @@ CKCatalog.tabs['public-query'] = (function() {
               }
             }
           })
-      });
+      //});
     }
   };
 
