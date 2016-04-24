@@ -1,13 +1,13 @@
 
-//log the parameter pushed into the html line
-var param1var = getQueryVariable("uuid");
-console.log("Parameter: " + param1var);
+  //log the parameter pushed into the html line
+  var param1var = getQueryVariable("uuid");
+  console.log("Parameter: " + param1var);
 
-if (param1var == null)
-{
-console.log("create a new pen");
+  if (param1var == null)
+  {
+    
 
-function generateUUID() {
+    function generateUUID() {
     var d = new Date().getTime();
     if(window.performance && typeof window.performance.now === "function"){
         d += performance.now();; //use high-precision timer if available
@@ -17,38 +17,37 @@ function generateUUID() {
         d = Math.floor(d/16);
         return (c=='x' ? r : (r&0x3|0x8)).toString(16);
     });
-    console.log(uuid);
-
+  console.log("creating new pen: " + uuid);
     return uuid;
 };
 
-var zoneName = undefined;
-var recordName = generateUUID();
-var title = "title";
-var molecule = "ether";
+debugger;
 
-var container = CloudKit.getDefaultContainer();
+    var zoneName = undefined;
+    var recordName = generateUUID();
+    var title = "title";
+    var molecule = "ether";
+
+    var container = CloudKit.getDefaultContainer();
 var publicDB = container.publicCloudDatabase;
 
 // If no options are provided the record will be saved to the default zone.
 var options = zoneName ? { zoneID: zoneName } : undefined;
 
 var record = {
-    recordName: recordName,
+  recordName: recordName,
 
-    recordType: 'BioPen',
+  recordType: 'BioPen',
 
-    fields: {
-      molecule: {
-        value: molecule
-      },
-      title: {
-        value: title
-      }
+  fields: {
+    molecule: {
+      value: molecule
+    },
+    title: {
+      value: title
     }
+  }
 };
-console.log(record);
-
 
 publicDB.saveRecord(record,options)
 .then(function(response) {
@@ -62,25 +61,25 @@ publicDB.saveRecord(record,options)
     var fields = createdRecord.fields;
     var molecule = fields['molecule'];
     var title = fields['title'];
-
+    
     console.log("YourData = " + molecule + "; Title = " + title);
   }
 });
 
-}
-else
-{
-console.log("Load Pen: " + param1var);  
-}
+  }
+  else
+  {
+    console.log("Load Pen: " + param1var);  
+  }
 
 function getQueryVariable(variable) {
 var query = window.location.search.substring(1);
 var vars = query.split("&");
 for (var i=0;i<vars.length;i++) {
-var pair = vars[i].split("=");
-if (pair[0] == variable) {
-  return pair[1];
-}
+  var pair = vars[i].split("=");
+  if (pair[0] == variable) {
+    return pair[1];
+  }
 } 
 //alert('Query Variable ' + variable + ' not found');
 }
