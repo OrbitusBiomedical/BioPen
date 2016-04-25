@@ -103,13 +103,7 @@ CKCatalog.init_pen = function (){
               console.log(fields['molecule'].value);
 
               //execute the search for the molecule
-              
-              // ---
-              // TODO:
-              // once we are saving use this value
-              // fields['molecule'].value
-              pubChem_compoundSearchByName("methanol", alphaDimension);
-              // ---
+              pubChem_compoundSearchByName(fields['molecule'].value, alphaDimension);
             });
             return el;
           }
