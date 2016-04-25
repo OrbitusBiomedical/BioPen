@@ -58,9 +58,7 @@ if ( window.location !== window.parent.location ) {
   	searchContainer.style.display = "block";	
   }
 
-  var searchContainer = document.getElementById("header");
-  searchContainer.style.position = "absolute";	
-
+  $(".main-header").css("position","absolute");
 
 } else {
   // The page is not in an iframe
