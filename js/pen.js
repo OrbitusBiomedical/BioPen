@@ -74,12 +74,8 @@ CKCatalog.init_pen = function (){
     var container = CloudKit.getDefaultContainer();
     var publicDB = container.publicCloudDatabase;
 
-    var query = {
-      recordType: 'BioPen',
-      recordName: param1var
-    };
 
-    publicDB.performQuery(query)
+    publicDB.fetchRecord(param1var,options)
       .then(function (response) {
         if(response.hasErrors) {
 
