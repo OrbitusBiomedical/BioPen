@@ -21,6 +21,7 @@ em {
   color: white; }
 
 .main-header {
+  display: none;
   height: 40px; }
   .main-header a {
     color: white; }
@@ -403,4 +404,4 @@ em {
       .grid .grid-1-4 ul li {
         list-style: none; }
 
-/*# sourceMappingURL=biopen.css.map */
+/*# sourceMappingURL=pen.css.map */
