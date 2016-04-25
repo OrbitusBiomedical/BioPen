@@ -21,6 +21,7 @@ em {
   color: white; }
 
 .main-header {
+  display: none;
   height: 40px; }
   .main-header a {
     color: white; }

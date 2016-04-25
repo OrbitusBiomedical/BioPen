@@ -58,7 +58,7 @@ if ( window.location !== window.parent.location ) {
   	searchContainer.style.display = "block";	
   }
 
-  $(".main-header").css("display","none");
+  
 
 } else {
   // The page is not in an iframe
@@ -66,7 +66,7 @@ if ( window.location !== window.parent.location ) {
   var searchContainer = document.getElementById("searchContainer");
   searchContainer.style.display = "block";
   rotateMolecules = false;
-
+  $(".main-header").css("display","block");
 }
 
 
