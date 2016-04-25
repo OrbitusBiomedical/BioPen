@@ -868,8 +868,8 @@ function init() {
 
 	if (drawAlpha)
 		pubChem_compoundSearchByName(alphaMolecule, alphaDimension);
-	else
-		pubChem_compoundSearchByName("ethanol", alphaDimension);
+	//else
+	//	pubChem_compoundSearchByName("ethanol", alphaDimension);
 
 	// lights
 
