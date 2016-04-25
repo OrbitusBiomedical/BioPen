@@ -61,6 +61,10 @@ CKCatalog.init_pen = function (){
       }
     });
 
+
+    //now set url with the parameter
+    document.location = document.location + "?udid="
+
   }
   else
   {
@@ -71,11 +75,8 @@ CKCatalog.init_pen = function (){
     var publicDB = container.publicCloudDatabase;
 
     var query = {
-      recordType: 'Items',
-      sortBy: [{
-        fieldName: 'location',
-        relativeLocation: position
-      }]
+      recordType: 'BioPen',
+      recordName: param1var
     };
 
     publicDB.performQuery(query)
