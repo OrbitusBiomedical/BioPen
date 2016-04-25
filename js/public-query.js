@@ -222,7 +222,7 @@ CKCatalog.tabs['public-query'] = (function() {
 
                   //Make new PenGroup
                   var pens_element = document.getElementById("picks-pens-grid");
-                  pens_element.insertBefore(renderItem(fields['title'].value, fields['molecule'].value, tempUpdatedURL, fields['uuid'].value, fields['username'].value, fields['usericonlink'].value, fields['userprofilelink'].value), pens_element.childNodes[0] );
+                  pens_element.insertBefore(renderItem(fields['title'].value, fields['molecule'].value, tempUpdatedURL, record.recordName, "Orbitus007", "https://pbs.twimg.com/profile_images/1277238206/image_normal.jpg", "http://orbitusbiomedical.github.io/BioPen/user.html?name=Orbitus007"), pens_element.childNodes[0] );
                     
                 });
               }
