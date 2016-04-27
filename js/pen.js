@@ -63,7 +63,7 @@ CKCatalog.init_pen = function (){
 
 
     //now set url with the parameter
-    document.location = document.location + "?udid="
+    document.location = document.location + "?udid=" + recordName;
 
   }
   else
