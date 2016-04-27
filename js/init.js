@@ -29,7 +29,13 @@ if (typeof document.hidden !== "undefined") {
     visChangeEvent = "webkitvisibilitychange";
 }
 
-
+CKCatalog.isPalindrome = function (str) {
+  for (var x = 0; x < ((str.length % 2 == 0) ? str.length/2 : (str.length-1)/2); x++)
+  {
+      if (str.charAt(x) !== str.charAt(str.length-1-x)
+        return false;
+  }
+}
 
 /**
  * This function is run immediately after CloudKit has loaded.
