@@ -72,6 +72,11 @@ CKCatalog.init = function() {
     };
     // Try to run the authentication code.
     CKCatalog.tabs['authentication'][0].sampleCode().catch(failAuth);
+
+    //TODO: separate init.js for an init_pen.js and init_home.js
+    //THIS LINE DOES NOT NEED TO LOAD FOR THE pen.html only for the Index.html
+    CKCatalog.tabs['public-query'][0].sampleCode();
+
     
   } catch (e) {
     CKCatalog.dialog.showError(e);
