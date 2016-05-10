@@ -179,13 +179,15 @@ function update()
 
     //mesh.rotation.x += 1 * dt;
     //mesh.position.x += 10 * dt;
-    mesh.position = Snew;
+    mesh.position.x = Snew.x;
+    mesh.position.y = Snew.y;
+    mesh.position.z = Snew.z;
 
 	if ( keyboard.pressed("z") ) 
 	{	// do something   
 	}
 	
-	//console.log('update ' + dt + "; t= " + dt);
+	console.log('update ' + dt + "; t= " + dt);
 
 	controls.update();
 	stats.update();
