@@ -50,6 +50,8 @@ var mesh;
 
 var lastFrameTime = new Date().getTime() / 1000;
 var totalGameTime = 0;
+var dt;
+var currTime;
 
 init();
 animate();
@@ -156,13 +158,20 @@ function animate()
 	update(0, totalGameTime);
 }
 
-function update(dt, t)
+function update()
 {
+	currTime = new Date().getTime() / 1000;
+    dt = currTime - (lastFrameTime || currTime);
+    totalGameTime += dt;
+        
+   mesh.rotation += 1 * dt;
+
 	if ( keyboard.pressed("z") ) 
 	{	// do something   
 	}
 	
 	console.log('update ' + dt + "; t= " + t);
+
 
 	controls.update();
 	stats.update();
