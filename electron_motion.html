@@ -152,8 +152,13 @@ function update()
     totalGameTime += dt;
 	lastFrameTime = currTime;
 
-   mesh.rotation.x += 1 * dt;
-   mesh.position.x += 10 * dt;
+	var F = new THREE.Vector3(0,0,0);
+	var A = new THREE.Vector3(0,0,0);
+	var Vnew = new THREE.Vector3(0,0,0); //Velocity at t+dt
+	var Snew = new THREE.Vector3(0,0,0); //Position at t+dt
+
+   	mesh.rotation.x += 1 * dt;
+   	mesh.position.x += 10 * dt;
 
 	if ( keyboard.pressed("z") ) 
 	{	// do something   
