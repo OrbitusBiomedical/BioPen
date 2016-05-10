@@ -48,6 +48,9 @@ var clock = new THREE.Clock();
 // custom global variables
 var mesh;
 
+var lastFrameTime = new Date().getTime() / 1000;
+var totalGameTime = 0;
+
 init();
 animate();
 
@@ -150,17 +153,21 @@ function animate()
 {
     requestAnimationFrame( animate );
 	render();		
-	update();
+	update(0, totalGameTime);
 }
 
-function update()
+function update(dt, t)
 {
 	if ( keyboard.pressed("z") ) 
 	{	// do something   
 	}
 	
+	console.log('update');
+
 	controls.update();
 	stats.update();
+
+
 }
 
 function render() 
