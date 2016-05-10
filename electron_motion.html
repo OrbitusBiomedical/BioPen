@@ -170,7 +170,7 @@ function update()
 	
 	A.multiplyScalar(dt)
 	Vnew.addVectors(V, A);
-	Vnew.multiplyScalar(2*dt)
+	Vnew.multiplyScalar(dt)
 	S.add(Vnew);
 	
 	Snew.copy(S);
@@ -184,7 +184,7 @@ function update()
 	{	// do something   
 	}
 	
-	console.log('Z = ' + /*mesh.position.z*/ Snew.x );
+	console.log('(' + Snew.x + "," + Snew.y + "," + Snew.z );
 
 
 	controls.update();
