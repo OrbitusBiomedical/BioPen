@@ -111,14 +111,14 @@ function init()
 	var geometry = new THREE.SphereGeometry( 1, 32, 16 );
 	var material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
 	mesh = new THREE.Mesh( geometry, material );
-	mesh.position.set(40,40,40);
+	mesh.position.set(0,100,100);
 	scene.add(mesh);
 	
 	var axes = new THREE.AxisHelper(50);
 	axes.position = mesh.position;
 	scene.add(axes);
 	
-	var gridXZ = new THREE.GridHelper(100, 10);
+	var gridXZ = new THREE.GridHelper(1000, 10);
 	gridXZ.setColors( new THREE.Color(0x006600), new THREE.Color(0x006600) );
 	gridXZ.position.set( 100,0,100 );
 	scene.add(gridXZ);
@@ -129,7 +129,7 @@ function init()
 	gridXY.setColors( new THREE.Color(0x000066), new THREE.Color(0x000066) );
 	scene.add(gridXY);
 
-	var gridYZ = new THREE.GridHelper(100, 10);
+	var gridYZ = new THREE.GridHelper(1000, 10);
 	gridYZ.position.set( 0,100,100 );
 	gridYZ.rotation.z = Math.PI/2;
 	gridYZ.setColors( new THREE.Color(0x660000), new THREE.Color(0x660000) );
