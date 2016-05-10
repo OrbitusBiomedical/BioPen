@@ -178,12 +178,14 @@ function update()
 	V.copy(Vnew);
 
     //mesh.rotation.x += 1 * dt;
-    mesh.position.x += 10 * dt;
-    mesh.position.x = Snew.x;
+	mesh.position.x = Snew.x;
     mesh.position.y = Snew.y;
     mesh.position.z = Snew.z;
 
-	if ( keyboard.pressed("z") ) 
+	
+
+    mesh.position.x += 10 * dt;
+    if ( keyboard.pressed("z") ) 
 	{	// do something   
 	}
 	
