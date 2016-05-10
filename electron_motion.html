@@ -170,7 +170,7 @@ function update()
 	
 	A.multiplyScalar(dt)
 	Vnew.addVectors(V, A);
-	Vnew.multiplyScalar(100*dt)
+	Vnew.multiplyScalar(2*dt)
 	S.add(Vnew);
 	
 	Snew.copy(S);
