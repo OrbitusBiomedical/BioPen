@@ -164,6 +164,8 @@ function update()
 	var Vnew = THREE.Vector3(0,0,0); //Velocity at t+dt
 	var Snew = THREE.Vector3(0,0,0); //Position at t+dt
 
+	debugger;
+	
 	F.crossVectors( V, B ); 			// F = (VxB)
 	//F.multiplyScalar(M); //just 1
 	A.copy(F) 	// A = F/M
