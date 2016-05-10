@@ -56,7 +56,7 @@ var currTime;
 var V = new THREE.Vector3(0,0,100);
 var M = 1;
 var S = new THREE.Vector3(0,100,100);
-var B = new THREE.Vector3(0,1,0);
+var B = new THREE.Vector3(1,1,1);
 
 init();
 animate();
@@ -164,7 +164,7 @@ function update()
 	V.z = 10;
 
 	F.crossVectors( V, B ); 			// F = (VxB)
-	F.multiplyScalar(-1);
+	//F.multiplyScalar(-1);
 	//F.multiplyScalar(M); //just 1
 	A.copy(F) 	// A = F/M
 	
