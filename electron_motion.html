@@ -132,7 +132,7 @@ function init()
 	// direction (normalized), origin, length, color(hex)
 	var origin = new THREE.Vector3(100,100,0);
 	var terminus  = new THREE.Vector3(100,100,100);
-	var direction = new THREE.Vector3().subVectors(terminus, origin).normalize();∏
+	var direction = new THREE.Vector3().subVectors(terminus, origin).normalize();
 	var arrow = new THREE.ArrowHelper(direction, origin, 50, 0x884400);
 	scene.add(arrow);
 	
