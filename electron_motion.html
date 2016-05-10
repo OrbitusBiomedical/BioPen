@@ -162,6 +162,19 @@ function update()
 	var Vnew = new THREE.Vector3(0,0,0); //Velocity at t+dt
 	var Snew = new THREE.Vector3(0,0,0); //Position at t+dt
 
+	F.crossVectors( V, B ); 			// F = (VxB)
+	//F.multiplyScalar(M); //just 1
+	A.copy(F) 	// A = F/M
+	
+	A.multiplyScalar(dt)
+	Vnew.addVectors(V, A);
+	Vnew.multiplyScalar(dt)
+	S.add(Vnew);
+	
+	Snew.copy(S);
+	V.copy(Vnew);
+
+
    	mesh.rotation.x += 1 * dt;
    	mesh.position.x += 10 * dt;
 
