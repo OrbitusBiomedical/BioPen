@@ -52,10 +52,10 @@ var dt;
 var currTime;
 
 
-var V = THREE.Vector3(0,0,0);
+var V = new THREE.Vector3(0,0,0);
 var M = 1;
-var S = THREE.Vector3(0,100,100);
-var B = THREE.Vector3(0,1,0);
+var S = new THREE.Vector3(0,100,100);
+var B = new THREE.Vector3(0,1,0);
 
 
 init();
@@ -159,13 +159,13 @@ function update()
     totalGameTime += dt;
 	lastFrameTime = currTime;
 
-	var F = THREE.Vector3(0,0,0);
-	var A = THREE.Vector3(0,0,0);
-	var Vnew = THREE.Vector3(0,0,0); //Velocity at t+dt
-	var Snew = THREE.Vector3(0,0,0); //Position at t+dt
+	var F = new THREE.Vector3(0,0,0);
+	var A = new THREE.Vector3(0,0,0);
+	var Vnew = new THREE.Vector3(0,0,0); //Velocity at t+dt
+	var Snew = new THREE.Vector3(0,0,0); //Position at t+dt
 
 	debugger;
-	
+
 	F.crossVectors( V, B ); 			// F = (VxB)
 	//F.multiplyScalar(M); //just 1
 	A.copy(F) 	// A = F/M
