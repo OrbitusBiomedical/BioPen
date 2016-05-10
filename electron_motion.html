@@ -164,7 +164,7 @@ function update()
     dt = currTime - (lastFrameTime || currTime);
     totalGameTime += dt;
         
-   mesh.rotation += 1 * dt;
+   mesh.rotation.x += 1 * dt;
 
 	if ( keyboard.pressed("z") ) 
 	{	// do something   
