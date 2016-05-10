@@ -155,7 +155,7 @@ function animate()
 {
     requestAnimationFrame( animate );
 	render();		
-	update(0, totalGameTime);
+	update();
 }
 
 function update()
@@ -163,7 +163,8 @@ function update()
 	currTime = new Date().getTime() / 1000;
     dt = currTime - (lastFrameTime || currTime);
     totalGameTime += dt;
-        
+	lastFrameTime = currTime;
+
    mesh.rotation.x += 1 * dt;
 
 	if ( keyboard.pressed("z") ) 
