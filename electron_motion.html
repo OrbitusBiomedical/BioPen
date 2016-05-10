@@ -56,7 +56,7 @@ var currTime;
 var V = new THREE.Vector3(100,0,0);
 var M = 1;
 var S = new THREE.Vector3(0,100,100);
-var B = new THREE.Vector3(0,1000,0);
+var B = new THREE.Vector3(0,100,0);
 
 init();
 animate();
@@ -168,7 +168,7 @@ function update()
 	//F.multiplyScalar(M); //just 1
 	A.copy(F) 	// A = F/M
 	
-	A.multiplyScalar(dt)
+	A.multiplyScalar(dt*2)
 	Vnew.addVectors(V, A);
 	Vnew.multiplyScalar(dt)
 	S.add(Vnew);
