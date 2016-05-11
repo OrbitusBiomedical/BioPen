@@ -66,6 +66,7 @@ function getUrlVars() {
 
 init();
 animate();
+$('body').scrollTop(1);
 
 // FUNCTIONS 		
 function init() 
