@@ -272,7 +272,7 @@ function update()
 	   		particle.mesh_falling = true;
 	   	
 
-		if (!particle.mesh_falling)
+		if (particle.mesh_raising)//!particle.mesh_falling)
 		{
 			F.crossVectors( particle.V , B); 			// F = (VxB)
 			F.addVectors(F, G);
