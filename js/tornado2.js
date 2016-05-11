@@ -130,6 +130,8 @@ function init()
 	//create particles
 
 	//Crate
+	//THREE.TextureLoader.crossOrigin = '';
+	//THREE.ImageUtils.crossOrigin = '';
 	texture = new THREE.TextureLoader().load( 'img/crate.gif' );
 	texture.crossOrigin = true;
 	geometry = new THREE.BoxGeometry( 10, 10, 10 );

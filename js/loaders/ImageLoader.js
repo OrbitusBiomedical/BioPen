@@ -75,7 +75,7 @@ THREE.ImageLoader.prototype = {
 		}, false );
 
 		if ( this.crossOrigin !== undefined ) image.crossOrigin = this.crossOrigin;
-
+		
 		scope.manager.itemStart( url );
 
 		image.src = url;
