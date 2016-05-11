@@ -78,7 +78,14 @@ function init()
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
 	camera.zoom = 1;
 	scene.add(camera);
-	camera.position.set(0,150,400);
+	if (deviceOrientation)
+	{
+		camera.position.set(100,0,400);
+	}
+	else
+	{
+		camera.position.set(0,150,400);
+	}
 	camera.lookAt(scene.position);	
 	// RENDERER
 	if ( Detector.webgl )
