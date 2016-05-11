@@ -142,7 +142,16 @@ function init()
 	//THREE.ImageUtils.crossOrigin = '';
 	texture = new THREE.TextureLoader().load( 'img/crate.gif' );
 	geometry = new THREE.BoxGeometry( 10, 10, 10 );
-	material = new THREE.MeshLambertMaterial( { /*map:texture,*/ color:0xffff00 } );
+
+	console.log("redred " + document.location);
+	if (document.location.href.startsWith("file:///"))
+	{
+		material = new THREE.MeshLambertMaterial( { color:0xffff00 } );
+	}	
+	else
+	{
+		material = new THREE.MeshLambertMaterial( { map:texture, color:0xffff00 } );
+	}
 
 	//Sphere
 	//geometry = new THREE.SphereGeometry( 1, 32, 16 );
@@ -305,6 +314,13 @@ function update()
 				particle.V.multiplyScalar(1);
 				particle.S.y = mesh_height;
 				particle.position.y = mesh_height;
+
+				//----------
+				//Use these two lines to make the tornado infinite without suction
+				//particle.S.set(60 + Math.floor((Math.random() * 80) + 1), 5,  60 + Math.floor((Math.random() * 80) + 1));
+				//particle.position.set(60 + Math.floor((Math.random() * 80) + 1), 5,  60 + Math.floor((Math.random() * 80) + 1));
+				//----------
+
 			}
 		}
 
