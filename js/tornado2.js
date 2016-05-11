@@ -24,7 +24,7 @@ var mesh;
 //global physics properties
 var B = new THREE.Vector3(0,.01,0); //magnetic field
 var G = new THREE.Vector3(0.0,-.001,0.0);
-var Gravity = new THREE.Vector3(0.0, 0.1,0.0);
+var Gravity = new THREE.Vector3(0.0, 0.01,0.0);
 
 //particle properties
 var S = new THREE.Vector3(100,0,100);	//position
