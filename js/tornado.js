@@ -131,7 +131,7 @@ function init()
 	geometry = new THREE.SphereGeometry( 1, 32, 16 );
 	material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
 	
-	for (var i = 0; i < 5000; i++)
+	for (var i = 0; i < 1000; i++)
 	{
 		mesh = new THREE.Mesh( geometry, material );
 		mesh.position.set(50 + Math.floor((Math.random() * 100) + 1), 0,  50 + Math.floor((Math.random() * 100) + 1));
@@ -283,7 +283,7 @@ function update()
 		//F.multiplyScalar(M); //just 1
 		A.copy(F) 	// A = F/M
 		
-		A.multiplyScalar(dt*500)
+		A.multiplyScalar(dt*1)
 
 		Vnew.addVectors(particle.V, A);
 		//Vnew.multiplyScalar(dt*80)

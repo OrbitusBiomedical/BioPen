@@ -34,7 +34,7 @@ var mesh_falling = false;
 var mesh_raising = true;
 
 
-
+var texture;
 var geometry;
 var material;
 
@@ -128,12 +128,20 @@ function init()
 	
 	//-----
 	//create particles
-	geometry = new THREE.SphereGeometry( 1, 32, 16 );
-	material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
+
+	//Crate
+	texture = new THREE.TextureLoader().load( 'img/crate1/crate1_diffuse.jpg' );
+	geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+	material = new THREE.MeshBasicMaterial( { map: texture } );
+
+	//Sphere
+	//geometry = new THREE.SphereGeometry( 1, 32, 16 );
+	//material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
 	
 	for (var i = 0; i < 100; i++)
 	{
-		mesh = THREEx.Crates.createCrate1();   //new THREE.Mesh( geometry, material );
+
+		mesh = new THREE.Mesh( geometry, material );//THREEx.Crates.createCrate1();   //
 		mesh.position.set(50 + Math.floor((Math.random() * 100) + 1), 0,  50 + Math.floor((Math.random() * 100) + 1));
 		scene.add(mesh);
 		mesh.S = new THREE.Vector3(mesh.position.x,mesh.position.y,mesh.position.z);	//position
