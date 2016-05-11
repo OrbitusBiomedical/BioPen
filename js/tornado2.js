@@ -263,7 +263,7 @@ function update()
 		var Vnew = new THREE.Vector3(0,0,0); //Velocity at t+dt
 		var Snew = new THREE.Vector3(0,0,0); //Position at t+dt
 
-		if (Math.abs(particle.S.x-100) < 10 && Math.abs(particle.S.y-0) < 10 && Math.abs(particle.S.z-100) < 10 && particle.mesh_falling == true)
+		if (Math.abs(particle.S.x-100) < 10 && Math.abs(particle.S.y-0) < 20 && Math.abs(particle.S.z-100) < 10 && particle.mesh_falling == true)
 		{
 			A.x = 0;
 			A.y = 0;
