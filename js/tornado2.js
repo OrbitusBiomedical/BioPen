@@ -272,23 +272,26 @@ function update()
 	   		particle.mesh_falling = true;
 	   	
 
-		if (particle.mesh_raising)//!particle.mesh_falling)
+		if (!particle.mesh_falling)
 		{
 			F.crossVectors( particle.V , B); 			// F = (VxB)
 			F.addVectors(F, G);
 		}	
 		else
 		{
-
-			if (particle.position.y > 0)
+			if (particle.mesh_raising)
 			{
-				F.addVectors(F, Gravity)
+				if (particle.position.y > 0)
+				{
+					F.addVectors(F, Gravity)
+				}
+				else
+				{
+					particle.V = new THREE.Vector3(80-particle.position.x+Math.floor((Math.random() * 40) + 1), 0, 80-particle.position.z+Math.floor((Math.random() * 40) + 1));
+					particle.V.normalize();
+				}	
 			}
-			else
-			{
-				particle.V = new THREE.Vector3(80-particle.position.x+Math.floor((Math.random() * 40) + 1), 0, 80-particle.position.z+Math.floor((Math.random() * 40) + 1));
-				particle.V.normalize();
-			}
+			
 		}
 		
 		F.multiplyScalar(-1); //negative charge
