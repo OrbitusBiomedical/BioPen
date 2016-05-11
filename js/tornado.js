@@ -1,37 +1,4 @@
 
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Helpers (Three.js)</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel=stylesheet href="css/base.css"/>
-</head>
-<body>
-
-<script src="js/three.min.js"></script>
-<script src="js/Detector.js"></script>
-<script src="js/libs/stats.min.js"></script>
-<script src="js/controls/OrbitControls.js"></script>
-<script src="js/THREEx.KeyboardState.js"></script>
-<script src="js/THREEx.FullScreen.js"></script>
-<script src="js/THREEx.WindowResize.js"></script>
-
-<!-- Code to display an information button and box when clicked. -->
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<link rel=stylesheet href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<link rel=stylesheet href="css/info.css"/>
-<script src="js/info.js"></script>
-<div id="infoButton"></div>
-<div id="infoBox" title="Demo Information">
-This three.js demo is part of a collection at
-<a href="http://stemkoski.github.io/Three.js/">http://stemkoski.github.io/Three.js/</a>
-</div>
-<!-- ------------------------------------------------------------ -->
-
-<div id="ThreeJS" style="z-index: 1; position: absolute; left:0px; top:0px"></div>
-<script>
 /*
 	Three.js "tutorials by example"
 	Author: Lee Stemkoski
@@ -41,25 +8,48 @@ This three.js demo is part of a collection at
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, controls, stats;
+var container, scene, camera, renderer, effect, controls, stats;
 var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
 
 // custom global variables
 var mesh;
-
+var mesh_falling = false;
+var mesh_raising = true;
 var lastFrameTime = new Date().getTime() / 1000;
 var totalGameTime = 0;
 var dt;
 var currTime;
 
-var V = new THREE.Vector3(0.1,0.0,0.1);
+var V = new THREE.Vector3(0.0,0.1,0.1);
 var M = 1;
-var S = new THREE.Vector3(0,100,100);
-var B = new THREE.Vector3(.1,0,0);
+var S = new THREE.Vector3(100,0,100);
+var B = new THREE.Vector3(0,.1,0);
 
 var geometry;
 var material;
+
+var stereo = false;
+var deviceOrientation = false;
+
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+
+
+var stereoFieldParam = getUrlVars()["stereo"];
+if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
+{
+	stereo = true;		
+}
+
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
 
 init();
 animate();
@@ -144,6 +134,44 @@ function init()
 	var arrow = new THREE.ArrowHelper(direction, origin, 100, 0x884400);
 	scene.add(arrow);
 	
+	
+	if (stereo)
+	{
+		effect = new THREE.StereoEffect( renderer, deviceOrientation );
+		effect.eyeSeparation = 2;
+		effect.setSize( window.innerWidth, window.innerHeight );
+	}
+
+	window.addEventListener( 'resize', onWindowResize, false );
+
+}
+
+function onWindowResize() {
+
+	windowHalfX = window.innerWidth / 2;
+	windowHalfY = window.innerHeight / 2;
+
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	if (deviceOrientation)
+	{
+
+	}
+	else
+	{
+		controls.handleResize();
+	}
+
+	if (stereo)
+	{
+		effect.setSize( window.innerWidth, window.innerHeight );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+	}
+	else
+	{
+		renderer.setSize( window.innerWidth, window.innerHeight );
+	}
 }
 
 function animate() 
@@ -168,16 +196,53 @@ function update()
 	var Vnew = new THREE.Vector3(0,0,0); //Velocity at t+dt
 	var Snew = new THREE.Vector3(0,0,0); //Position at t+dt
 	var Vcurrent = new THREE.Vector3(0,0,0);
-	var G = new THREE.Vector3(-0.01,0,0.0);
+	var G = new THREE.Vector3(0.0,-0.01,0.0);
+	var Gravity = new THREE.Vector3(0.0, 0.1,0.0);
 	Vcurrent.copy(V);
 
-	F.crossVectors( V , B); 			// F = (VxB)
-	F.addVectors(F, G);
+	if (S.x-100 < 1 && S.z-100 < 1 && mesh_falling == true)
+	{
+		A.x = 0;
+		A.y = 0;
+		A.z = 0;
+		mesh_falling = false;
+		if (mesh_raising == false)
+		{
+			V.x = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
+			V.y = 0;
+			V.z = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
+			mesh_raising = true;
+		}
+	}
+
+   	if (S.y > 140.0 && mesh_falling == false)
+   		mesh_falling = true;
+   	
+
+	if (!mesh_falling)
+	{
+		F.crossVectors( V , B); 			// F = (VxB)
+		F.addVectors(F, G);
+	}	
+	else
+	{
+
+		if (mesh.position.y > 0)
+		{
+			F.addVectors(F, Gravity)
+		}
+		else
+		{
+			V = new THREE.Vector3(100-mesh.position.x,0,100-mesh.position.z);
+			V.normalize();
+		}
+	}
+	
 	F.multiplyScalar(-1); //negative charge
 	//F.multiplyScalar(M); //just 1
 	A.copy(F) 	// A = F/M
 	
-	A.multiplyScalar(dt*100)
+	A.multiplyScalar(dt*50)
 
 	Vnew.addVectors(V, A);
 	//Vnew.multiplyScalar(dt*80)
@@ -186,21 +251,28 @@ function update()
 	Snew.copy(S);
 	V.copy(Vnew);   	
 
-   	mesh.position.x = Snew.x/5;
+   	mesh.position.x = Snew.x;
    	mesh.position.y = Snew.y;
    	mesh.position.z = Snew.z;
-
-	mesh = new THREE.Mesh( geometry, material );
-	mesh.position.set(Snew.x/5,Snew.y,Snew.z);
-	scene.add(mesh);
+	
+	//mesh = new THREE.Mesh( geometry, material );
+	//mesh.position.set(Snew.x,Snew.y,Snew.z);
+	//scene.add(mesh);
 
 	
 	if ( keyboard.pressed("z") ) 
 	{	// do something   
-		S.x = 0;
-
+		V = new THREE.Vector3(0,0.1,0.1);
+		S.x = 100;
+		S.y = 0;
+		S.z = 100;
+		Snew.x = 100;
+		Snew.y = 100;
+		Snew.z = 100;
+		A.x = 0;
+		A.y = 0;
+		A.z = 0;
 		lastFrameTime = new Date().getTime() / 1000;
-
 	}
 	
 	console.log('(' + Snew.x + "," + Snew.y + "," + Snew.z );
@@ -214,10 +286,18 @@ function update()
 
 function render() 
 {
-	renderer.render( scene, camera );
+	//renderer.render( scene, camera );
+
+	
+	if (stereo)
+	{
+		effect.render( scene, camera );
+	}
+	else
+	{
+		renderer.render( scene, camera );
+	}
+
+	//renderer.render( scene, camera );
 }
 
-</script>
-
-</body>
-</html>
