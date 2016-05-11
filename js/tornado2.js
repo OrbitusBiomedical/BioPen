@@ -131,7 +131,7 @@ function init()
 
 	//Crate
 	texture = new THREE.TextureLoader().load( 'img/crate1/crate1_diffuse.jpg' );
-	geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+	geometry = new THREE.BoxGeometry( 1, 1, 1 );
 	material = new THREE.MeshBasicMaterial( { map: texture } );
 
 	//Sphere
