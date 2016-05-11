@@ -41,7 +41,11 @@ if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' 
 {
 	stereo = true;		
 }
-
+var deviceOrientationFieldParam = getUrlVars()["deviceOrientation"];
+if ( typeof deviceOrientationFieldParam !== 'undefined' && deviceOrientationFieldParam != 'undefined' )
+{
+	deviceOrientation = true;
+}
 
 function getUrlVars() {
     var vars = {};
@@ -58,27 +62,54 @@ animate();
 function init() 
 {
 	// SCENE
+	
 	scene = new THREE.Scene();
+	var color = new THREE.Color();
+	color.setRGB( 1, 0, 1 );
+	scene.backgroundColor = color;
+	
+
+
+
 	// CAMERA
 	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
 	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+	camera.zoom = 1;
 	scene.add(camera);
 	camera.position.set(0,150,400);
 	camera.lookAt(scene.position);	
 	// RENDERER
+	
+	renderer = new THREE.WebGLRenderer( { clearAlpha: 1 } );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setClearColor( 0x111111, 1 );
+
+	/*
 	if ( Detector.webgl )
 		renderer = new THREE.WebGLRenderer( {antialias:true} );
 	else
 		renderer = new THREE.CanvasRenderer(); 
+	
 	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	*/
 	container = document.getElementById( 'ThreeJS' );
 	container.appendChild( renderer.domElement );
 	// EVENTS
 	THREEx.WindowResize(renderer, camera);
 	THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
 	// CONTROLS
-	controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+	if (deviceOrientation)
+	{
+		controls = new THREE.DeviceOrientationControls( camera );		
+	}
+	else
+	{
+		controls = new THREE.OrbitControls( camera, renderer.domElement );	
+	}
+
+	
 	// STATS
 	stats = new Stats();
 	stats.domElement.style.position = 'absolute';
