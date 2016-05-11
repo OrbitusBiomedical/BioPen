@@ -1,8 +1,8 @@
 
 /*
-	Three.js "tutorials by example"
-	Author: Lee Stemkoski
-	Date: July 2013 (three.js v59dev)
+	Three.js "Tornado"
+	Author: Rodolfo Aramayo
+	Date: May 2016
  */
 
 // MAIN
@@ -13,18 +13,27 @@ var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
 
 // custom global variables
-var mesh;
-var mesh_falling = false;
-var mesh_raising = true;
 var lastFrameTime = new Date().getTime() / 1000;
 var totalGameTime = 0;
 var dt;
 var currTime;
 
-var V = new THREE.Vector3(0.0,0.1,0.1);
-var M = 1;
-var S = new THREE.Vector3(100,0,100);
-var B = new THREE.Vector3(0,.1,0);
+
+var particles = [];
+var mesh;
+//global physics properties
+var B = new THREE.Vector3(0,.01,0); //magnetic field
+var G = new THREE.Vector3(0.0,-.001,0.0);
+var Gravity = new THREE.Vector3(0.0, 0.1,0.0);
+
+//particle properties
+var S = new THREE.Vector3(100,0,100);	//position
+var V = new THREE.Vector3(0.0,0.1,0.1); //velocity
+var M = 1;								//mass
+var mesh_falling = false;
+var mesh_raising = true;
+
+
 
 var geometry;
 var material;
@@ -62,15 +71,7 @@ animate();
 function init() 
 {
 	// SCENE
-	
 	scene = new THREE.Scene();
-	var color = new THREE.Color();
-	color.setRGB( 1, 0, 1 );
-	scene.backgroundColor = color;
-	
-
-
-
 	// CAMERA
 	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
 	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
@@ -80,19 +81,13 @@ function init()
 	camera.position.set(0,150,400);
 	camera.lookAt(scene.position);	
 	// RENDERER
-	
-	renderer = new THREE.WebGLRenderer( { clearAlpha: 1 } );
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	renderer.setClearColor( 0x111111, 1 );
-
-	/*
 	if ( Detector.webgl )
 		renderer = new THREE.WebGLRenderer( {antialias:true} );
 	else
 		renderer = new THREE.CanvasRenderer(); 
 	
 	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-	*/
+	
 	container = document.getElementById( 'ThreeJS' );
 	container.appendChild( renderer.domElement );
 	// EVENTS
@@ -131,12 +126,27 @@ function init()
 	// CUSTOM //
 	////////////
 	
+	//-----
+	//create particles
 	geometry = new THREE.SphereGeometry( 1, 32, 16 );
 	material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
-	mesh = new THREE.Mesh( geometry, material );
-	mesh.position.set(0,100,100);
-	scene.add(mesh);
 	
+	for (var i = 0; i < 10000; i++)
+	{
+		mesh = new THREE.Mesh( geometry, material );
+		mesh.position.set(50 + Math.floor((Math.random() * 100) + 1), 0,  50 + Math.floor((Math.random() * 100) + 1));
+		scene.add(mesh);
+		mesh.S = new THREE.Vector3(mesh.position.x,mesh.position.y,mesh.position.z);	//position
+		mesh.V = new THREE.Vector3(0.0,0.1,0.1);//Math.floor((Math.random() * 1))-0.5,Math.floor((Math.random() * 1))-0.5); //velocity
+		mesh.M = 1;								//mass
+		mesh.mesh_falling = true;
+		mesh.mesh_raising = false;
+		mesh.topCutOff = 250 + Math.floor((Math.random() * 250) + 1)
+		particles.push(mesh);
+	}
+	//-----
+
+
 	var axes = new THREE.AxisHelper(50);
 	axes.position = mesh.position;
 	scene.add(axes);
@@ -159,7 +169,7 @@ function init()
 	scene.add(gridYZ);
 	
 	// direction (normalized), origin, length, color(hex)
-	var origin = new THREE.Vector3(0,0+100,0+100);
+	var origin = new THREE.Vector3(0+100,0,0+100);
 	var terminus  = new THREE.Vector3(B.x+100, B.y+100, B.z+100);
 	var direction = new THREE.Vector3().subVectors(terminus, origin).normalize();
 	var arrow = new THREE.ArrowHelper(direction, origin, 100, 0x884400);
@@ -191,7 +201,8 @@ function onWindowResize() {
 	}
 	else
 	{
-		controls.handleResize();
+		// *** OTHER CONTROLS WILL NEED THIS!!! ***
+		//controls.handleResize(); OrbitControls do not have this function 
 	}
 
 	if (stereo)
@@ -221,70 +232,71 @@ function update()
     //console.log(dt);
     totalGameTime += dt;
 	lastFrameTime = currTime;
+	
 
-	var F = new THREE.Vector3(0,0,0);
-	var A = new THREE.Vector3(0,0,0);
-	var Vnew = new THREE.Vector3(0,0,0); //Velocity at t+dt
-	var Snew = new THREE.Vector3(0,0,0); //Position at t+dt
-	var Vcurrent = new THREE.Vector3(0,0,0);
-	var G = new THREE.Vector3(0.0,-0.01,0.0);
-	var Gravity = new THREE.Vector3(0.0, 0.1,0.0);
-	Vcurrent.copy(V);
-
-	if (S.x-100 < 1 && S.z-100 < 1 && mesh_falling == true)
+	for (particle of particles)
 	{
-		A.x = 0;
-		A.y = 0;
-		A.z = 0;
-		mesh_falling = false;
-		if (mesh_raising == false)
+		var F = new THREE.Vector3(0,0,0);
+		var A = new THREE.Vector3(0,0,0);
+		var Vnew = new THREE.Vector3(0,0,0); //Velocity at t+dt
+		var Snew = new THREE.Vector3(0,0,0); //Position at t+dt
+		
+		if (particle.S.x-100 < 10 && particle.S.z-100 < 10 && particle.mesh_falling == true)
 		{
-			V.x = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
-			V.y = 0;
-			V.z = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
-			mesh_raising = true;
+			A.x = 0;
+			A.y = 0;
+			A.z = 0;
+			particle.mesh_falling = false;
+			if (particle.mesh_raising == false)
+			{
+				particle.V.x = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
+				particle.V.y = 0.0;
+				particle.V.z = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
+				particle.mesh_raising = true;
+			}
 		}
-	}
 
-   	if (S.y > 140.0 && mesh_falling == false)
-   		mesh_falling = true;
-   	
+	   	if (particle.S.y > particle.topCutOff && particle.mesh_falling == false)
+	   		particle.mesh_falling = true;
+	   	
 
-	if (!mesh_falling)
-	{
-		F.crossVectors( V , B); 			// F = (VxB)
-		F.addVectors(F, G);
-	}	
-	else
-	{
-
-		if (mesh.position.y > 0)
+		if (!particle.mesh_falling)
 		{
-			F.addVectors(F, Gravity)
-		}
+			F.crossVectors( particle.V , B); 			// F = (VxB)
+			F.addVectors(F, G);
+		}	
 		else
 		{
-			V = new THREE.Vector3(100-mesh.position.x,0,100-mesh.position.z);
-			V.normalize();
+
+			if (particle.position.y > 0)
+			{
+				F.addVectors(F, Gravity)
+			}
+			else
+			{
+				particle.V = new THREE.Vector3(80-particle.position.x+Math.floor((Math.random() * 40) + 1), 0, 80-particle.position.z+Math.floor((Math.random() * 40) + 1));
+				particle.V.normalize();
+			}
 		}
+		
+		F.multiplyScalar(-1); //negative charge
+		//F.multiplyScalar(M); //just 1
+		A.copy(F) 	// A = F/M
+		
+		A.multiplyScalar(dt*200)
+
+		Vnew.addVectors(particle.V, A);
+		//Vnew.multiplyScalar(dt*80)
+		particle.S.add(Vnew);
+		
+		Snew.copy(particle.S);
+		particle.V.copy(Vnew);   	
+
+	   	particle.position.x = Snew.x;
+	   	particle.position.y = Snew.y;
+	   	particle.position.z = Snew.z;
+		
 	}
-	
-	F.multiplyScalar(-1); //negative charge
-	//F.multiplyScalar(M); //just 1
-	A.copy(F) 	// A = F/M
-	
-	A.multiplyScalar(dt*50)
-
-	Vnew.addVectors(V, A);
-	//Vnew.multiplyScalar(dt*80)
-	S.add(Vnew);
-	
-	Snew.copy(S);
-	V.copy(Vnew);   	
-
-   	mesh.position.x = Snew.x;
-   	mesh.position.y = Snew.y;
-   	mesh.position.z = Snew.z;
 	
 	//mesh = new THREE.Mesh( geometry, material );
 	//mesh.position.set(Snew.x,Snew.y,Snew.z);
@@ -306,20 +318,14 @@ function update()
 		lastFrameTime = new Date().getTime() / 1000;
 	}
 	
-	console.log('(' + Snew.x + "," + Snew.y + "," + Snew.z );
-
+	//console.log('(' + Snew.x + "," + Snew.y + "," + Snew.z );
 
 	controls.update();
 	stats.update();
-
-
 }
 
 function render() 
 {
-	//renderer.render( scene, camera );
-
-	
 	if (stereo)
 	{
 		effect.render( scene, camera );
@@ -328,7 +334,5 @@ function render()
 	{
 		renderer.render( scene, camera );
 	}
-
-	//renderer.render( scene, camera );
 }
 
