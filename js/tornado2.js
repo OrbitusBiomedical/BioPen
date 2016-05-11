@@ -139,7 +139,8 @@ function init()
 	//geometry = new THREE.SphereGeometry( 1, 32, 16 );
 	//material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
 	
-	for (var i = 0; i < 100; i++)
+
+	for (var i = 0; i < 5000; i++)
 	{
 
 		mesh = new THREE.Mesh( geometry, material );//THREEx.Crates.createCrate1();   //
