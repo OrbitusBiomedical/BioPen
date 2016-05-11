@@ -149,7 +149,7 @@ function init()
 	//material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
 	
 
-	for (var i = 0; i < 250; i++)
+	for (var i = 0; i < 1000; i++)
 	{
 
 		mesh = new THREE.Mesh( geometry, material );//THREEx.Crates.createCrate1();   //
