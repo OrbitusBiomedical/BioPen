@@ -11,7 +11,7 @@ var THREEx	= THREEx	|| {};
  */
 THREEx.Crates	= {};
 
-THREEx.Crates.baseURL	= '../'
+THREEx.Crates.baseURL	= './'
 
 //////////////////////////////////////////////////////////////////////////////////
 //										//
