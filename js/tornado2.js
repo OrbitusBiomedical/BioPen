@@ -32,7 +32,7 @@ var V = new THREE.Vector3(0.0,0.1,0.1); //velocity
 var M = 1;								//mass
 var mesh_falling = false;
 var mesh_raising = true;
-
+var mesh_height = 5;
 
 var texture;
 var geometry;
@@ -153,7 +153,7 @@ function init()
 	{
 
 		mesh = new THREE.Mesh( geometry, material );//THREEx.Crates.createCrate1();   //
-		mesh.position.set(-500 + Math.floor((Math.random() * 1000) + 1), 0,  -500 + Math.floor((Math.random() * 1000) + 1));
+		mesh.position.set(-500 + Math.floor((Math.random() * 1000) + 1), 5,  -500 + Math.floor((Math.random() * 1000) + 1));
 		scene.add(mesh);
 		mesh.S = new THREE.Vector3(mesh.position.x,mesh.position.y,mesh.position.z);	//position
 		mesh.V = new THREE.Vector3(0.0,0.1,0.1);//Math.floor((Math.random() * 1))-0.5,Math.floor((Math.random() * 1))-0.5); //velocity
@@ -263,7 +263,7 @@ function update()
 		var Vnew = new THREE.Vector3(0,0,0); //Velocity at t+dt
 		var Snew = new THREE.Vector3(0,0,0); //Position at t+dt
 
-		if (Math.abs(particle.S.x-100) < 10 && Math.abs(particle.S.y-0) < 20 && Math.abs(particle.S.z-100) < 10 && particle.mesh_falling == true)
+		if (Math.abs(particle.S.x-100) < 10 && Math.abs(particle.S.y-5) < 10 && Math.abs(particle.S.z-100) < 10 && particle.mesh_falling == true)
 		{
 			A.x = 0;
 			A.y = 0;
@@ -294,7 +294,7 @@ function update()
 		}	
 		else
 		{
-			if (particle.position.y > 0 && particle.mesh_falling)
+			if (particle.position.y > mesh_height && particle.mesh_falling)
 			{
 				F.addVectors(F, Gravity)
 			}
@@ -303,8 +303,8 @@ function update()
 				particle.V = new THREE.Vector3(80-particle.position.x+Math.floor((Math.random() * 40) + 1), 0, 80-particle.position.z+Math.floor((Math.random() * 40) + 1));
 				particle.V.normalize();
 				particle.V.multiplyScalar(1);
-				particle.S.y = 0;
-				particle.position.y = 0;
+				particle.S.y = mesh_height;
+				particle.position.y = mesh_height;
 			}
 		}
 
