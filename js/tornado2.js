@@ -134,7 +134,7 @@ function init()
 	//THREE.ImageUtils.crossOrigin = '';
 	texture = new THREE.TextureLoader().load( 'img/crate.gif' );
 	geometry = new THREE.BoxGeometry( 10, 10, 10 );
-	material = new THREE.MeshLambertMaterial( { map:texture, color:0xffff00 } );
+	material = new THREE.MeshLambertMaterial( { /*map:texture,*/ color:0xffff00 } );
 
 	//Sphere
 	//geometry = new THREE.SphereGeometry( 1, 32, 16 );
@@ -153,6 +153,9 @@ function init()
 		mesh.mesh_falling = true;
 		mesh.mesh_raising = false;
 		mesh.topCutOff = 750 + Math.floor((Math.random() * 250) + 1)
+		//G is the raising velocity and makes a great tornado when its randomness is varied
+		//tempG just holds individual values for each particle
+		mesh.tempG = new THREE.Vector3(G.x,G.y - Math.floor((Math.random()*10) - 5) * .0001, G.z); -.001
 		particles.push(mesh);
 	}
 	//-----
@@ -251,7 +254,7 @@ function update()
 		var A = new THREE.Vector3(0,0,0);
 		var Vnew = new THREE.Vector3(0,0,0); //Velocity at t+dt
 		var Snew = new THREE.Vector3(0,0,0); //Position at t+dt
-		
+
 		if (Math.abs(particle.S.x-100) < 10 && Math.abs(particle.S.y-0) < 10 && Math.abs(particle.S.z-100) < 10 && particle.mesh_falling == true)
 		{
 			A.x = 0;
@@ -259,9 +262,13 @@ function update()
 			A.z = 0;
 			particle.mesh_falling = false;
 			particle.mesh_raising = true;
-			particle.V.x = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
+			//Controlling the Vx when raising gives us a cool variable magnetic function 
+			//50 = tornado level 5 
+			//10 = tornado level 1
+
+			particle.V.x = 0.01 + Math.floor((Math.random() * 25) + 1) * 0.1;
 			particle.V.y = 0.0;
-			particle.V.z = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
+			particle.V.z = 0.01 + Math.floor((Math.random() * 25) + 1) * 0.1;
 		
 		}
 
@@ -275,7 +282,7 @@ function update()
 		if (particle.mesh_raising)
 		{
 			F.crossVectors( particle.V , B); 			// F = (VxB)
-			F.addVectors(F, G);
+			F.addVectors(F, particle.tempG);
 		}	
 		else
 		{
@@ -287,7 +294,7 @@ function update()
 			{
 				particle.V = new THREE.Vector3(80-particle.position.x+Math.floor((Math.random() * 40) + 1), 0, 80-particle.position.z+Math.floor((Math.random() * 40) + 1));
 				particle.V.normalize();
-				particle.V.multiplyScalar(4);
+				particle.V.multiplyScalar(1);
 			}
 		}
 
