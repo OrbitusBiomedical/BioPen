@@ -303,6 +303,8 @@ function update()
 				particle.V = new THREE.Vector3(80-particle.position.x+Math.floor((Math.random() * 40) + 1), 0, 80-particle.position.z+Math.floor((Math.random() * 40) + 1));
 				particle.V.normalize();
 				particle.V.multiplyScalar(1);
+				particle.S.y = 0;
+				particle.position.y = 0;
 			}
 		}
 
