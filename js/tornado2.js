@@ -134,7 +134,7 @@ function init()
 	//THREE.ImageUtils.crossOrigin = '';
 	texture = new THREE.TextureLoader().load( 'img/crate.gif' );
 	geometry = new THREE.BoxGeometry( 10, 10, 10 );
-	material = new THREE.MeshLambertMaterial( { /*map:texture,*/ color:0xffff00 } );
+	material = new THREE.MeshLambertMaterial( { map:texture, color:0xffff00 } );
 
 	//Sphere
 	//geometry = new THREE.SphereGeometry( 1, 32, 16 );
