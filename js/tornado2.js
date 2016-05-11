@@ -80,7 +80,7 @@ function init()
 	scene.add(camera);
 	if (deviceOrientation)
 	{
-		camera.position.set(100,0,400);
+		camera.position.set(100,20,400);
 	}
 	else
 	{
