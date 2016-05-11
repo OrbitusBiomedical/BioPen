@@ -143,7 +143,8 @@ function init()
 	texture = new THREE.TextureLoader().load( 'img/crate.gif' );
 	geometry = new THREE.BoxGeometry( 10, 10, 10 );
 
-	console.log("redred " + document.location);
+	//------
+	//We can't uyse the cross origin image file on the file:/// during development... 
 	if (document.location.href.startsWith("file:///"))
 	{
 		material = new THREE.MeshLambertMaterial( { color:0xffff00 } );
@@ -152,7 +153,9 @@ function init()
 	{
 		material = new THREE.MeshLambertMaterial( { map:texture, color:0xffff00 } );
 	}
+	//------
 
+	
 	//Sphere
 	//geometry = new THREE.SphereGeometry( 1, 32, 16 );
 	//material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
