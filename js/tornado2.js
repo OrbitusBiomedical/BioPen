@@ -131,9 +131,9 @@ function init()
 	geometry = new THREE.SphereGeometry( 1, 32, 16 );
 	material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
 	
-	for (var i = 0; i < 5000; i++)
+	for (var i = 0; i < 100; i++)
 	{
-		mesh = new THREE.Mesh( geometry, material );
+		mesh = THREEx.Crates.createCrate1();   //new THREE.Mesh( geometry, material );
 		mesh.position.set(50 + Math.floor((Math.random() * 100) + 1), 0,  50 + Math.floor((Math.random() * 100) + 1));
 		scene.add(mesh);
 		mesh.S = new THREE.Vector3(mesh.position.x,mesh.position.y,mesh.position.z);	//position
