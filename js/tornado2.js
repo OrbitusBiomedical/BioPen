@@ -133,9 +133,8 @@ function init()
 	//THREE.TextureLoader.crossOrigin = '';
 	//THREE.ImageUtils.crossOrigin = '';
 	texture = new THREE.TextureLoader().load( 'img/crate.gif' );
-	texture.crossOrigin = true;
 	geometry = new THREE.BoxGeometry( 10, 10, 10 );
-	material = new THREE.MeshLambertMaterial( { map:texture, color:0xffff00 } );
+	material = new THREE.MeshLambertMaterial( { /*map:texture,*/ color:0xffff00 } );
 
 	//Sphere
 	//geometry = new THREE.SphereGeometry( 1, 32, 16 );
@@ -146,7 +145,7 @@ function init()
 	{
 
 		mesh = new THREE.Mesh( geometry, material );//THREEx.Crates.createCrate1();   //
-		mesh.position.set(50 + Math.floor((Math.random() * 100) + 1), 0,  50 + Math.floor((Math.random() * 100) + 1));
+		mesh.position.set(-500 + Math.floor((Math.random() * 1000) + 1), 0,  -500 + Math.floor((Math.random() * 1000) + 1));
 		scene.add(mesh);
 		mesh.S = new THREE.Vector3(mesh.position.x,mesh.position.y,mesh.position.z);	//position
 		mesh.V = new THREE.Vector3(0.0,0.1,0.1);//Math.floor((Math.random() * 1))-0.5,Math.floor((Math.random() * 1))-0.5); //velocity
@@ -253,47 +252,45 @@ function update()
 		var Vnew = new THREE.Vector3(0,0,0); //Velocity at t+dt
 		var Snew = new THREE.Vector3(0,0,0); //Position at t+dt
 		
-		if (particle.S.x-100 < 10 && particle.S.z-100 < 10 && particle.mesh_falling == true)
+		if (Math.abs(particle.S.x-100) < 10 && Math.abs(particle.S.y-0) < 10 && Math.abs(particle.S.z-100) < 10 && particle.mesh_falling == true)
 		{
 			A.x = 0;
 			A.y = 0;
 			A.z = 0;
 			particle.mesh_falling = false;
-			if (particle.mesh_raising == false)
-			{
-				particle.V.x = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
-				particle.V.y = 0.0;
-				particle.V.z = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
-				particle.mesh_raising = true;
-			}
+			particle.mesh_raising = true;
+			particle.V.x = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
+			particle.V.y = 0.0;
+			particle.V.z = 0.1 + Math.floor((Math.random() * 10) + 1) * 0.1;
+		
 		}
 
 	   	if (particle.S.y > particle.topCutOff && particle.mesh_falling == false)
+	   	{
 	   		particle.mesh_falling = true;
+	   		particle.mesh_raising = false;
+	   	}
 	   	
 
-		if (!particle.mesh_falling)
+		if (particle.mesh_raising)
 		{
 			F.crossVectors( particle.V , B); 			// F = (VxB)
 			F.addVectors(F, G);
 		}	
 		else
 		{
-			if (particle.mesh_raising)
+			if (particle.position.y > 0 && particle.mesh_falling)
 			{
-				if (particle.position.y > 0)
-				{
-					F.addVectors(F, Gravity)
-				}
-				else
-				{
-					particle.V = new THREE.Vector3(80-particle.position.x+Math.floor((Math.random() * 40) + 1), 0, 80-particle.position.z+Math.floor((Math.random() * 40) + 1));
-					particle.V.normalize();
-				}	
+				F.addVectors(F, Gravity)
 			}
-			
+			else
+			{
+				particle.V = new THREE.Vector3(80-particle.position.x+Math.floor((Math.random() * 40) + 1), 0, 80-particle.position.z+Math.floor((Math.random() * 40) + 1));
+				particle.V.normalize();
+				particle.V.multiplyScalar(4);
+			}
 		}
-		
+
 		F.multiplyScalar(-1); //negative charge
 		//F.multiplyScalar(M); //just 1
 		A.copy(F) 	// A = F/M
