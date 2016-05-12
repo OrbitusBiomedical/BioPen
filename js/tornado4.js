@@ -244,10 +244,10 @@ function init()
 										shader4:function(){ shaderSelection = 3; rebuildParticles();}																														
 									};
 
-	gui.add(shaderSelectionController,'shader1').name("Shader 1");
-	gui.add(shaderSelectionController,'shader2').name("Shader 2");
-	gui.add(shaderSelectionController,'shader3').name("Shader 3");
-	gui.add(shaderSelectionController,'shader4').name("Shader 4");	
+	h.add(shaderSelectionController,'shader1').name("Shader 1");
+	h.add(shaderSelectionController,'shader2').name("Shader 2");
+	h.add(shaderSelectionController,'shader3').name("Shader 3");
+	h.add(shaderSelectionController,'shader4').name("Shader 4");	
 
 
 	window.addEventListener( 'resize', onWindowResize, false );
