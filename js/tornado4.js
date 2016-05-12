@@ -44,6 +44,9 @@ var deviceOrientation = false;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
+var shaderSelection = 0;
+var uniforms1, uniforms2;
+
 
 var stereoFieldParam = getUrlVars()["stereo"];
 if ( typeof stereoFieldParam !== 'undefined' && stereoFieldParam != 'undefined' )
@@ -191,6 +194,19 @@ function init()
 	};
 
 
+
+	uniforms1 = {
+		time: { type: "f", value: 1.0 },
+		resolution: { type: "v2", value: new THREE.Vector2() }
+	};
+	uniforms2 = {
+		time: { type: "f", value: 1.0 },
+		resolution: { type: "v2", value: new THREE.Vector2() },
+		texture: { type: "t", value: new THREE.TextureLoader().load( "img/disturb.jpg" ) }
+	};
+	uniforms2.texture.value.wrapS = uniforms2.texture.value.wrapT = THREE.RepeatWrapping;
+	
+
 	rebuildParticles();
 
 	
@@ -218,7 +234,24 @@ function init()
 	h.add( particleOptions, "tornadoFactor", 0, 100, 25 ).name( "Tornado Factor" ).onChange( rebuildParticles );
 
 	h.add( particleOptions, "betaLiftChaos", 1, 50, 1 ).name( "beta Lift Chaos" ).onChange( rebuildParticles );
+
+	h = gui.addFolder( "Shader Options" );
+
+	var shaderSelectionController = {
+										shader1:function(){ shaderSelection = 0; rebuildParticles();},
+										shader2:function(){ shaderSelection = 1; rebuildParticles();},
+										shader3:function(){ shaderSelection = 2; rebuildParticles();},
+										shader4:function(){ shaderSelection = 3; rebuildParticles();}																														
+									};
+
+	gui.add(shaderSelectionController,'shader1').name("Shader 1");
+	gui.add(shaderSelectionController,'shader2').name("Shader 2");
+	gui.add(shaderSelectionController,'shader3').name("Shader 3");
+	gui.add(shaderSelectionController,'shader4').name("Shader 4");	
+
+
 	window.addEventListener( 'resize', onWindowResize, false );
+
 
 }
 
@@ -243,6 +276,7 @@ function rebuildParticles() {
 	texture = new THREE.TextureLoader().load( 'img/crate.gif' );
 	geometry = new THREE.BoxGeometry( 10, 10, 10 );
 
+	/*
 	//------
 	//We can't uyse the cross origin image file on the file:/// during development... 
 	if (document.location.href.indexOf("file:///") > -1)
@@ -254,6 +288,19 @@ function rebuildParticles() {
 		material = new THREE.MeshLambertMaterial( { map:texture, color:0xffff00 } );
 	}
 	//------
+	*/
+	var params = [
+		[ 'fragment_shader1', uniforms1 ],
+		[ 'fragment_shader2', uniforms2 ],
+		[ 'fragment_shader3', uniforms1 ],
+		[ 'fragment_shader4', uniforms1 ]
+	];
+
+	var material = new THREE.ShaderMaterial( {
+						uniforms: params[ shaderSelection ][ 1 ],
+						vertexShader: document.getElementById( 'vertexShader' ).textContent,
+						fragmentShader: document.getElementById( params[ shaderSelection ][ 0 ] ).textContent
+						} );
 
 	
 	//Sphere
@@ -454,6 +501,12 @@ function update()
 
 function render() 
 {
+	var delta = clock.getDelta();
+
+	uniforms1.time.value += delta * 5;
+	uniforms2.time.value = clock.elapsedTime;
+
+
 	if (stereo)
 	{
 		effect.render( scene, camera );
