@@ -168,8 +168,8 @@ function init()
 	
 	if (stereo)
 	{
-		effect = new THREE.StereoEffect( renderer, deviceOrientation );
-		effect.eyeSeparation = 2;
+		effect = new THREE.StereoEffect( renderer );//, deviceOrientation );
+		//effect.eyeSeparation = 2;
 		effect.setSize( window.innerWidth, window.innerHeight );
 	}
 
