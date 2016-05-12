@@ -283,7 +283,7 @@ function update()
 		//F.multiplyScalar(M); //just 1
 		A.copy(F) 	// A = F/M
 		
-		A.multiplyScalar(dt*1)
+		A.multiplyScalar(dt*500)
 
 		Vnew.addVectors(particle.V, A);
 		//Vnew.multiplyScalar(dt*80)
