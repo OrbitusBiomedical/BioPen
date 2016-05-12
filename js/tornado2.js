@@ -145,7 +145,7 @@ function init()
 
 	//------
 	//We can't uyse the cross origin image file on the file:/// during development... 
-	if (document.location.href.startsWith("file:///"))
+	if (document.location.href.indexOf("file:///") > -1)
 	{
 		material = new THREE.MeshLambertMaterial( { color:0xffff00 } );
 	}	
