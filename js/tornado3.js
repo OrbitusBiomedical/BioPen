@@ -188,7 +188,7 @@ function init()
 
 	h = gui.addFolder( "Particle Options" );
 
-	h.add( particleOptions, "particleCount", 1, 100, 1 ).name( "#particles" ).onChange( rebuildParticles );
+	h.add( particleOptions, "particleCount", 1, 10000, 1 ).name( "#particles" ).onChange( rebuildParticles );
 		
 
 	window.addEventListener( 'resize', onWindowResize, false );
@@ -227,18 +227,6 @@ function rebuildParticles() {
 	//material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
 
 	//remove all particles meshes from the scene
-
-	/*
-	var obj, i;
-	for ( i = scene.children.length - 1; i >= 0 ; i -- ) {
-	    obj = scene.children[ i ];
-	    if ( obj.isParticle === true) {
-	    	obj.clear();
-	        scene.remove(obj);
-	    }
-	}
-	renderer.initWebGLObjects(scene);
-	*/
 	
 	var children = scene.children;
     for(var i = children.length-1;i>=0;i--){
@@ -249,8 +237,6 @@ function rebuildParticles() {
         }
         
     };   
-
-    renderer.initWebGLObjects(scene);
 
 	particles = [];
 
@@ -272,7 +258,7 @@ function rebuildParticles() {
 		mesh.tempG = new THREE.Vector3(G.x,G.y - Math.floor((Math.random()*10) - 5) * .0001, G.z); -.001
 		particles.push(mesh);
 	}
-	animate();
+
 	//-----
 }
 
