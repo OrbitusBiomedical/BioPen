@@ -137,56 +137,9 @@ function init()
 	// CUSTOM //
 	////////////
 	
-	//-----
-	//create particles
-
-	//Crate
-	//THREE.TextureLoader.crossOrigin = '';
-	//THREE.ImageUtils.crossOrigin = '';
-	texture = new THREE.TextureLoader().load( 'img/crate.gif' );
-	geometry = new THREE.BoxGeometry( 10, 10, 10 );
-
-	//------
-	//We can't uyse the cross origin image file on the file:/// during development... 
-	if (document.location.href.startsWith("file:///"))
-	{
-		material = new THREE.MeshLambertMaterial( { color:0xffff00 } );
-	}	
-	else
-	{
-		material = new THREE.MeshLambertMaterial( { map:texture, color:0xffff00 } );
-	}
-	//------
-
-	
-	//Sphere
-	//geometry = new THREE.SphereGeometry( 1, 32, 16 );
-	//material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
-	
-
-	for (var i = 0; i < 1000; i++)
-	{
-
-		mesh = new THREE.Mesh( geometry, material );//THREEx.Crates.createCrate1();   //
-		mesh.position.set(-500 + Math.floor((Math.random() * 1000) + 1), 5,  -500 + Math.floor((Math.random() * 1000) + 1));
-		scene.add(mesh);
-		mesh.S = new THREE.Vector3(mesh.position.x,mesh.position.y,mesh.position.z);	//position
-		mesh.V = new THREE.Vector3(0.0,0.1,0.1);//Math.floor((Math.random() * 1))-0.5,Math.floor((Math.random() * 1))-0.5); //velocity
-		mesh.M = 1;								//mass
-		mesh.mesh_falling = true;
-		mesh.mesh_raising = false;
-		mesh.topCutOff = 750 + Math.floor((Math.random() * 250) + 1)
-		//G is the raising velocity and makes a great tornado when its randomness is varied
-		//tempG just holds individual values for each particle
-		mesh.tempG = new THREE.Vector3(G.x,G.y - Math.floor((Math.random()*10) - 5) * .0001, G.z); -.001
-		particles.push(mesh);
-	}
-	//-----
 
 
-	var axes = new THREE.AxisHelper(50);
-	axes.position = mesh.position;
-	scene.add(axes);
+
 	
 	var gridXZ = new THREE.GridHelper(100, 10);
 	gridXZ.setColors( new THREE.Color(0x006600), new THREE.Color(0x006600) );
@@ -220,98 +173,109 @@ function init()
 		effect.setSize( window.innerWidth, window.innerHeight );
 	}
 
+
+	particleOptions = {
+		particleCount: 1
+	};
+
+
+	rebuildParticles();
+
 	
+	var gui = new dat.GUI();
 
+	// material (attributes)
 
-	//function setupGui() {
+	h = gui.addFolder( "Particle Options" );
 
-		effectController = {
-
-			shininess: 40.0,
-			ka: 0.17,
-			kd: 0.51,
-			ks: 0.2,
-			metallic: true,
-
-			hue:		0.121,
-			saturation: 0.73,
-			lightness:  0.66,
-
-			lhue:		 0.04,
-			lsaturation: 0.01,	// non-zero so that fractions will be shown
-			llightness:  1.0,
-
-			// bizarrely, if you initialize these with negative numbers, the sliders
-			// will not show any decimal places.
-			lx: 0.32,
-			ly: 0.39,
-			lz: 0.7,
-			newTess: 15,
-			bottom: true,
-			lid: true,
-			body: true,
-			fitLid: false,
-			nonblinn: false,
-			newShading: "glossy"
-		};
-
-		var h;
-		debugger;
-		var gui = new dat.GUI();
-
-		// material (attributes)
-
-		h = gui.addFolder( "Material control" );
-
-		h.add( effectController, "shininess", 1.0, 400.0, 1.0 ).name( "shininess" ).onChange( render );
-		h.add( effectController, "kd", 0.0, 1.0, 0.025 ).name( "diffuse strength" ).onChange( render );
-		h.add( effectController, "ks", 0.0, 1.0, 0.025 ).name( "specular strength" ).onChange( render );
-		h.add( effectController, "metallic" ).onChange( render );
-
-		// material (color)
-
-		h = gui.addFolder( "Material color" );
-
-		h.add( effectController, "hue", 0.0, 1.0, 0.025 ).name( "hue" ).onChange( render );
-		h.add( effectController, "saturation", 0.0, 1.0, 0.025 ).name( "saturation" ).onChange( render );
-		h.add( effectController, "lightness", 0.0, 1.0, 0.025 ).name( "lightness" ).onChange( render );
-
-		// light (point)
-
-		h = gui.addFolder( "Lighting" );
-
-		h.add( effectController, "lhue", 0.0, 1.0, 0.025 ).name( "hue" ).onChange( render );
-		h.add( effectController, "lsaturation", 0.0, 1.0, 0.025 ).name( "saturation" ).onChange( render );
-		h.add( effectController, "llightness", 0.0, 1.0, 0.025 ).name( "lightness" ).onChange( render );
-		h.add( effectController, "ka", 0.0, 1.0, 0.025 ).name( "ambient" ).onChange( render );
-
-		// light (directional)
-
-		h = gui.addFolder( "Light direction" );
-
-		h.add( effectController, "lx", -1.0, 1.0, 0.025 ).name( "x" ).onChange( render );
-		h.add( effectController, "ly", -1.0, 1.0, 0.025 ).name( "y" ).onChange( render );
-		h.add( effectController, "lz", -1.0, 1.0, 0.025 ).name( "z" ).onChange( render );
-
-		h = gui.addFolder( "Tessellation control" );
-		h.add( effectController, "newTess", [ 2, 3, 4, 5, 6, 8, 10, 15, 20, 30, 40, 50 ] ).name( "Tessellation Level" ).onChange( render );
-		h.add( effectController, "lid" ).name( "display lid" ).onChange( render );
-		h.add( effectController, "body" ).name( "display body" ).onChange( render );
-		h.add( effectController, "bottom" ).name( "display bottom" ).onChange( render );
-		h.add( effectController, "fitLid" ).name( "snug lid" ).onChange( render );
-		h.add( effectController, "nonblinn" ).name( "original scale" ).onChange( render );
-
-		// shading
-		h = gui.add( effectController, "newShading", [ "wireframe", "flat", "smooth", "glossy", "textured", "reflective" ] ).name( "Shading" ).onChange( render );
-
-	//}
-
-
-	//setupGui();
+	h.add( particleOptions, "particleCount", 1, 100, 1 ).name( "#particles" ).onChange( rebuildParticles );
+		
 
 	window.addEventListener( 'resize', onWindowResize, false );
 
 }
+
+
+function rebuildParticles() {
+	console.log('rebuildParticles' + scene.children);
+	
+
+	//-----
+	//create particles
+
+	//Crate
+	//THREE.TextureLoader.crossOrigin = '';
+	//THREE.ImageUtils.crossOrigin = '';
+	texture = new THREE.TextureLoader().load( 'img/crate.gif' );
+	geometry = new THREE.BoxGeometry( 10, 10, 10 );
+
+	//------
+	//We can't uyse the cross origin image file on the file:/// during development... 
+	if (document.location.href.startsWith("file:///"))
+	{
+		material = new THREE.MeshLambertMaterial( { color:0xffff00 } );
+	}	
+	else
+	{
+		material = new THREE.MeshLambertMaterial( { map:texture, color:0xffff00 } );
+	}
+	//------
+
+	
+	//Sphere
+	//geometry = new THREE.SphereGeometry( 1, 32, 16 );
+	//material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
+
+	//remove all particles meshes from the scene
+
+	/*
+	var obj, i;
+	for ( i = scene.children.length - 1; i >= 0 ; i -- ) {
+	    obj = scene.children[ i ];
+	    if ( obj.isParticle === true) {
+	    	obj.clear();
+	        scene.remove(obj);
+	    }
+	}
+	renderer.initWebGLObjects(scene);
+	*/
+	
+	var children = scene.children;
+    for(var i = children.length-1;i>=0;i--){
+        var child = children[i];
+        if (child.isParticle)
+        {
+        	scene.remove(child);	
+        }
+        
+    };   
+
+    renderer.initWebGLObjects(scene);
+
+	particles = [];
+
+	for (var i = 0; i < particleOptions.particleCount; i++)
+	{
+
+		mesh = new THREE.Mesh( geometry, material );//THREEx.Crates.createCrate1();   //
+		mesh.position.set(-500 + Math.floor((Math.random() * 1000) + 1), 5,  -500 + Math.floor((Math.random() * 1000) + 1));
+		scene.add(mesh);
+		mesh.S = new THREE.Vector3(mesh.position.x,mesh.position.y,mesh.position.z);	//position
+		mesh.V = new THREE.Vector3(0.0,0.1,0.1);//Math.floor((Math.random() * 1))-0.5,Math.floor((Math.random() * 1))-0.5); //velocity
+		mesh.M = 1;								//mass
+		mesh.mesh_falling = true;
+		mesh.mesh_raising = false;
+		mesh.isParticle = true;
+		mesh.topCutOff = 750 + Math.floor((Math.random() * 250) + 1)
+		//G is the raising velocity and makes a great tornado when its randomness is varied
+		//tempG just holds individual values for each particle
+		mesh.tempG = new THREE.Vector3(G.x,G.y - Math.floor((Math.random()*10) - 5) * .0001, G.z); -.001
+		particles.push(mesh);
+	}
+	animate();
+	//-----
+}
+
 
 function onWindowResize() {
 
