@@ -514,7 +514,8 @@ function update()
 	controls.update();
 	stats.update();
 }
-var performance = {};
+
+var performance = null;
 function render() 
 {
 	if (deviceOrientation == false)
