@@ -243,8 +243,10 @@ function init()
 	h.add( particleOptions, "tornadoFactor", 0, 100, 25 ).name( "Tornado Factor" ).onChange( rebuildParticles );
 
 	h.add( particleOptions, "betaLiftChaos", 1, 50, 1 ).name( "beta Lift Chaos" ).onChange( rebuildParticles );
+	
+	debugger;
 
-	if (!window.mobilecheck)
+	if (!window.mobilecheck())
 	{
 		h = gui.addFolder( "Shader Options" );
 
@@ -302,7 +304,7 @@ function rebuildParticles() {
 	}
 	//------
 	
-	if (!window.mobilecheck)
+	if (!window.mobilecheck())
 	{
 		//Mobile safari can't handle shader1, shader3, and shader4... shader2 is motionless
 		var params = [
@@ -526,7 +528,7 @@ function update()
 var performance = null;
 function render() 
 {
-	if (!window.mobilecheck)
+	if (!window.mobilecheck())
 	{
 
 		//This function does not work on iOS safari as of Three.js-r76
