@@ -530,13 +530,13 @@ function render()
 	}
 	else
 	{
+	uniforms1.time.value += dt * 5;
+	uniforms2.time.value = clock.elapsedTime;
 
 	}
 	
 
-	uniforms1.time.value += dt * 5;
-	uniforms2.time.value = clock.elapsedTime;
-
+	
 	if (stereo)
 	{
 		effect.render( scene, camera );
