@@ -514,11 +514,12 @@ function update()
 	controls.update();
 	stats.update();
 }
-
+var performance = {};
 function render() 
 {
 	if (deviceOrientation == false)
 	{
+
 		//This function does not work on iOS safari as of Three.js-r76
 		var delta = clock.getDelta();
 
