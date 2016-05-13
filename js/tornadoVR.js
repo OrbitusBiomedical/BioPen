@@ -191,7 +191,9 @@ function init()
 		height:750,
 		heightChaos:250,
 		tornadoFactor:25,
-		instantRespawn:false
+		instantRespawn:false,
+		tracer:false
+
 	};
 
 
@@ -223,6 +225,7 @@ function init()
 	h.add( particleOptions, "height", 0, 5000, 1 ).name( "height" ).onChange( rebuildParticles );
 	h.add( particleOptions, "heightChaos", 0, 2500, 1 ).name( "heightChaos" ).onChange( rebuildParticles );
 	h.add( particleOptions, "instantRespawn" ).name( "instant respawn" ).onChange( rebuildParticles );
+	h.add( particleOptions, "tracer" ).name( "show tracer" ).onChange( rebuildParticles );
 
 	h = gui.addFolder( "Magnetic Field Options" );
 	h.add( particleOptions, "betaX", 0, 0.1, 0.01 ).name( "betaX" ).onChange( rebuildParticles );
@@ -278,7 +281,7 @@ function rebuildParticles() {
 	texture = new THREE.TextureLoader().load( 'img/crate.gif' );
 	geometry = new THREE.BoxGeometry( 10, 10, 10 );
 
-	/*
+	
 	//------
 	//We can't uyse the cross origin image file on the file:/// during development... 
 	if (document.location.href.indexOf("file:///") > -1)
@@ -290,20 +293,25 @@ function rebuildParticles() {
 		material = new THREE.MeshLambertMaterial( { map:texture, color:0xffff00 } );
 	}
 	//------
-	*/
-	var params = [
-		[ 'fragment_shader1', uniforms1 ],
-		[ 'fragment_shader2', uniforms2 ],
-		[ 'fragment_shader3', uniforms1 ],
-		[ 'fragment_shader4', uniforms1 ]
-	];
+	
+	if (deviceOrientation == false)
+	{
+		//Mobile safari can't handle shader1, shader3, and shader4... shader2 is motionless
+		var params = [
+			[ 'fragment_shader1', uniforms1 ],
+			[ 'fragment_shader2', uniforms2 ],
+			[ 'fragment_shader3', uniforms1 ],
+			[ 'fragment_shader4', uniforms1 ]
+		];
 
-	var material = new THREE.ShaderMaterial( {
+		material = new THREE.ShaderMaterial( {
 						uniforms: params[ shaderSelection ][ 1 ],
 						vertexShader: document.getElementById( 'vertexShader' ).textContent,
 						fragmentShader: document.getElementById( params[ shaderSelection ][ 0 ] ).textContent
 						} );
-
+	
+	}
+	
 	
 	//Sphere
 	//geometry = new THREE.SphereGeometry( 1, 32, 16 );
@@ -478,9 +486,12 @@ function update()
 	
 	//------
 	// Enable these 3 lines to show a tracer of the last particle stored into mesh
-	//mesh = new THREE.Mesh( geometry, material );
-	//mesh.position.set(Snew.x,Snew.y,Snew.z);
-	//scene.add(mesh);
+	if (particleOptions.tracer)
+	{
+		mesh = new THREE.Mesh( geometry, material );
+		mesh.position.set(Snew.x,Snew.y,Snew.z);
+		scene.add(mesh);
+	}
 	//------
 	
 	if ( keyboard.pressed("z") ) 
@@ -506,6 +517,21 @@ function update()
 
 function render() 
 {
+	if (deviceOrientation == false)
+	{
+		//This function does not work on iOS safari as of Three.js-r76
+		var delta = clock.getDelta();
+
+		uniforms1.time.value += delta * 5;
+		uniforms2.time.value = clock.elapsedTime;
+	
+	}
+	else
+	{
+
+	}
+	
+
 	uniforms1.time.value += dt * 5;
 	uniforms2.time.value = clock.elapsedTime;
 
