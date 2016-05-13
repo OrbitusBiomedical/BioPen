@@ -506,11 +506,10 @@ function update()
 
 function render() 
 {
-	debugger;
+	var delta = clock.getDelta();
 
-	uniforms1.time.value += dt * 5;
+	uniforms1.time.value += delta * 5;
 	uniforms2.time.value = clock.elapsedTime;
-
 
 	if (stereo)
 	{
