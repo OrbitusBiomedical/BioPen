@@ -243,8 +243,6 @@ function init()
 	h.add( particleOptions, "tornadoFactor", 0, 100, 25 ).name( "Tornado Factor" ).onChange( rebuildParticles );
 
 	h.add( particleOptions, "betaLiftChaos", 1, 50, 1 ).name( "beta Lift Chaos" ).onChange( rebuildParticles );
-	
-	debugger;
 
 	if (!window.mobilecheck())
 	{
