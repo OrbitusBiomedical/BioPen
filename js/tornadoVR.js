@@ -190,7 +190,8 @@ function init()
 		betaLiftChaos:10,
 		height:750,
 		heightChaos:250,
-		tornadoFactor:25
+		tornadoFactor:25,
+		instantRespawn:false
 	};
 
 
@@ -221,6 +222,7 @@ function init()
 	h.add( particleOptions, "gravity", 0, 0.1, 0.01 ).name( "Gravity" ).onChange( rebuildParticles );
 	h.add( particleOptions, "height", 0, 5000, 1 ).name( "height" ).onChange( rebuildParticles );
 	h.add( particleOptions, "heightChaos", 0, 2500, 1 ).name( "heightChaos" ).onChange( rebuildParticles );
+	h.add( particleOptions, "instantRespawn" ).name( "instant respawn" ).onChange( rebuildParticles );
 
 	h = gui.addFolder( "Magnetic Field Options" );
 	h.add( particleOptions, "betaX", 0, 0.1, 0.01 ).name( "betaX" ).onChange( rebuildParticles );
@@ -445,8 +447,11 @@ function update()
 
 				//----------
 				//Use these two lines to make the tornado infinite without suction
-				//particle.S.set(60 + Math.floor((Math.random() * 80) + 1), 5,  60 + Math.floor((Math.random() * 80) + 1));
-				//particle.position.set(60 + Math.floor((Math.random() * 80) + 1), 5,  60 + Math.floor((Math.random() * 80) + 1));
+				if (particleOptions.instantRespawn)
+				{
+					particle.S.set(60 + Math.floor((Math.random() * 80) + 1), 5,  60 + Math.floor((Math.random() * 80) + 1));
+					particle.position.set(60 + Math.floor((Math.random() * 80) + 1), 5,  60 + Math.floor((Math.random() * 80) + 1));
+				}
 				//----------
 
 			}
