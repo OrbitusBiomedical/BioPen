@@ -212,7 +212,12 @@ function init()
 		texture: { type: "t", value: new THREE.TextureLoader().load( "img/disturb.jpg" ) }
 	};
 	uniforms2.texture.value.wrapS = uniforms2.texture.value.wrapT = THREE.RepeatWrapping;
-	
+	uniforms3 = {
+		"uDirLightPos"		: { type: "v3", value: new THREE.Vector3(1,0,0) },
+		"uDirLightColor"		: { type: "c" , value: new THREE.Color( 0xeeeeee ) },
+		"uAmbientLightColor"	: { type: "c" , value: new THREE.Color( 0x050505 ) },
+		"uBaseColor"		: { type: "c" , value: new THREE.Color( 0xff0000 ) }
+	};
 
 	rebuildParticles();
 
@@ -252,13 +257,15 @@ function init()
 											shader1:function(){ shaderSelection = 0; rebuildParticles();},
 											shader2:function(){ shaderSelection = 1; rebuildParticles();},
 											shader3:function(){ shaderSelection = 2; rebuildParticles();},
-											shader4:function(){ shaderSelection = 3; rebuildParticles();}																														
+											shader4:function(){ shaderSelection = 3; rebuildParticles();},																														
+											shader5:function(){ shaderSelection = 4; rebuildParticles();}																														
 										};
 
-		h.add(shaderSelectionController,'shader1').name("Shader 1");
+		h.add(shaderSelectionController,'shader1').name("Monjori Shader");
 		h.add(shaderSelectionController,'shader2').name("Shader 2");
 		h.add(shaderSelectionController,'shader3').name("Shader 3");
 		h.add(shaderSelectionController,'shader4').name("Shader 4");	
+		h.add(shaderSelectionController,'shader5').name("Cell shader");			
 	
 	}
 	
@@ -305,16 +312,24 @@ function rebuildParticles() {
 	if (!window.mobilecheck())
 	{
 		//Mobile safari can't handle shader1, shader3, and shader4... shader2 is motionless
+		var paramsVertex = [
+			'vertexShader',
+			'vertexShader',
+			'vertexShader',
+			'vertexShader',
+			'vertexShaderCell'
+		];
 		var params = [
 			[ 'fragment_shader1', uniforms1 ],
 			[ 'fragment_shader2', uniforms2 ],
 			[ 'fragment_shader3', uniforms1 ],
-			[ 'fragment_shader4', uniforms1 ]
+			[ 'fragment_shader4', uniforms1 ],
+			[ 'fragment_shaderCell', uniforms3 ],
 		];
 
 		material = new THREE.ShaderMaterial( {
 						uniforms: params[ shaderSelection ][ 1 ],
-						vertexShader: document.getElementById( 'vertexShader' ).textContent,
+						vertexShader: document.getElementById( paramsVertex[ shaderSelection ] ).textContent,
 						fragmentShader: document.getElementById( params[ shaderSelection ][ 0 ] ).textContent
 						} );
 	
